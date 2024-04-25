@@ -64,51 +64,25 @@
             </div>
 
             <table>
-                <thead>
+            <thead>
+                <tr>
+                    <th>Tgl Setoran</th>
+                    <th>Surat</th>
+                    <th>Jumlah Hafalan</th>
+                    <th>Nilai</th>
+                    <th>Catatan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($setoranSantri as $setoran)
                     <tr>
-                        <th>Tgl Setoran</th>
-                        <th>Surat</th>
-                        <th>Jumlah Hafalan</th>
-                        <th>Nilai</th>
-                        <th>Catatan</th>
+                        <td>{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}</td>
+                        <td>{{ $setoran->surat }}</td>
+                        <td>{{ $setoran->jumlah_hafalan }}</td>
+                        <td>{{ $setoran->nilai }}</td>
+                        <td>{{ $setoran->catatan }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

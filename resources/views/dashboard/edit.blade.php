@@ -9,19 +9,52 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link href="assets/img/logo_ukm.png" rel="icon">
+    <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
-    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        /* Custom CSS Styles */
+        .container {
+            padding-top: 50px;
+        }
 
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        form input,
+        form button {
+            margin-bottom: 20px;
+        }
+
+        form input[type="text"],
+        form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +62,7 @@
     <header id="header" class="d-flex align-items-center">
         <div class="w-100 d-flex align-items-center justify-content-center">
 
-            <a href="index.html" class="logo"><img src="assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
+            <a href="index.html" class="logo"><img src="{{ asset('assets/img/logo_ukm.png') }}" alt="" class="img-fluid"></a>
             <h1 class="logo me-5"><a href="index.html">UKM Tahfidz Qur'an<br>Universitas Airlangga</a></h1>
 
             <nav id="navbar" class="navbar">
@@ -62,35 +95,18 @@
                 <h2>Setoran</h2>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tgl Setoran</th>
-                        <th>Nama Santri</th>
-                        <th>Surat</th>
-                        <th>Jumlah Hafalan</th>
-                        <th>Nilai</th>
-                        <th>Catatan</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($setorans as $setoran)
-                    <tr>
-                        <td>{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}</td>
-                        <td>{{ $setoran->nama_santri }}</td>
-                        <td>{{ $setoran->surat }}</td>
-                        <td>{{ $setoran->jumlah_hafalan }}</td>
-                        <td>{{ $setoran->nilai }}</td>
-                        <td>{{ $setoran->catatan }}</td>
-                        <td>
-                        <a href="{{ route('dashboard.edit', ['id_setoran' => $setoran->id_setoran]) }}" class="edit-icon"><i class="bi bi-pencil"></i></a>
-                            <a href="{{ route('dashboard.delete', ['id_setoran' => $setoran->id_setoran]) }}" class="delete-icon"><i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            <form action="{{ route('dashboard.update', $setoran->id_setoran) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <input type="text" name="tgl_setoran" value="{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}" placeholder="Tanggal Setoran">
+                <input type="text" name="nama_santri" value="{{ $setoran->nama_santri }}" placeholder="Nama Santri">
+                <input type="text" name="surat" value="{{ $setoran->surat }}" placeholder="Surat">
+                <input type="text" name="jumlah_hafalan" value="{{ $setoran->jumlah_hafalan }}" placeholder="Jumlah Hafalan">
+                <input type="text" name="nilai" value="{{ $setoran->nilai }}" placeholder="Nilai">
+                <input type="text" name="catatan" value="{{ $setoran->catatan }}" placeholder="Catatan">
+                <button type="submit">Simpan</button>
+            </form>
+
         </div>
     </section>
 
@@ -112,7 +128,7 @@
                 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
                     <div class="info">
                         <div class="d-flex align-items-center mb-5">
-                            <img src="assets/img/logo_ukm.png" alt="" class="img-fluid">
+                            <img src="{{ asset('assets/img/logo_ukm.png') }}" alt="" class="img-fluid">
                             <h4>UKM Tahfidz Qur'an<br>Universitas Airlangga</h4>
                         </div>
                         <div class="row">
@@ -179,8 +195,8 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col">
-                        <img src="assets/img/logo_ukm.png" class="img-fluid" alt="">
-                        <img src="assets/img/logo_PENS.png" class="img-fluid" alt="">
+                        <img src="{{ asset('assets/img/logo_ukm.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('assets/img/logo_PENS.png') }}" class="img-fluid" alt="">
                         <p>Powered by Satriyo Yoga Pradana</p>
                     </div>
                     <div class="col text-end">
@@ -192,20 +208,17 @@
         </div>
     </section><!-- End Footer Section -->
 
-    </main><!-- End #main -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
