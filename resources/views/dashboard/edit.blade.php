@@ -98,7 +98,7 @@
             <form action="{{ route('dashboard.update', $setoran->id_setoran) }}" method="post">
                 @csrf
                 @method('PATCH')
-                <input type="text" name="tgl_setoran" value="{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}" placeholder="Tanggal Setoran">
+                <input type="text" name="tgl_setoran" value="{{ $setoran->tgl_setoran }}" placeholder="Tanggal Setoran">
                 <input type="text" name="nama_santri" value="{{ $setoran->nama_santri }}" placeholder="Nama Santri">
                 <input type="text" name="surat" value="{{ $setoran->surat }}" placeholder="Surat">
                 <input type="text" name="jumlah_hafalan" value="{{ $setoran->jumlah_hafalan }}" placeholder="Jumlah Hafalan">
