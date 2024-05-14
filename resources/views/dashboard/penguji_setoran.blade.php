@@ -2,25 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    <link href="assets/img/logo_ukm.png" rel="icon">
+  <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
-    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <link href="assets/css/style.css" rel="stylesheet">
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -36,10 +36,10 @@
                 <div class="mx-5">
                     <ul>
                         <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                        <li><a class="nav-link scrollto" href="#program">Program Tahfidz</a></li>
-                        <li><a class="nav-link scrollto" href="#publikasi">Publikasi</a></li>
+                        <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
+                        <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
                         <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
-                        <li><a class="nav-link scrollto" href="#pengumuman">Hafalan Saya</a></li>
+                        <li><a class="nav-link scrollto" href="">Hafalan Saya</a></li>
                     </ul>
                 </div>
                 <div class="ms-5">
@@ -55,62 +55,83 @@
         </div>
     </header>
 
-    <!-- ======= Table Santri Section ======= -->
-    <section id="setoran" class="setoran">
+    <section id="dashboard" class="my-5 pb-0">
         <div class="container">
+    
+            <p><a class="text-black" href="index.html">Beranda</a> / <a href="">Dashboard</a></p>
+
+            <div class="welcome mb-5">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="assets/img/welcome.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <div class="section-title pb-0">
+                            <h2>Halo Penguji!!</h2>
+                            <h3>Halaman ini merupakan halaman yang Anda gunakan untuk melakukan pengelolaan data santri penghafal</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="section-title">
                 <h2>Setoran</h2>
             </div>
+            <div id="edit">
+                <div class="row mb-3">
+                    <div class="col-2 my-auto">
+                        <label for="inputTglSetoran" class="form-label mb-0">Tgl Setoran</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="date" class="form-control form-control-sm" id="inputTglSetoran">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2 my-auto">
+                        <label for="inputNamaSantri" class="form-label mb-0">Nama Santri</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" class="form-control form-control-sm" id="inputNamaSantri">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2 my-auto">
+                        <label for="inputSurat" class="form-label mb-0">Surat</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" class="form-control form-control-sm" id="inputSurat">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2 my-auto">
+                        <label for="inputJmlSetoran" class="form-label mb-0">Jumlah Setoran</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" class="form-control form-control-sm" id="inputJmlSetoran">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-2 my-auto">
+                        <label for="inputNilai" class="form-label mb-0">Nilai</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="number" class="form-control form-control-sm" id="inputNilai">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-2 my-auto">
+                        <label for="inputCatatan" class="form-label mb-0">Catatan</label>
+                    </div>
+                    <div class="col-10">
+                        <input type="text" class="form-control form-control-sm" id="inputCatatan">
+                    </div>
+                </div>
+                <div class="float-end">
+                    <a class="btn" href="">Simpan</a>
+                    <a class="btn back" href="">Kembali</a>
+                </div>
+            </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tgl Setoran</th>
-                        <th>Surat</th>
-                        <th>Jumlah Hafalan</th>
-                        <th>Nilai</th>
-                        <th>Catatan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </section>
 
@@ -219,14 +240,14 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="{{asset("assets/vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/glightbox/js/glightbox.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/isotope-layout/isotope.pkgd.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/swiper/swiper-bundle.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/php-email-form/validate.js")}}"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset("assets/js/main.js")}}"></script>
 
 </body>
 

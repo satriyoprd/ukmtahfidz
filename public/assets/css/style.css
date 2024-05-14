@@ -12,7 +12,7 @@ a {
 }
 
 a:hover {
-  color: #075F7C;
+  color: #248fb3;
   text-decoration: none;
 }
 
@@ -269,11 +269,11 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 .modal {
-  margin-top: -20px !important;
+  margin-top: 0px !important;
 }
 
 .modal h2 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 20px;
@@ -282,7 +282,7 @@ h6 {
 
 .modal h3 {
   margin-bottom: 14px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #000;
 }
@@ -292,22 +292,27 @@ h6 {
 }
 
 .modal img {
-  width: 250px;
-  height: 250px;
+  width: 100px;
+  height: 100px;
 }
 
 /*--------------------------------------------------------------
-# Login & Register
+# Login & Register & Edit
 --------------------------------------------------------------*/
-#login label {
+#login label,
+#edit label {
   font-weight: bold;
 }
 
-#login input {
+#login input,
+#login select,
+#edit input,
+#edit select  {
   border-color: #000;
 }
 
-#login a {
+#login a,
+#edit a {
   color: #075F7C;
   font-weight: bold;
 }
@@ -329,6 +334,42 @@ h6 {
 #login .btn:focus:hover {
   background: #fff;
   color: #075F7C;
+}
+
+#edit .btn,
+#edit .btn:focus {
+  background: #075F7C;
+  color: #fff;
+  margin: 0 5px;
+  border-radius: 4px;
+  border: 2px solid #075F7C;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#edit .btn:hover,
+#edit .btn:focus:hover {
+  background: #fff;
+  color: #075F7C;
+}
+
+#edit .btn.back,
+#edit .btn.back:focus {
+  background: #fff;
+  color: #075F7C;
+  margin: 0 0 0 5px;
+  border-radius: 4px;
+  border: 2px solid #075F7C;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#edit .btn.back:hover,
+#edit .btn.back:focus:hover {
+  background: #075F7C;
+  color: #fff;
 }
 
 /*--------------------------------------------------------------
@@ -434,10 +475,19 @@ section {
   position: relative;
 }
 
-.section-title h3 {
+.section-title h3,
+.section-title label {
   margin-bottom: 14px;
   font-size: 20px;
   font-weight: 600;
+  color: #000;
+}
+
+.section-title p {
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
   color: #000;
 }
 
@@ -518,10 +568,22 @@ section {
   width: 135px;
   height: 340px;
   position: absolute;
-  bottom: -800px;
+  bottom: -700px;
   left: 90%;
   object-fit: cover;
   object-position: left;
+}
+
+.profil .content {
+  padding: 15px;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+}
+
+.profil .content p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
 }
 
 /*--------------------------------------------------------------
@@ -579,6 +641,233 @@ section {
 
 .departemen .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #075F7C;
+}
+
+/*--------------------------------------------------------------
+# Departemen
+--------------------------------------------------------------*/
+#publikasi {
+  background: #075F7C;
+  justify-content: center;
+  padding: 20px;
+}
+
+#publikasi h2,
+#publikasi h3,
+#publikasi p {
+  color: #fff;;
+}
+
+#publikasi p {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+#publikasi .btn,
+#publikasi .btn:focus {
+  background: #fff;
+  color: #075F7C;
+  padding: 4px 25px;
+  border-radius: 4px;
+  border: 2px solid #fff;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#publikasi .btn:hover,
+#publikasi .btn:focus:hover {
+  background: #075F7C;
+  color: #fff;
+}
+
+#publikasi .card {
+  min-height: 465px;
+}
+
+#publikasi .card .card-img-top {
+  padding: 14px;
+}
+
+#publikasi .card .card-title {
+  color: #000;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+#publikasi .card .card-text {
+  color: #000;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+#publikasi .card .btn,
+#publikasi .card .btn:focus {
+  background: #075F7C;
+  color: #fff;
+  padding: 4px 25px;
+  border-radius: 4px;
+  border: 2px solid #075F7C;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#publikasi .card .btn:hover,
+#publikasi .card .btn:focus:hover {
+  background: #fff;
+  color: #075F7C;
+}
+
+/*--------------------------------------------------------------
+# Pengumuman
+--------------------------------------------------------------*/
+#pengumuman .content {
+  padding: 5px 30px;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+}
+
+#pengumuman .btn,
+#pengumuman .btn:focus {
+  background: #075F7C;
+  color: #fff;
+  padding: 4px 25px;
+  border-radius: 4px;
+  border: 2px solid #075F7C;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#pengumuman .btn:hover,
+#pengumuman .btn:focus:hover {
+  background: #fff;
+  color: #075F7C;
+}
+
+/*--------------------------------------------------------------
+# Dashboard
+--------------------------------------------------------------*/
+#dashboard a {
+  color: #075F7C;
+  font-weight: bold;
+}
+
+#dashboard .welcome {
+  padding: 5px 30px;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+}
+
+#dashboard .welcome img {
+  height: 196px;
+  width: 172px;
+}
+
+#dashboard .btn-dashboard {
+  background: #ddd;
+  height: 40px;
+  width: 40px;
+}
+
+#dashboard table .btn,
+#dashboard table .btn:focus {
+  background: #fff;
+  color: #5e5e5e;
+  border-radius: 4px;
+  border: 2px solid #5e5e5e;
+  margin: 0 5px;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#dashboard table .btn:hover,
+#dashboard table .btn:focus:hover {
+  border: 2px solid #075F7C;
+  color: #075F7C;
+}
+
+#dashboard table .btn-delete,
+#dashboard table .btn-delete:focus {
+  background: #5e5e5e;
+  color: #fff;
+  border-radius: 4px;
+  border: 2px solid #5e5e5e;
+  margin: 0 5px;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#dashboard table .btn-delete:hover,
+#dashboard table .btn-delete:focus:hover {
+  background: #fff;
+  color: #075F7C;
+}
+
+#dashboard .asesmen {
+  padding: 5px 5px 5px 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+#dashboard .asesmen .tgl {
+  background: #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#dashboard a.btn,
+#dashboard a.btn:focus,
+#dashboard button.btn,
+#dashboard button.btn:focus {
+  background: #075F7C;
+  color: #fff;
+  padding: 6px 25px;
+  border-radius: 4px;
+  border: 2px solid #075F7C;
+  transition: 0.3s;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#dashboard a.btn:hover,
+#dashboard a.btn:focus:hover,
+#dashboard button.btn:hover,
+#dashboard button.btn:focus:hover {
+  background: #fff;
+  color: #075F7C;
+}
+
+#dashboard .card {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+}
+
+#dashboard .card h5{
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+#dashboard .card .card-img-top {
+  padding: 14px;
+}
+
+#dashboard .card p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+#dashboard .card p.tgl {
+  color: #61676D;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
 }
 
 /*--------------------------------------------------------------
@@ -649,49 +938,4 @@ section {
   100% {
     transform: rotate(360deg);
   }
-}
-
-table {
-  border-collapse: collapse; /* Combine cell borders */
-  width: 100%; /* Make the table span the full width */
-}
-
-th, td {
-  border: 1px solid #D9DDE3; /* Add borders to table cells */
-  padding: 8px; /* Add padding to cells for spacing */
-  text-align: center;
-}
-
-th {
-  background-color: #CCCF95; /* Highlight table headers */
-}
-
-.edit-icon {
-  display: inline-block;
-  margin-right: 10px;
-  font-size: 16px;
-  color: #fff;
-  align-items: center;
-  background-color: #FCBE2D;
-  padding: 7px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-radius: 10%;
-}
-
-.delete-icon {
-  display: inline-block;
-  margin-right: 10px;
-  font-size: 16px;
-  color: #fff;
-  align-items: center;
-  background-color: #F53838;
-  padding: 7px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-radius: 10%;
-}
-
-.edit-icon:hover, .delete-icon:hover {
-  color: #fff; /* Change hover color */
 }

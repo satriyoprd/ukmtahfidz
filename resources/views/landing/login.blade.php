@@ -127,71 +127,42 @@
     </div>
   </div><!-- End Modal -->
 
-  <section id="login" class="mt-5 d-flex align-items-center">
+  <section id="login" class="mt-5 pb-0">
     <div class="container">
 
-      <p><a class="text-black" href="index.html">Beranda</a> / <a href="register.html">Register</a></p>
+      <p><a class="text-black" href="index.html">Beranda</a> / <a href="">Login</a></p>
 
       <div class="section-title text-center">
-        <h2>Registrasi Sekarang</h2>
-        <h3>Silahkan lengkapi form registrasi di bawah ini.</h3>
+        <h2>Selamat Datang</h2>
+        <h3>Silahkan isi form dibawah untuk melanjutkan.</h3>
       </div>
 
-      <div class="mb-3">
-        <label for="inputNama" class="form-label">Nama Lengkap</label>
-        <input type="text" class="form-control" id="inputNama">
-      </div>
-      <div class="mb-3">
-        <label for="inputNim" class="form-label">NIM</label>
-        <input type="text" class="form-control" id="inputNim">
-      </div>
-      <div class="mb-3">
-        <label for="inputNomorHp" class="form-label">Nomor Handphone (WhatsApp)</label>
-        <input type="text" class="form-control" id="inputNomorHp">
-      </div>
       <div class="mb-3">
         <label for="inputEmail" class="form-label">Email</label>
         <input type="email" class="form-control" id="inputEmail">
       </div>
-      <div class="mb-3">
+      <div class="mb-2">
         <label for="inputPassword" class="form-label">Kata Sandi</label>
         <input type="password" class="form-control" id="inputPassword">
       </div>
-      <div class="mb-3">
-        <label for="inputConfirmPass" class="form-label">Konfirmasi Kata Sandi</label>
-        <input type="password" class="form-control" id="inputConfirmPass">
-      </div>
-      <div class="row mb-3">
-        <div class="col">
-          <label for="inputFakultas" class="form-label">Fakultas</label>
-          <select class="form-select" id="inputFakultas">
-            <option selected disabled>Pilih Fakultas</option>
-            <option>Fakultas 1</option>
-            <option>Fakultas 2</option>
-            <option>Fakultas 3</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="inputJurusan" class="form-label">Jurusan</label>
-          <select class="form-select" id="inputJurusan">
-            <option selected disabled>Pilih Jurusan</option>
-            <option>Jurusan 1</option>
-            <option>Jurusan 2</option>
-            <option>Jurusan 3</option>
-          </select>
-        </div>
-      </div>
       <div class="mb-4">
-        <input type="checkbox" class="form-check-input" id="privacyPolicy">
-        <label for="privacyPolicy" class="form-label">Saya menyatakan memahami dan setuju dengan <a href="index.html">Kebijakan Privasi registrasi akun Santri UKM Tahfidz Universitas Airlangga</a></label>
+        <div class="row">
+          <div class="col">
+            <input type="checkbox" class="form-check-input" id="ingatSaya">
+            <label for="ingatSaya" class="form-label">Ingat Saya?</label>
+          </div>
+          <div class="col text-end">
+            <a href="index.html">Lupa Sandi?</a>
+          </div>
+        </div>
       </div>
 
       <div class="mb-2 pb-4 border-bottom">
-        <a class="btn" href="index.html">Register</a>
+        <a class="btn" href="index.html">Login</a>
       </div>
       <div class="text-center">
         <div class="inline">
-          <p>Sudah memiliki akun? <a href="login.html">Login</a></p>
+          <p>Belum memiliki akun? <a href="register.html">Register</a></p>
         </div>
       </div>
 

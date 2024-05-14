@@ -2,25 +2,25 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    <link href="assets/img/logo_ukm.png" rel="icon">
+  <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
-    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-    <link href="assets/css/style.css" rel="stylesheet">
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -35,9 +35,9 @@
             <nav id="navbar" class="navbar">
                 <div class="mx-5">
                     <ul>
-                        <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                        <li><a class="nav-link scrollto" href="#program">Program Tahfidz</a></li>
-                        <li><a class="nav-link scrollto" href="#publikasi">Publikasi</a></li>
+                        <li><a class="nav-link scrollto" href="index.html">Beranda</a></li>
+                        <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
+                        <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
                         <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
                     </ul>
                 </div>
@@ -54,89 +54,119 @@
         </div>
     </header>
 
-    <!-- ======= Table Penguji Section ======= -->
-    <section id="setoran" class="setoran">
-        <div class="container">
+    <!-- ======= Login Modal ======= -->
+  <div class="modal fade" id="modalLogin" tabindex="-1">
+    <div class="modal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
 
-            <div class="section-title">
-                <h2>Setoran</h2>
+            <div class="text-center">
+              <h2>Login ke UKM Tahfidz</h2>
+              <h3>Saya ingin masuk sebagai:</h3>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tgl Setoran</th>
-                        <th>Nama Santri</th>
-                        <th>Surat</th>
-                        <th>Jumlah Hafalan</th>
-                        <th>Nilai</th>
-                        <th>Catatan</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Satriyo Yoga Pradana</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                        <td>
-                            <a href="#" class="edit-icon"><i class="bi bi-pencil"></i></a>
-                            <a href="#" class="delete-icon"><i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Satriyo Yoga Pradana</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                        <td>
-                            <a href="#" class="edit-icon"><i class="bi bi-pencil"></i></a>
-                            <a href="#" class="delete-icon"><i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Aryna Waren</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                        <td>
-                            <a href="#" class="edit-icon"><i class="bi bi-pencil"></i></a>
-                            <a href="#" class="delete-icon"><i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Aryna Waren</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                        <td>
-                            <a href="#" class="edit-icon"><i class="bi bi-pencil"></i></a>
-                            <a href="#" class="delete-icon"><i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>14/04/2024</td>
-                        <td>Aryna Waren</td>
-                        <td>Al-Baqarah</td>
-                        <td>1 surat</td>
-                        <td>100</td>
-                        <td>Perlu adanya perbaikan kembali</td>
-                        <td>
-                            <a href="#" class="edit-icon"><i class="bi bi-pencil"></i></a>
-                            <a href="#" class="delete-icon"><i class="bi bi-trash"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+              <a href="login.html">
+                <div class="card mb-2">
+                  <div class="row">
+                    <div class="col-3">
+                      <img src="assets/img/santri.png" alt="...">
+                    </div>
+                    <div class="col-9 my-auto">
+                      <div class="card-body">
+                        <h3 class="card-title">Santri Penghafal</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="login.html">
+                <div class="card mb-2">
+                  <div class="row">
+                    <div class="col-3">
+                      <img src="assets/img/admin.png" alt="...">
+                    </div>
+                    <div class="col-9 my-auto">
+                      <div class="card-body">
+                        <h3 class="card-title">Admin UKM Tahfidz</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="login.html">
+                <div class="card mb-2">
+                  <div class="row">
+                    <div class="col-3">
+                      <img src="assets/img/panitia.png" alt="...">
+                    </div>
+                    <div class="col-9 my-auto">
+                      <div class="card-body">
+                        <h3 class="card-title">Panitia UKM Tahfidz</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="login.html">
+                <div class="card mb-2">
+                  <div class="row">
+                    <div class="col-3">
+                      <img src="assets/img/penguji.png" alt="...">
+                    </div>
+                    <div class="col-9 my-auto">
+                      <div class="card-body">
+                        <h3 class="card-title">Penguji UKM Tahfidz</h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Modal -->
+
+    <section id="dashboard" class="mt-5 pb-0">
+        <div class="container">
+    
+            <p><a class="text-black" href="index.html">Beranda</a> / <a href="">Departemen Kelas Tahfidz</a></p>
+
+            <div class="section-title mt-5">
+                <h2>Departemen Kelas Tahfidz</h2>
+                <h3>Kelas Tahfidz merupakan departemen yang bertanggungjawab pada kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu setoran</h3>
+            </div>
+
+            <div class="section-title">
+                <h3 style="font-size: 24px;">Program Kerja</h3>
+            </div>
+
+            <div class="mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Setoran</h5>
+                        <p class="card-text">Program inti di UKM-TQ yang ditanggung jawabi oleh Departemen Kelas Tahfidz. Kegiatan berupa setoran hafalan Al-Quran oleh santri kepada penyimak (asatidz) yang bertempatkan di 2 masjid Unair. Bertujuan memfasilitasi mahasiswa Unair dalam ziyadah dan muroja'ah hafalan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Curhat Kelas Tahfidz</h5>
+                        <p class="card-text">Program penyediaan fasilitas (googleform) untuk menampung keluh kesah, kritik, dan saran yang berhubungan dengan kegiatan kelas tahfidz. Bertujuan memfasilitasi santri UKM-TQ untuk memberikan saran, masukan, kritikan, dan permasalahan terkait setoran kelas tahfidz sebagai evaluasi.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Wisuda Kelas Tahfidz</h5>
+                        <p class="card-text">Program pencatatan terkait perolehan setoran santri dalam satu semester. Bertujuan mengevaluasi ziyadah dan muroja'ah setiap santri UKM-TQ.</p>
+                    </div>
+                </div>
+            </div>  
+
         </div>
     </section>
 
@@ -192,7 +222,8 @@
                                         <i class="bi bi-geo-alt-fill"></i>
                                     </div>
                                     <div class="d-inline-block" style="width: 90%;">
-                                        <a href="">Jl. Dr. Ir. H. Soekarno, Mulyorejo, Kec. Mulyorejo, Surabaya, Jawa
+                                        <a href="">Jl. Dr. Ir. H. Soekarno, Mulyorejo, Kec. Mulyorejo, Surabaya,
+                                            Jawa
                                             Timur 60115</a>
                                     </div>
                                 </div>
@@ -244,14 +275,14 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="{{asset("assets/vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/glightbox/js/glightbox.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/isotope-layout/isotope.pkgd.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/swiper/swiper-bundle.min.js")}}"></script>
+    <script src="{{asset("assets/vendor/php-email-form/validate.js")}}"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset("assets/js/main.js")}}"></script>
 
 </body>
 
