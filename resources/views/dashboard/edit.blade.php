@@ -2,26 +2,59 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-  <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
-  <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        /* Custom CSS Styles */
+        .container {
+            padding-top: 50px;
+        }
 
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        form input,
+        form button {
+            margin-bottom: 20px;
+        }
+
+        form input[type="text"],
+        form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,17 +62,16 @@
     <header id="header" class="d-flex align-items-center">
         <div class="w-100 d-flex align-items-center justify-content-center">
 
-            <a href="index.html" class="logo"><img src="assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
+            <a href="index.html" class="logo"><img src="{{ asset('assets/img/logo_ukm.png') }}" alt="" class="img-fluid"></a>
             <h1 class="logo me-5"><a href="index.html">UKM Tahfidz Qur'an<br>Universitas Airlangga</a></h1>
 
             <nav id="navbar" class="navbar">
                 <div class="mx-5">
                     <ul>
                         <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                        <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
-                        <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
+                        <li><a class="nav-link scrollto" href="#program">Program Tahfidz</a></li>
+                        <li><a class="nav-link scrollto" href="#publikasi">Publikasi</a></li>
                         <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
-                        <li><a class="nav-link scrollto" href="">Hafalan Saya</a></li>
                     </ul>
                 </div>
                 <div class="ms-5">
@@ -55,62 +87,25 @@
         </div>
     </header>
 
-    <section id="dashboard" class="mt-5 pb-0">
+    <!-- ======= Table Penguji Section ======= -->
+    <section id="setoran" class="setoran">
         <div class="container">
-    
-            <p><a class="text-black" href="index.html">Beranda</a> / <a href="">Hafalan Saya</a></p>
 
-            <div class="section-title mt-5">
-                <h2>Nilai Ujian</h2>
-                <p>Halaman ini menampilkan detail nilai ujian yang telah dilakukan oleh santri bersama penguji.</p>
+            <div class="section-title">
+                <h2>Setoran</h2>
             </div>
 
-            <div class="asesmen mb-4">
-                <div class="row">
-                    <div class="col my-auto">
-                        Penguji : DummyPenguji
-                    </div>
-                    <div class="col">
-                        <div class="float-end tgl">
-                            Tanggal Ujian : DummyTgl
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="text-center" style="background: #CCCF95; width: 5%;">No</th>
-                    <th class="text-center" style="background: #CCCF95; width: 90%;">Komponen Penilaian</th>
-                    <th class="text-center" style="background: #CCCF95; width: 5%;">Nilai</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-center">1.</td>
-                    <td>Kelancaran</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">2.</td>
-                    <td>Makhrojil Huruf</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">3.</td>
-                    <td>Lagu</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">4.</td>
-                    <td>Adab</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">Total Nilai</td>
-                    <td class="text-center">xx</td>
-                  </tr>
+            <form action="{{ route('dashboard.update', $setoran->id_setoran) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <input type="text" name="tgl_setoran" value="{{ $setoran->tgl_setoran }}" placeholder="Tanggal Setoran">
+                <input type="text" name="nama_santri" value="{{ $setoran->nama_santri }}" placeholder="Nama Santri">
+                <input type="text" name="surat" value="{{ $setoran->surat }}" placeholder="Surat">
+                <input type="text" name="jumlah_hafalan" value="{{ $setoran->jumlah_hafalan }}" placeholder="Jumlah Hafalan">
+                <input type="text" name="nilai" value="{{ $setoran->nilai }}" placeholder="Nilai">
+                <input type="text" name="catatan" value="{{ $setoran->catatan }}" placeholder="Catatan">
+                <button type="submit">Simpan</button>
+            </form>
 
         </div>
     </section>
@@ -133,7 +128,7 @@
                 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
                     <div class="info">
                         <div class="d-flex align-items-center mb-5">
-                            <img src="assets/img/logo_ukm.png" alt="" class="img-fluid">
+                            <img src="{{ asset('assets/img/logo_ukm.png') }}" alt="" class="img-fluid">
                             <h4>UKM Tahfidz Qur'an<br>Universitas Airlangga</h4>
                         </div>
                         <div class="row">
@@ -167,8 +162,7 @@
                                         <i class="bi bi-geo-alt-fill"></i>
                                     </div>
                                     <div class="d-inline-block" style="width: 90%;">
-                                        <a href="">Jl. Dr. Ir. H. Soekarno, Mulyorejo, Kec. Mulyorejo, Surabaya,
-                                            Jawa
+                                        <a href="">Jl. Dr. Ir. H. Soekarno, Mulyorejo, Kec. Mulyorejo, Surabaya, Jawa
                                             Timur 60115</a>
                                     </div>
                                 </div>
@@ -201,8 +195,8 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col">
-                        <img src="assets/img/logo_ukm.png" class="img-fluid" alt="">
-                        <img src="assets/img/logo_PENS.png" class="img-fluid" alt="">
+                        <img src="{{ asset('assets/img/logo_ukm.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('assets/img/logo_PENS.png') }}" class="img-fluid" alt="">
                         <p>Powered by Satriyo Yoga Pradana</p>
                     </div>
                     <div class="col text-end">
@@ -214,20 +208,17 @@
         </div>
     </section><!-- End Footer Section -->
 
-    </main><!-- End #main -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{asset("assets/vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/glightbox/js/glightbox.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/isotope-layout/isotope.pkgd.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/swiper/swiper-bundle.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/php-email-form/validate.js")}}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset("assets/js/main.js")}}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
