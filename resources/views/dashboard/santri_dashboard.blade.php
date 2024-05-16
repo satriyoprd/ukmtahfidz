@@ -2,25 +2,25 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <title>UKM Tahfidz Qur'an Universitas Airlangga</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-  <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/logo_ukm.png') }}" rel="icon">
 
-  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
-  <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -35,11 +35,11 @@
             <nav id="navbar" class="navbar">
                 <div class="mx-5">
                     <ul>
-                        <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+                        <li><a class="nav-link scrollto" href="#hero">Beranda</a></li>
                         <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
                         <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
                         <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
-                        <li><a class="nav-link scrollto" href="">Hafalan Saya</a></li>
+                        <li><a class="nav-link scrollto active" href="">Hafalan Saya</a></li>
                     </ul>
                 </div>
                 <div class="ms-5">
@@ -57,7 +57,7 @@
 
     <section id="dashboard" class="mt-5 pb-0">
         <div class="container">
-    
+
             <p><a class="text-black" href="index.html">Beranda</a> / <a href="">Hafalan Saya</a></p>
 
             <div class="welcome mb-5">
@@ -68,7 +68,8 @@
                     <div class="col-9 my-auto">
                         <div class="section-title pb-0">
                             <h2>Selamat Datang di Hafalan Anda</h2>
-                            <h3>Halaman ini merupakan halaman hafalan Anda yang digunakan untuk memantau kegiatan hafal dan progress Anda</h3>
+                            <h3>Halaman ini merupakan halaman hafalan Anda yang digunakan untuk memantau kegiatan hafal
+                                dan progress Anda</h3>
                         </div>
                     </div>
                 </div>
@@ -82,69 +83,83 @@
                 </div>
                 <div class="col-1">
                     <div class="dropdown">
-                        <button class="btn btn-sm btn-dashboard" type="button" id="dropdownMenu" data-bs-toggle="dropdown">
+                        <button class="btn btn-sm btn-dashboard" type="button" id="dropdownMenu"
+                            data-bs-toggle="dropdown">
                             <i class="bi bi-caret-down-fill"></i>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu" style="--bs-dropdown-link-active-bg: none">
-                          <li><button class="dropdown-item text-black" onclick="dashboardSetoran()">Setoran</button></li>
-                          <li><button class="dropdown-item text-black" onclick="dashboardUjian()">Ujian</button></li>
-                          <li><button class="dropdown-item text-black" onclick="dashboardAbsen()">Absen</button></li>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu"
+                            style="--bs-dropdown-link-active-bg: none">
+                            <li><button class="dropdown-item text-black" onclick="dashboardSetoran()">Setoran</button>
+                            </li>
+                            <li><button class="dropdown-item text-black" onclick="dashboardUjian()">Ujian</button></li>
+                            <li><button class="dropdown-item text-black" onclick="dashboardAbsen()">Absen</button></li>
                         </ul>
-                      </div>
+                    </div>
                 </div>
                 <div class="col-9">
                     <div class="float-end w-50">
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
                             <input type="text" class="form-control" placeholder="Cari Data">
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <table id="tableSetoran" style="display: table;" class="table table-bordered">
                 <thead>
-                  <tr>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Setoran</th>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Setoran</th>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
-                    <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
-                    <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
-                  </tr>
+                    <tr>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Setoran</th>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Setoran</th>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
+                        <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
+                        <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                    @foreach ($setoranSantri as $setoran)
+                        <tr>
+                            <td>{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}</td>
+                            <td>{{ $setoran->surat }}</td>
+                            <td>{{ $setoran->jumlah_hafalan }}</td>
+                            <td>{{ $setoran->nilai }}</td>
+                            <td>{{ $setoran->catatan }}</td>
+                            <td class="text-center"><button class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></button></td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr>
                     <td>DummySetoran</td>
                     <td>DummySetoran</td>
                     <td>DummySetoran</td>
                     <td>DummySetoran</td>
                     <td>DummySetoran</td>
                     <td class="text-center"><button class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></button></td>
-                  </tr>
+                  </tr> --}}
                 </tbody>
             </table>
 
             <table id="tableUjian" style="display: none;" class="table table-bordered">
                 <thead>
-                  <tr>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Ujian</th>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Hafalan</th>
-                    <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
-                    <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
-                    <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
-                  </tr>
+                    <tr>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Ujian</th>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Hafalan</th>
+                        <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
+                        <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
+                        <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>DummyUjian</td>
-                    <td>DummyUjian</td>
-                    <td>DummyUjian</td>
-                    <td>DummyUjian</td>
-                    <td>DummyUjian</td>
-                    <td class="text-center"><button class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></button></td>
-                  </tr>
+                    <tr>
+                        <td>DummyUjian</td>
+                        <td>DummyUjian</td>
+                        <td>DummyUjian</td>
+                        <td>DummyUjian</td>
+                        <td>DummyUjian</td>
+                        <td class="text-center"><button class="btn btn-sm" type="button"><i
+                                    class="bi bi-journal-text"></i></button></td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -258,14 +273,14 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{asset("assets/vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/glightbox/js/glightbox.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/isotope-layout/isotope.pkgd.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/swiper/swiper-bundle.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/php-email-form/validate.js")}}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset("assets/js/main.js")}}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
     <script>
         function dashboardSetoran() {
@@ -274,12 +289,14 @@
             document.getElementById("tableUjian").style.display = "none";
             document.getElementById("tableAbsen").style.display = "none";
         };
+
         function dashboardUjian() {
             document.getElementById("dashboardTitle").innerHTML = "Ujian";
             document.getElementById("tableUjian").style.display = "table";
             document.getElementById("tableSetoran").style.display = "none";
             document.getElementById("tableAbsen").style.display = "none";
         };
+
         function dashboardAbsen() {
             document.getElementById("dashboardTitle").innerHTML = "Absen";
             document.getElementById("tableAbsen").style.display = "table";

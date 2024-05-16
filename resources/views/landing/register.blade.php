@@ -35,9 +35,9 @@
         <nav id="navbar" class="navbar">
           <div class="mx-5">
             <ul>
-              <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-              <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
-              <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
+              <li><a class="nav-link scrollto active" href="/">Beranda</a></li>
+              <li><a class="nav-link scrollto" href="/program-tahfidz">Program Tahfidz</a></li>
+              <li><a class="nav-link scrollto" href="/publikasi">Publikasi</a></li>
               <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
             </ul>
           </div>
