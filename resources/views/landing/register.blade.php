@@ -128,7 +128,7 @@
   </div><!-- End Modal -->
 
   <section id="login" class="mt-5 d-flex align-items-center">
-    <div class="container">
+    <div class="container w-75 px-5">
 
       <p><a class="text-black" href="index.html">Beranda</a> / <a href="register.html">Register</a></p>
 
