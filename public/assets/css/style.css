@@ -767,7 +767,7 @@ section {
   width: 172px;
 }
 
-#dashboard .btn-dashboard {
+#dashboard button.btn-dashboard {
   background: #ddd;
   height: 40px;
   width: 40px;
@@ -827,7 +827,6 @@ section {
 #dashboard button.btn:focus {
   background: #075F7C;
   color: #fff;
-  padding: 6px 25px;
   border-radius: 4px;
   border: 2px solid #075F7C;
   transition: 0.3s;
