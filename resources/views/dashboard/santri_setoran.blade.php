@@ -87,7 +87,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($setorans as $setoran)
+                {{-- @foreach($setoranSantri as $setoran)
                     <tr>
                         <td>{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}</td>
                         <td>{{ $setoran->nama_santri }}</td>
@@ -100,7 +100,7 @@
                             <a href="{{ route('dashboard.delete', ['id_setoran' => $setoran->id_setoran]) }}" class="delete-icon"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
-                @endforeach
+                @endforeach --}}
                 </tbody>
             </table>
 

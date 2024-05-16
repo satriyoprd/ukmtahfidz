@@ -18,6 +18,42 @@ Route::get('/', function () {
     return view('landing.index');
 });
 
+Route::get('/register', function () {
+    return view('landing.register');
+});
+
+Route::get('/login', function () {
+    return view('landing.login');
+});
+
+Route::get('/departemen-mudarosah', function () {
+    return view('landing.departemen_mudarosah');
+});
+
+Route::get('/departemen-munaqosyah', function () {
+    return view('landing.departemen_munaqosyah');
+});
+
+Route::get('/departemen-syiar', function () {
+    return view('landing.departemen_syiar');
+});
+
+Route::get('/departemen-tahfidz', function () {
+    return view('landing.departemen_tahfidz');
+});
+
+Route::get('/departemen-ukhuwah', function () {
+    return view('landing.departemen_ukhuwah');
+});
+
+Route::get('/publikasi', function () {
+    return view('landing.publikasi');
+});
+
+Route::get('/program-tahfidz', function () {
+    return view('landing.tahfidz');
+});
+
 Route::get('/santri', [SetoranController::class, 'getSetoranSantri']);
 
 // Route::get('/penguji', function () {
@@ -32,5 +68,3 @@ Route::get('/penguji', [SetoranController::class, 'getSetoran']);
 Route::get('/penguji/edit/{id_setoran}', [SetoranController::class, 'edit'])->name('dashboard.edit');
 Route::patch('/penguji/update/{id_setoran}', [SetoranController::class, 'update'])->name('dashboard.update');
 Route::get('/penguji/delete/{id_setoran}', [SetoranController::class, 'delete'])->name('dashboard.delete');
-
-

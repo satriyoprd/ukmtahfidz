@@ -10,13 +10,13 @@ class SetoranController extends Controller
     public function getSetoran()
     {
         $setorans = Setoran::all();
-        return view('dashboard.penguji', compact('setorans'));
+        return view('dashboard.penguji_dashboard', compact('setorans'));
     }
 
     public function getSetoranSantri()
     {
         $setoranSantri = Setoran::all();
-        return view('dashboard.santri', compact('setoranSantri'));
+        return view('dashboard.santri_dashboard', compact('setoranSantri'));
     }
 
     public function edit($id_setoran)

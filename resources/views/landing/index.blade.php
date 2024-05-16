@@ -36,15 +36,15 @@
         <nav id="navbar" class="navbar">
           <div class="mx-5">
             <ul>
-              <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-              <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
-              <li><a class="nav-link scrollto" href="#publikasi">Publikasi</a></li>
+              <li><a class="nav-link scrollto active" href="/">Beranda</a></li>
+              <li><a class="nav-link scrollto" href="/program-tahfidz">Program Tahfidz</a></li>
+              <li><a class="nav-link scrollto" href="/publikasi">Publikasi</a></li>
               <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
             </ul>
           </div>
           <div class="ms-5">
             <ul>
-              <li><a class="register" href="register.html">Register</a></li>
+              <li><a class="register" href="/register">Register</a></li>
               <li><button class="login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button></li>
             </ul>
           </div>
@@ -65,7 +65,7 @@
               <h3>Saya ingin masuk sebagai:</h3>
             </div>
 
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -79,7 +79,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -93,7 +93,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -107,7 +107,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -137,7 +137,7 @@
           <div class="mt-5 pt-5">
             <h1>UKM Tahfidz Qur'an<br>Universitas Airlangga</h1>
             <h2>Excellence with Qur'an</h2>
-            <a class="btn scrollto" href="tahfidz.html">Lihat Program</a>
+            <a class="btn scrollto" href="/program-tahfidz">Lihat Program</a>
           </div>
         </div>
         <div class="col-5">
@@ -236,7 +236,7 @@
                   <h2>Departemen Kelas Tahfidz</h2>
                 </div>
                 <p class="card-text">Kelas Tahfidz merupakan departemen yang bertanggungjawab pada kegiatan inti dari UKM Tahfidzul Quran UNAIR yaitu melakukan setoran hafalan</p>
-                <a class="btn" href="departemen_tahfidz.html">Pelajari Lebih Lanjut</a>
+                <a class="btn" href="/departemen-tahfidz">Pelajari Lebih Lanjut</a>
               </div>
             </div>
             <div class="card swiper-slide">
@@ -245,7 +245,7 @@
                   <h2>Departemen Munaqosyah</h2>
                 </div>
                 <p class="card-text">Munaqosyah merupakan departemen yang bergerak dalam bidang pengembangan dan penjagaan hafalan Al-Quran mahasiswa khususnya santri UKM Tahfidz UNAIR</p>
-                <a class="btn" href="departemen_munaqosyah.html">Pelajari Lebih Lanjut</a>
+                <a class="btn" href="/departemen-munaqosyah">Pelajari Lebih Lanjut</a>
               </div>
             </div>
             <div class="card swiper-slide">
@@ -254,7 +254,7 @@
                   <h2>Departemen Mudarosah</h2>
                 </div>
                 <p class="card-text">Mudarosah merupakan departemen yang berfokus pada pengajaran dan pembinaan MHQ & MFQ untuk perlombaan dikti maupun non dikti</p>
-                <a class="btn" href="departemen_mudarosah.html">Pelajari Lebih Lanjut</a>
+                <a class="btn" href="departemen-mudarosah">Pelajari Lebih Lanjut</a>
               </div>
             </div>
             <div class="card swiper-slide">
@@ -263,7 +263,7 @@
                   <h2>Departemen Ukhuwah</h2>
                 </div>
                 <p class="card-text">Ukhuwah merupakan departemen yang menyelenggarakan berbagai kegiatan mengenai keakraban dan silaturahim hafidz-hafidzah UNAIR lintas generasi</p>
-                <a class="btn" href="departemen_ukhuwah.html">Pelajari Lebih Lanjut</a>
+                <a class="btn" href="/departemen-ukhuwah">Pelajari Lebih Lanjut</a>
               </div>
             </div>
             <div class="card swiper-slide">
@@ -272,7 +272,7 @@
                   <h2>Departemen Syiar</h2>
                 </div>
                 <p class="card-text">Syiar merupakan departemen yang melakukan berbagai aktivitas yang berhubungan dengan kegiatan pdd yaitu publikasi, dokumentasi, dan desain</p>
-                <a class="btn" href="departemen_syiar.html">Pelajari Lebih Lanjut</a>
+                <a class="btn" href="/departemen-syiar">Pelajari Lebih Lanjut</a>
               </div>
             </div>
           </div>
