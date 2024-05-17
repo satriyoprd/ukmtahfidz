@@ -62,15 +62,15 @@ Route::get('/santri-ujian', function () {
     return view('dashboard.santri_ujian');
 });
 
-Route::get('/penguji-setoran', function () {
-    return view('dashboard.penguji_setoran');
-});
+// Route::get('/penguji-setoran', function () {
+//     return view('dashboard.penguji_setoran');
+// });
 
 Route::get('/penguji-ujian', function () {
     return view('dashboard.penguji_ujian');
 });
 
-Route::get('/santri', [SetoranController::class, 'getSetoranSantri']);
+Route::get('/santri', [SetoranController::class, 'getSetoranSantri']);  
 
 // Route::get('/penguji', function () {
 //     return view('dashboard.penguji');
@@ -84,3 +84,5 @@ Route::get('/penguji', [SetoranController::class, 'getSetoran']);
 Route::get('/penguji/edit/{id_setoran}', [SetoranController::class, 'edit'])->name('dashboard.edit');
 Route::patch('/penguji/update/{id_setoran}', [SetoranController::class, 'update'])->name('dashboard.update');
 Route::get('/penguji/delete/{id_setoran}', [SetoranController::class, 'delete'])->name('dashboard.delete');
+Route::get('/penguji-setoran', [SetoranController::class, 'create'])->name('dashboard.penguji_setoran');
+Route::post('/penguji-setoran/create', [SetoranController::class, 'store'])->name('dashboard.store');

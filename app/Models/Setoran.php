@@ -16,7 +16,7 @@ class Setoran extends Model
 
     protected $fillable = [
         'tgl_setoran',
-        'nama_setoran',
+        'nama_santri',
         'surat',
         'jumlah_hafalan',
         'nilai',
