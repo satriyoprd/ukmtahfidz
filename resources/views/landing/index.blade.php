@@ -296,14 +296,14 @@
             <div class="pe-5">
               <p>Berisikan mengenai beberapa berita terkait kegiatan kegiatan yang ada di UKM Tahfdiz Universitas Airlangga yang dapat digunakan sebagai bahan bacaan</p>
             </div>
-            <a class="btn scrollto" href="publikasi.html">Lihat Semua Publikasi</a>
+            <a class="btn scrollto" href="/publikasi">Lihat Semua Publikasi</a>
           </div>
 
           <div class="col-7">
             <div class="row">
               <div class="col">
                 <div class="card m-auto" style="width: 90%;">
-                  <img src="assets/img/berita.png" class="card-img-top" alt="">
+                  <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                   <div class="card-body">
                     <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
                     <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
@@ -313,7 +313,7 @@
               </div>
               <div class="col">
                 <div class="card m-auto" style="width: 90%;">
-                  <img src="assets/img/berita.png" class="card-img-top" alt="">
+                  <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                   <div class="card-body">
                     <h5 class="card-title">Kampanye Imunisasi MR/Cam-pak Rubella: Strategi Kampanye Imunisasi MR</h5>
                     <p class="card-text">Indonesia telah berkomitmen untuk mencapai eliminasi Campak dan pengendalian Rubella/Congenital Rub...</p>

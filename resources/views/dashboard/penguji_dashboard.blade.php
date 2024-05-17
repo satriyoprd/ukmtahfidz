@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-7">
                     <div class="float-end w-25">
-                        <a class="btn" href="">Tambah Data</a>
+                        <a class="btn" href="/penguji-setoran">Tambah Data</a>
                     </div>
                 </div>
             </div>

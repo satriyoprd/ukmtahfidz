@@ -130,7 +130,7 @@
   <section id="login" class="mt-5 d-flex align-items-center">
     <div class="container w-75 px-5">
 
-      <p><a class="text-black" href="index.html">Beranda</a> / <a href="register.html">Register</a></p>
+      <p><a class="text-black" href="/">Beranda</a> / <a href="/register">Register</a></p>
 
       <div class="section-title text-center">
         <h2>Registrasi Sekarang</h2>
@@ -191,7 +191,7 @@
       </div>
       <div class="text-center">
         <div class="inline">
-          <p>Sudah memiliki akun? <a href="login.html">Login</a></p>
+          <p>Sudah memiliki akun? <a href="/login">Login</a></p>
         </div>
       </div>
 

@@ -54,6 +54,22 @@ Route::get('/program-tahfidz', function () {
     return view('landing.tahfidz');
 });
 
+Route::get('/santri-setoran', function () {
+    return view('dashboard.santri_setoran');
+});
+
+Route::get('/santri-ujian', function () {
+    return view('dashboard.santri_ujian');
+});
+
+Route::get('/penguji-setoran', function () {
+    return view('dashboard.penguji_setoran');
+});
+
+Route::get('/penguji-ujian', function () {
+    return view('dashboard.penguji_ujian');
+});
+
 Route::get('/santri', [SetoranController::class, 'getSetoranSantri']);
 
 // Route::get('/penguji', function () {

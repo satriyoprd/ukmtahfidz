@@ -128,7 +128,7 @@
                 </div>
                 <div class="float-end">
                     <a class="btn" href="">Simpan</a>
-                    <a class="btn back" href="">Kembali</a>
+                    <a class="btn back" href="/penguji">Kembali</a>
                 </div>
             </div>
 

@@ -125,7 +125,11 @@
                             <td>{{ $setoran->jumlah_hafalan }}</td>
                             <td>{{ $setoran->nilai }}</td>
                             <td>{{ $setoran->catatan }}</td>
-                            <td class="text-center"><button class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></button></td>
+                            <td class="text-center">
+                                <a class="btn btn-sm" type="button" href="/santri-setoran">
+                                    <i class="bi bi-journal-text"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                     {{-- <tr>
@@ -157,8 +161,11 @@
                         <td>DummyUjian</td>
                         <td>DummyUjian</td>
                         <td>DummyUjian</td>
-                        <td class="text-center"><button class="btn btn-sm" type="button"><i
-                                    class="bi bi-journal-text"></i></button></td>
+                        <td class="text-center">
+                            <a class="btn btn-sm" type="button" href="/santri-ujian">
+                                <i class="bi bi-journal-text"></i>
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
