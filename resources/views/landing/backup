@@ -69,7 +69,7 @@
               <div class="col">
                 <a href="login.html">
                   <div class="card align-items-center text-center">
-                    <img src="assets/img/admin.png" class="card-img-top" alt="...">
+                    <img src="/assets/img/admin.png" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h3 class="card-title">Admin UKM Tahfidz</h3>
                     </div>
@@ -79,7 +79,7 @@
               <div class="col">
                 <a href="login.html">
                   <div class="card align-items-center text-center">
-                    <img src="assets/img/user.png" class="card-img-top" alt="...">
+                    <img src="/assets/img/user.png" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h3 class="card-title">Santri Penghafal</h3>
                     </div>
