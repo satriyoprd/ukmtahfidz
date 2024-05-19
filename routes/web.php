@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('landing.index');
-});
+})->name('home');
 
 Route::get('/santri', function () {
     return view('dashboard.santri');
