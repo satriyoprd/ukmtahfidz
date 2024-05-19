@@ -21,7 +21,7 @@ class PengujiRegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate( [
-            'role_id' => ['required', 'numeric'],
+            
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', 'min:8'],
@@ -29,7 +29,7 @@ class PengujiRegisterController extends Controller
         ]);
 
         $user = User::create([
-            'role_id' => $request->role_id,
+            'role_id' => config('constants.ROLE_PENGUJI'),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

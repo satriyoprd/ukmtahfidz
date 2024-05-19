@@ -1,8 +1,8 @@
 <header id="header" class="d-flex align-items-center">
     <div class="w-100 d-flex align-items-center justify-content-center">
 
-        <a href="index.html" class="logo"><img src="assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
-        <h1 class="logo me-5"><a href="index.html">UKM Tahfidz Qur'an<br>Universitas Airlangga</a></h1>
+        <a href={{ route('home') }} class="logo"><img src="assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
+        <h1 class="logo me-5"><a href={{ route('home') }}>UKM Tahfidz Qur'an<br>Universitas Airlangga</a></h1>
 
         <nav id="navbar" class="navbar">
             <div class="mx-5">
@@ -15,7 +15,8 @@
             </div>
             <div class="ms-5">
                 <ul>
-                    <li><a class="register scrollto" href={{ route('register') }}>Register</a></li>
+                    <li><button data-bs-toggle="modal" data-bs-target="#modalRegister"
+                            class="register scrollto">Register</button></li>
                     <li><button class="login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
                     </li>
                 </ul>
@@ -25,5 +26,8 @@
 
     </div>
 </header>
+
+
+<x-modal-register />
 
 <x-modal-login />

@@ -16,6 +16,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <!-- Fonts -->
     <link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -26,16 +28,16 @@
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
 
     <x-my-navbar />
 
-    {{ $slot }}
+    <div class="max-w-5xl mx-auto">
+        {{ $slot }}
+    </div>
+
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

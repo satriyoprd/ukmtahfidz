@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Authentication;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faculty;
+use App\Models\Major;
 use App\Models\Panitia;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -15,13 +17,15 @@ class PanitiaRegisterController extends Controller
 {
     public function create()
     {
-        return view('auth.panitia-register');
+        $faculties = Faculty::all();
+        $majors = Major::all();
+
+        return view('auth.panitia-register', compact('faculties', 'majors'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'role_id' => ['required', 'numeric'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', 'min:8'],
@@ -31,7 +35,7 @@ class PanitiaRegisterController extends Controller
         ]);
 
         $user = User::create([
-            'role_id' => $request->role_id,
+            'role_id' => config('constants.ROLE_PANITIA'),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
