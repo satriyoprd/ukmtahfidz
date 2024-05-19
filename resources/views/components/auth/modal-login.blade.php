@@ -8,7 +8,7 @@
                      <h3>Saya ingin masuk sebagai:</h3>
                  </div>
 
-                 <a href={{route('login')}}>
+                 <a href={{route('login.create')}}>
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
@@ -22,7 +22,7 @@
                          </div>
                      </div>
                  </a>
-                 <a href={{route('login')}}>
+                 <a href={{route('login.create')}}>
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
@@ -36,7 +36,7 @@
                          </div>
                      </div>
                  </a>
-                 <a href={{route('login')}}>
+                 <a href={{route('login.create')}}>
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
@@ -50,7 +50,7 @@
                          </div>
                      </div>
                  </a>
-                 <a href={{route('login')}}>
+                 <a href={{route('login.create')}}>
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
@@ -64,7 +64,6 @@
                          </div>
                      </div>
                  </a>
-
              </div>
          </div>
      </div>

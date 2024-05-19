@@ -2,14 +2,14 @@
     <section id="login" class="mt-5 pb-0">
         <div class="container">
 
-            <p><a class="text-black" href={{ route('home') }}>Beranda</a> / <a href={{ route('login') }}>Login</a></p>
+            <p><a class="text-black" href={{ route('home') }}>Beranda</a> / <a href={{ route('login.create') }}>Login</a></p>
 
             <div class="section-title text-center">
                 <h2>Selamat Datang</h2>
                 <h3>Silahkan isi form dibawah untuk melanjutkan.</h3>
             </div>
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('login.store') }}">
                 @csrf
 
                 <!-- Email -->

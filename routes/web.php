@@ -1,6 +1,8 @@
 <?php
 
-
+use App\Http\Controllers\Authentication\PanitiaRegisterController;
+use App\Http\Controllers\Authentication\PengujiRegisterController;
+use App\Http\Controllers\Authentication\SantriRegisterController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landing.index');
 })->name('home');
+
+Route::get('/santri/register', [SantriRegisterController::class, 'create'])->name('santri.create');
+Route::post('/santri/register', [SantriRegisterController::class, 'store'])->name('santri.store');
+Route::get('/penguji/register', [PengujiRegisterController::class, 'create'])->name('penguji.create');
+Route::post('/penguji/register', [PengujiRegisterController::class, 'store'])->name('penguji.store');
+Route::get('/panitia/register', [PanitiaRegisterController::class, 'create'])->name('panitia.create');
+Route::post('/panitia/register', [PanitiaRegisterController::class, 'store'])->name('panitia.store');
+
+
 
 Route::get('/santri', function () {
     return view('dashboard.santri');
