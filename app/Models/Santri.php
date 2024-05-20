@@ -24,4 +24,9 @@ class Santri extends Model
     {
         return $this->belongsTo(Major::class);
     }
+
+    public function setoran()
+    {
+        return $this->hasMany(Setoran::class);
+    }
 }
