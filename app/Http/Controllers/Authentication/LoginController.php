@@ -19,6 +19,14 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
+        if (auth()->user()->role->id == config('constants.ROLE_SANTRI')) {
+            return redirect()->route('dashboard.santri');
+        }
+
+        if (auth()->user()->role->id == config('constants.ROLE_SANTRI')) {
+            return redirect()->intended(RouteServiceProvider::PENGUJI);
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

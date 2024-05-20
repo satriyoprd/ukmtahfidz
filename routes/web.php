@@ -32,11 +32,37 @@ Route::post('/panitia/register', [PanitiaRegisterController::class, 'store'])->n
 
 Route::get('/santri', function () {
     return view('dashboard.santri');
-});
+})->name('dashboard.santri');
+
+Route::get('/santri/setoran/{id}', function () {
+    return view('dashboard.santri-setoran');
+})->name('dashboard.santri.setoran');
+
+Route::get('/santri/ujian/{id}', function () {
+    return view('dashboard.santri-ujian');
+})->name('dashboard.santri.ujian');
+
 
 Route::get('/penguji', function () {
     return view('dashboard.penguji');
-});
+})->name('dashboard.penguji');
+
+Route::get('/penguji/setoran/{id}', function () {
+    return view('dashboard.penguji-setoran-update');
+})->name('dashboard.penguji.setoran.update');
+
+Route::get('/penguji/setoran', function () {
+    return view('dashboard.penguji-setoran-create');
+})->name('dashboard.penguji.setoran.create');
+
+Route::get('/penguji/ujian', function () {
+    return view('dashboard.penguji-ujian-create');
+})->name('dashboard.penguji.ujian.create');
+
+Route::get('/penguji/ujian/{id}', function () {
+    return view('dashboard.penguji-ujian-update');
+})->name('dashboard.penguji.ujian.update');
+
 
 Route::get('/register', function () {
     return view('landing.register');
