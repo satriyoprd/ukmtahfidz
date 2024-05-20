@@ -4,6 +4,7 @@ use App\Http\Controllers\Authentication\PanitiaRegisterController;
 use App\Http\Controllers\Authentication\PengujiRegisterController;
 use App\Http\Controllers\Authentication\SantriRegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Setoran\SetoranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,8 @@ Route::post('/penguji/register', [PengujiRegisterController::class, 'store'])->n
 Route::get('/panitia/register', [PanitiaRegisterController::class, 'create'])->name('panitia.create');
 Route::post('/panitia/register', [PanitiaRegisterController::class, 'store'])->name('panitia.store');
 
+
+Route::resource('/setoran', SetoranController::class);
 
 
 Route::get('/santri', function () {

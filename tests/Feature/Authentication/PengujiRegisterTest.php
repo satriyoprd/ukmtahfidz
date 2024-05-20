@@ -21,18 +21,20 @@ class PengujiRegisterTest extends TestCase
         $data = [
             'role_id' => 4,
             'name' => 'penguji',
-            'email' => 'penguji4@gmail.com',
+            'email' => 'penguji@gmail.com',
             'password' => 'penguji123',
             'password_confirmation' => 'penguji123',
             'phone' => '081234567890',
         ];
+
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $response = $this->post('/penguji/register', $data);
 
         $response->assertRedirect('/dashboard');
 
         $this->assertDatabaseHas('users', [
-            'email' => 'penguji4@gmail.com',
+            'email' => 'penguji@gmail.com',
             'role_id' => 4,
             'name' => 'penguji',
             'phone' => '081234567890',
@@ -45,4 +47,3 @@ class PengujiRegisterTest extends TestCase
         ]);
     }
 }
-
