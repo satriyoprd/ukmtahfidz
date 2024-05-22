@@ -1,7 +1,7 @@
 <header id="header" class="d-flex align-items-center">
     <div class="w-100 d-flex align-items-center justify-content-center">
 
-        <a href={{ route('home') }} class="logo"><img src="assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
+        <a href={{ route('home') }} class="logo"><img src="/assets/img/logo_ukm.png" alt="" class="img-fluid"></a>
         <h1 class="logo me-5"><a href={{ route('home') }}>UKM Tahfidz Qur'an<br>Universitas Airlangga</a></h1>
 
         <nav id="navbar" class="navbar">

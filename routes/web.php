@@ -41,14 +41,11 @@ Route::put('/santri/verified/setoran/{setoran}', [SantriVerifiedSetoranControlle
 
 Route::get('/santri', [SetoranController::class, 'indexSantri'])->name('dashboard.santri');
 
-Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dashboard.penguji.setoran.create');
-
 Route::get('/santri/setoran/{id}', [SantriController::class, 'indexNilaiSetoran'])->name('dashboard.santri.setoran');
 
 Route::get('/santri/ujian/{id}', function () {
     return view('dashboard.santri-ujian');
 })->name('dashboard.santri.ujian');
-
 
 Route::get('/penguji', function () {
     $setoran = Setoran::where('penguji_id', Auth::user()->penguji->id)->get();
@@ -57,6 +54,8 @@ Route::get('/penguji', function () {
 
     return view('dashboard.penguji', compact('setoran'));
 })->name('dashboard.penguji');
+
+Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dashboard.penguji.setoran.create');
 
 Route::get('/penguji/setoran/{setoran}', [SetoranController::class, 'edit'])->name('dashboard.penguji.setoran.update');
 

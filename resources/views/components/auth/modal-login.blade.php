@@ -12,7 +12,7 @@
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
-                                 <img src="assets/img/santri.png" alt="...">
+                                 <img src="/assets/img/santri.png" alt="...">
                              </div>
                              <div class="col-9 my-auto">
                                  <div class="card-body">
@@ -26,7 +26,7 @@
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
-                                 <img src="assets/img/admin.png" alt="...">
+                                 <img src="/assets/img/admin.png" alt="...">
                              </div>
                              <div class="col-9 my-auto">
                                  <div class="card-body">
@@ -40,7 +40,7 @@
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
-                                 <img src="assets/img/panitia.png" alt="...">
+                                 <img src="/assets/img/panitia.png" alt="...">
                              </div>
                              <div class="col-9 my-auto">
                                  <div class="card-body">
@@ -54,7 +54,7 @@
                      <div class="card mb-2">
                          <div class="row">
                              <div class="col-3">
-                                 <img src="assets/img/penguji.png" alt="...">
+                                 <img src="/assets/img/penguji.png" alt="...">
                              </div>
                              <div class="col-9 my-auto">
                                  <div class="card-body">

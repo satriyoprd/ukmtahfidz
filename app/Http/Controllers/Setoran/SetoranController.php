@@ -16,8 +16,6 @@ class SetoranController extends Controller
         $setoran = Setoran::all();
         $setoran->load('penguji.user', 'santri.user', 'nilais');
 
-
-
         return view('dashboard.santri', compact('setoran'));
     }
 
