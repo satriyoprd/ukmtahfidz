@@ -33,7 +33,9 @@ Route::get('/panitia/register', [PanitiaRegisterController::class, 'create'])->n
 Route::post('/panitia/register', [PanitiaRegisterController::class, 'store'])->name('panitia.store');
 
 Route::resource('/setoran', SetoranController::class);
+
 Route::get('/santri', [SetoranController::class, 'indexSantri'])->name('dashboard.santri');
+
 Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dashboard.penguji.setoran.create');
 
 Route::get('/santri/setoran/{id}', [SantriController::class, 'indexNilaiSetoran'])->name('dashboard.santri.setoran');
@@ -77,7 +79,7 @@ Route::get('/departemen-syiar', function () {
 
 Route::get('/departemen-tahfidz', function () {
     return view('landing.departemen_tahfidz');
-});
+})->name('departemen.tahfidz');
 
 Route::get('/departemen-ukhuwah', function () {
     return view('landing.departemen_ukhuwah');
@@ -89,37 +91,7 @@ Route::get('/publikasi', function () {
 
 Route::get('/program-tahfidz', function () {
     return view('landing.tahfidz');
-});
-
-Route::get('/santri-setoran', function () {
-    return view('dashboard.santri_setoran');
-});
-
-Route::get('/santri-ujian', function () {
-    return view('dashboard.santri_ujian');
-});
-
-// Route::get('/penguji-setoran', function () {
-//     return view('dashboard.penguji_setoran');
-// });
-
-Route::get('/penguji-ujian', function () {
-    return view('dashboard.penguji_ujian');
-});
-
-Route::get('/santri', [SetoranController::class, 'getSetoranSantri']);  
-
-// Route::get('/penguji', function () {
-//     return view('dashboard.penguji');
-// });
-
-Route::get('/register', function () {
-    return view('landing.register');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('program.tahfidz');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
