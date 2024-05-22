@@ -13,6 +13,7 @@ class Santri extends Model
         'user_id',
         'nim',
         'major_id',
+        'jumlah_hafalan'
     ];
 
     public function user()
@@ -28,5 +29,10 @@ class Santri extends Model
     public function setoran()
     {
         return $this->hasMany(Setoran::class);
+    }
+
+    public function verifiedSetoran()
+    {
+        return $this->hasOne(SantriVerifiedSetoran::class);
     }
 }

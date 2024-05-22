@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Setoran;
 
 use App\Http\Controllers\Controller;
 use App\Models\Penguji;
-use App\Models\Santri;
+use App\Models\SantriVerifiedSetoran;
 use App\Models\Setoran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RouteHelper;
 
 class SetoranController extends Controller
 {
@@ -38,7 +37,7 @@ class SetoranController extends Controller
     {
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = Santri::all();
+        $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
         $santri->load('user');
 
         return view('dashboard.penguji-setoran-create', compact('penguji', 'santri'));
@@ -102,7 +101,7 @@ class SetoranController extends Controller
 
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = Santri::all();
+        $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
         $santri->load('user');
 
         return view('dashboard.penguji-setoran-update', compact('setoran', 'penguji', 'santri'));

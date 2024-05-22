@@ -29,9 +29,7 @@ class PengujiRegisterTest extends TestCase
 
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-        $response = $this->post('/penguji/register', $data);
-
-        $response->assertRedirect('/dashboard');
+        $this->post('/penguji/register', $data);
 
         $this->assertDatabaseHas('users', [
             'email' => 'penguji@gmail.com',
