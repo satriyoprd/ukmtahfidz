@@ -43,6 +43,14 @@
             </div>
 
             <div class="row mb-2">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <div class="col-5">
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -51,7 +59,7 @@
                 </div>
                 <div class="col-7">
                     <div class="float-end w-25">
-                        <a class="btn" href={{route('dashboard.penguji.setoran.create')}}>Tambah Data</a>
+                        <a class="btn" href={{ route('dashboard.penguji.setoran.create') }}>Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -65,22 +73,40 @@
                         <th class="text-center" style="background: #CCCF95; width: 14%;">Jumlah Setoran</th>
                         <th class="text-center" style="background: #CCCF95; width: 14%;">Nilai</th>
                         <th class="text-center" style="background: #CCCF95; width: 20%;">Catatan</th>
+                        <th class="text-center" style="background: #CCCF95; width: 20%;">Status</th>
                         <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        
-                        <td>DummySetoran</td>
-                        <td class="text-center"><a href={{route('dashboard.penguji.setoran.update', 2)}} class="btn btn-sm" type="button"><i
-                                    class="bi bi-pencil-fill"></i></a><button class="btn btn-sm btn-delete"
-                                type="button"><i class="bi bi-trash"></i></button></td>
-                    </tr>
+                    @foreach ($setoran as $s)
+                        <tr>
+                            <td>{{ $s->tanggal_setoran }}</td>
+                            <td>{{ $s->santri->user->name }}</td>
+                            <td>{{ $s->surat }}</td>
+                            <td>{{ $s->jumlah_setoran }}</td>
+                            <td>{{ $s->nilai }}</td>
+
+                            <td>{{ $s->catatan }}</td>
+                            <td>
+                                @if ($s->status)
+                                    <p>Lanjut</p>
+                                @else
+                                    <p>Menunggu</p>
+                                @endif
+                            </td>
+                            <td class="text-center"><a href={{ route('dashboard.penguji.setoran.update', $s->id) }}
+                                    class="btn btn-sm" type="button"><i class="bi bi-pencil-fill"></i></a>
+                                <form action={{ route('setoran.destroy', $s->id) }} method="POST">
+
+                                    @csrf
+                                    @method('delete')
+
+                                    <button class="btn btn-sm btn-delete" type="submit"><i
+                                            class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
 
@@ -104,9 +130,10 @@
                         <td>DummyUjian</td>
                         <td>DummyUjian</td>
                         <td>DummyUjian</td>
-                        <td class="text-center"><a href={{route('dashboard.penguji.ujian.update', 2)}} class="btn btn-sm" type="button"><i
-                                    class="bi bi-pencil-fill"></i></a><button class="btn btn-sm btn-delete"
-                                type="button"><i class="bi bi-trash"></i></button></td>
+                        <td class="text-center"><a href={{ route('dashboard.penguji.ujian.update', 2) }}
+                                class="btn btn-sm" type="button"><i class="bi bi-pencil-fill"></i></a><button
+                                class="btn btn-sm btn-delete" type="button"><i class="bi bi-trash"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

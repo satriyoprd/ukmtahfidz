@@ -23,7 +23,7 @@ class LoginController extends Controller
             return redirect()->route('dashboard.santri');
         }
 
-        if (auth()->user()->role->id == config('constants.ROLE_SANTRI')) {
+        if (auth()->user()->role->id == config('constants.ROLE_PENGUJI')) {
             return redirect()->intended(RouteServiceProvider::PENGUJI);
         }
 

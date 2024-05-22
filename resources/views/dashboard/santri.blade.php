@@ -65,18 +65,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        <td>DummySetoran</td>
-                        <td>Lanjut</td>
-                        <td class="text-center"><a href={{ route('dashboard.santri.setoran', 2) }} class="btn btn-sm"
-                                type="button"><i class="bi bi-journal-text"></i></a></td>
-                    </tr>
+
+
+
+                    @foreach ($setoran as $s)
+                        <tr>
+                            <td>{{ $s->tanggal_setoran }}</td>
+                            <td>{{ $s->surat }}</td>
+                            <td>{{ $s->jumlah_setoran }}</td>
+                            <td>{{ $s->nilai }}</td>
+
+                            <td>{{ $s->catatan }}</td>
+                            <td>
+                                @if ($s->status)
+                                    <p>Lanjut</p>
+                                @else
+                                    <p>Menunggu</p>
+                                @endif
+                            </td>
+                            <td class="text-center"><a href={{ route('dashboard.santri.setoran', $s->id) }}
+                                    class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+
+            @if ($setoran->count() == 0)
+                <p class="text-center text-2xl font-bold">Tidak ada data!</p>
+            @endif
 
             <table id="tableUjian" style="display: none;" class="table table-bordered">
                 <thead>

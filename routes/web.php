@@ -4,7 +4,9 @@ use App\Http\Controllers\Authentication\PanitiaRegisterController;
 use App\Http\Controllers\Authentication\PengujiRegisterController;
 use App\Http\Controllers\Authentication\SantriRegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SantriController;
 use App\Http\Controllers\Setoran\SetoranController;
+use App\Models\Setoran;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,17 +31,11 @@ Route::post('/penguji/register', [PengujiRegisterController::class, 'store'])->n
 Route::get('/panitia/register', [PanitiaRegisterController::class, 'create'])->name('panitia.create');
 Route::post('/panitia/register', [PanitiaRegisterController::class, 'store'])->name('panitia.store');
 
-
 Route::resource('/setoran', SetoranController::class);
+Route::get('/santri', [SetoranController::class, 'indexSantri'])->name('dashboard.santri');
+Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dashboard.penguji.setoran.create');
 
-
-Route::get('/santri', function () {
-    return view('dashboard.santri');
-})->name('dashboard.santri');
-
-Route::get('/santri/setoran/{id}', function () {
-    return view('dashboard.santri-setoran');
-})->name('dashboard.santri.setoran');
+Route::get('/santri/setoran/{id}', [SantriController::class, 'indexNilaiSetoran'])->name('dashboard.santri.setoran');
 
 Route::get('/santri/ujian/{id}', function () {
     return view('dashboard.santri-ujian');
@@ -47,16 +43,15 @@ Route::get('/santri/ujian/{id}', function () {
 
 
 Route::get('/penguji', function () {
-    return view('dashboard.penguji');
+    $setoran = Setoran::where('penguji_id', Auth::user()->penguji->id)->get();
+
+    $setoran->load('penguji.user', 'santri.user', 'nilais');
+
+    return view('dashboard.penguji', compact('setoran'));
 })->name('dashboard.penguji');
 
-Route::get('/penguji/setoran/{id}', function () {
-    return view('dashboard.penguji-setoran-update');
-})->name('dashboard.penguji.setoran.update');
+Route::get('/penguji/setoran/{setoran}', [SetoranController::class, 'edit'])->name('dashboard.penguji.setoran.update');
 
-Route::get('/penguji/setoran', function () {
-    return view('dashboard.penguji-setoran-create');
-})->name('dashboard.penguji.setoran.create');
 
 Route::get('/penguji/ujian', function () {
     return view('dashboard.penguji-ujian-create');

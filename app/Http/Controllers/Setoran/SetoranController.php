@@ -7,6 +7,8 @@ use App\Models\Penguji;
 use App\Models\Santri;
 use App\Models\Setoran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RouteHelper;
 
 class SetoranController extends Controller
 {
@@ -15,8 +17,19 @@ class SetoranController extends Controller
         $setoran = Setoran::all();
         $setoran->load('penguji.user', 'santri.user', 'nilais');
 
-        return view('setoran.index', compact('setoran'));
+
+
+        return view('dashboard.santri', compact('setoran'));
     }
+
+    public function indexSantri()
+    {
+        $setoran = Setoran::where('santri_id', Auth::user()->santri->id)->get();
+        $setoran->load('penguji.user', 'santri.user', 'nilais');
+
+        return view('dashboard.santri', compact('setoran'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +41,7 @@ class SetoranController extends Controller
         $santri = Santri::all();
         $santri->load('user');
 
-        return view('setoran.create', compact('penguji', 'santri'));
+        return view('dashboard.penguji-setoran-create', compact('penguji', 'santri'));
     }
 
     /**
@@ -39,7 +52,7 @@ class SetoranController extends Controller
         $request->validate([
             'penguji_id' => 'required',
             'santri_id' => 'required',
-            'tanggal_setoran' => 'required',
+            'tanggal_setoran' => 'required|date',
             'surat' => 'required',
             'jumlah_setoran' => 'required',
             'catatan' => 'nullable',
@@ -70,7 +83,7 @@ class SetoranController extends Controller
             4 => ['nilai' => $request->nilai_adab],
         ]);
 
-        return redirect()->route('setoran.create');
+        return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id)->with('success', 'Data has been saved successfully');
     }
 
     /**
@@ -86,12 +99,13 @@ class SetoranController extends Controller
      */
     public function edit(Setoran $setoran)
     {
+
         $penguji = Penguji::all();
         $penguji->load('user');
         $santri = Santri::all();
         $santri->load('user');
 
-        return view('setoran.edit', compact('setoran', 'penguji', 'santri'));
+        return view('dashboard.penguji-setoran-update', compact('setoran', 'penguji', 'santri'));
     }
 
     /**
@@ -133,7 +147,7 @@ class SetoranController extends Controller
             4 => ['nilai' => $request->nilai_adab],
         ]);
 
-        return redirect()->route('setoran.create');
+        return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id);
     }
 
     /**
@@ -143,6 +157,6 @@ class SetoranController extends Controller
     {
         $setoran->delete();
 
-        return redirect()->route('setoran.create');
+        return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id);
     }
 }
