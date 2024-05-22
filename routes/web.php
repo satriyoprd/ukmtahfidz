@@ -5,6 +5,7 @@ use App\Http\Controllers\Authentication\PengujiRegisterController;
 use App\Http\Controllers\Authentication\SantriRegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
+use App\Http\Controllers\Setoran\SantriVerifiedSetoranController;
 use App\Http\Controllers\Setoran\SetoranController;
 use App\Models\Setoran;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,12 @@ Route::get('/panitia/register', [PanitiaRegisterController::class, 'create'])->n
 Route::post('/panitia/register', [PanitiaRegisterController::class, 'store'])->name('panitia.store');
 
 Route::resource('/setoran', SetoranController::class);
+
+Route::get('/santri/verified/setoran', [SantriVerifiedSetoranController::class, 'index'])->name('santri-verified-setoran.index');
+Route::post('/santri/verified/setoran', [SantriVerifiedSetoranController::class, 'store'])->name('santri-verified-setoran.store');
+Route::put('/santri/verified/setoran/{setoran}', [SantriVerifiedSetoranController::class, 'update'])->name('santri-verified-setoran.update');
+
+
 Route::get('/santri', [SetoranController::class, 'indexSantri'])->name('dashboard.santri');
 Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dashboard.penguji.setoran.create');
 

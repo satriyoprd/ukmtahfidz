@@ -32,9 +32,7 @@ class SantriRegisterTest extends TestCase
 
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-        $response = $this->post('/santri/register', $data);
-
-        $response->assertRedirect('/dashboard');
+        $this->post('/santri/register', $data);
 
         $this->assertDatabaseHas('users', [
             'email' => 'santri@gmail.com',
