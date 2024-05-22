@@ -35,15 +35,15 @@
         <nav id="navbar" class="navbar">
           <div class="mx-5">
             <ul>
-              <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-              <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
-              <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
+              <li><a class="nav-link scrollto active" href="/">Beranda</a></li>
+              <li><a class="nav-link scrollto" href="/program-tahfidz">Program Tahfidz</a></li>
+              <li><a class="nav-link scrollto" href="/publikasi">Publikasi</a></li>
               <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
             </ul>
           </div>
           <div class="ms-5">
             <ul>
-              <li><a class="register scrollto" href="register.html">Register</a></li>
+              <li><a class="register scrollto" href="/register">Register</a></li>
               <li><button class="login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button></li>
             </ul>
           </div>
@@ -128,7 +128,7 @@
   </div><!-- End Modal -->
 
   <section id="login" class="mt-5 pb-0">
-    <div class="container">
+    <div class="container w-75 px-5">
 
       <p><a class="text-black" href="index.html">Beranda</a> / <a href="">Login</a></p>
 
@@ -162,7 +162,7 @@
       </div>
       <div class="text-center">
         <div class="inline">
-          <p>Belum memiliki akun? <a href="register.html">Register</a></p>
+          <p>Belum memiliki akun? <a href="/register">Register</a></p>
         </div>
       </div>
 

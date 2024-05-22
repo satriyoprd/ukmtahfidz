@@ -87,30 +87,20 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-center">1.</td>
-                    <td>Kelancaran</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">2.</td>
-                    <td>Makhrojil Huruf</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">3.</td>
-                    <td>Lagu</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">4.</td>
-                    <td>Adab</td>
-                    <td class="text-center">xx</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">Total Nilai</td>
-                    <td class="text-center">xx</td>
-                  </tr>
+                {{-- @foreach($setoranSantri as $setoran)
+                    <tr>
+                        <td>{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}</td>
+                        <td>{{ $setoran->nama_santri }}</td>
+                        <td>{{ $setoran->surat }}</td>
+                        <td>{{ $setoran->jumlah_hafalan }}</td>
+                        <td>{{ $setoran->nilai }}</td>
+                        <td>{{ $setoran->catatan }}</td>
+                        <td>
+                        <a href="{{ route('dashboard.edit', ['id_setoran' => $setoran->id_setoran]) }}" class="edit-icon"><i class="bi bi-pencil"></i></a>
+                            <a href="{{ route('dashboard.delete', ['id_setoran' => $setoran->id_setoran]) }}" class="delete-icon"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                @endforeach --}}
                 </tbody>
             </table>
 

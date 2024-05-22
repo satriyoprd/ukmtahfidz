@@ -35,7 +35,6 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
         <div class="container">
-
             <div class="row my-5">
                 <div class="col-7">
                     <div class="mt-5 pt-5">

@@ -9,6 +9,7 @@ use App\Http\Controllers\Setoran\SetoranController;
 use App\Models\Setoran;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,6 +62,56 @@ Route::get('/penguji/ujian/{id}', function () {
     return view('dashboard.penguji-ujian-update');
 })->name('dashboard.penguji.ujian.update');
 
+
+Route::get('/departemen-mudarosah', function () {
+    return view('landing.departemen_mudarosah');
+});
+
+Route::get('/departemen-munaqosyah', function () {
+    return view('landing.departemen_munaqosyah');
+});
+
+Route::get('/departemen-syiar', function () {
+    return view('landing.departemen_syiar');
+});
+
+Route::get('/departemen-tahfidz', function () {
+    return view('landing.departemen_tahfidz');
+});
+
+Route::get('/departemen-ukhuwah', function () {
+    return view('landing.departemen_ukhuwah');
+});
+
+Route::get('/publikasi', function () {
+    return view('landing.publikasi');
+});
+
+Route::get('/program-tahfidz', function () {
+    return view('landing.tahfidz');
+});
+
+Route::get('/santri-setoran', function () {
+    return view('dashboard.santri_setoran');
+});
+
+Route::get('/santri-ujian', function () {
+    return view('dashboard.santri_ujian');
+});
+
+// Route::get('/penguji-setoran', function () {
+//     return view('dashboard.penguji_setoran');
+// });
+
+Route::get('/penguji-ujian', function () {
+    return view('dashboard.penguji_ujian');
+});
+
+Route::get('/santri', [SetoranController::class, 'getSetoranSantri']);  
+
+// Route::get('/penguji', function () {
+//     return view('dashboard.penguji');
+// });
 
 Route::get('/register', function () {
     return view('landing.register');

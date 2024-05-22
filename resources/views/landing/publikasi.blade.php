@@ -35,15 +35,15 @@
             <nav id="navbar" class="navbar">
                 <div class="mx-5">
                     <ul>
-                        <li><a class="nav-link scrollto" href="index.html">Beranda</a></li>
-                        <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
-                        <li><a class="nav-link scrollto active" href="publikasi.html">Publikasi</a></li>
+                        <li><a class="nav-link scrollto" href="/">Beranda</a></li>
+                        <li><a class="nav-link scrollto" href="/program-tahfidz">Program Tahfidz</a></li>
+                        <li><a class="nav-link scrollto active" href="/publikasi">Publikasi</a></li>
                         <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
                     </ul>
                 </div>
                 <div class="ms-5">
                     <ul>
-                        <li><a class="register scrollto" href="register.html">Register</a></li>
+                        <li><a class="register scrollto" href="/register">Register</a></li>
                         <li><button class="login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
                         </li>
                     </ul>
@@ -65,7 +65,7 @@
               <h3>Saya ingin masuk sebagai:</h3>
             </div>
 
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -79,7 +79,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -93,7 +93,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -107,7 +107,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -141,7 +141,7 @@
             <div class="row mb-4">
                 <div class="col">
                     <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
                             <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
                             <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
@@ -161,39 +161,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
-                            <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
-                            <p class="tgl">04 Mei 2024</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
-                            <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
-                            <p class="tgl">04 Mei 2024</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
-                            <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
-                            <p class="tgl">04 Mei 2024</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
                             <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
@@ -205,7 +173,7 @@
             <div class="row mb-4">
                 <div class="col">
                     <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
                             <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
@@ -215,7 +183,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
                             <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
@@ -225,7 +193,39 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="assets/img/berita.png" class="card-img-top" alt="">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
+                            <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
+                            <p class="tgl">04 Mei 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
+                            <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
+                            <p class="tgl">04 Mei 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
+                            <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>
+                            <p class="tgl">04 Mei 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="assets/img/berita.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia</h5>
                             <p class="card-text">Illiza: Kami Bangga Menunjukkan 'Banda Aceh Islamic Smart City' Kepada Dunia...</p>

@@ -35,11 +35,11 @@
             <nav id="navbar" class="navbar">
                 <div class="mx-5">
                     <ul>
-                        <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                        <li><a class="nav-link scrollto" href="tahfidz.html">Program Tahfidz</a></li>
-                        <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
+                        <li><a class="nav-link scrollto" href="/">Beranda</a></li>
+                        <li><a class="nav-link scrollto" href="/program-tahfidz">Program Tahfidz</a></li>
+                        <li><a class="nav-link scrollto" href="/publikasi">Publikasi</a></li>
                         <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
-                        <li><a class="nav-link scrollto" href="">Hafalan Saya</a></li>
+                        <li><a class="nav-link scrollto active" href="/">Kelola Data</a></li>
                     </ul>
                 </div>
                 <div class="ms-5">
@@ -103,7 +103,7 @@
                 </div>
                 <div class="col-7">
                     <div class="float-end w-25">
-                        <a class="btn" href="">Tambah Data</a>
+                        <a class="btn" href="/penguji-setoran">Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                    @foreach($setorans as $setoran)
+                    <tr>
+                        <td>{{ date('d F Y', strtotime($setoran->tgl_setoran)) }}</td>
+                        <td>{{ $setoran->nama_santri }}</td>
+                        <td>{{ $setoran->surat }}</td>
+                        <td>{{ $setoran->jumlah_hafalan }}</td>
+                        <td>{{ $setoran->nilai }}</td>
+                        <td>{{ $setoran->catatan }}</td>
+                        <td>
+                        <a href="{{ route('dashboard.edit', ['id_setoran' => $setoran->id_setoran]) }}" class="edit-icon"><i class="bi bi-pencil"></i></a>
+                            <a href="{{ route('dashboard.delete', ['id_setoran' => $setoran->id_setoran]) }}" class="delete-icon"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+                  {{-- <tr>
                     <td>DummySetoran</td>
                     <td>DummySetoran</td>
                     <td>DummySetoran</td>
@@ -129,7 +143,7 @@
                     <td>DummySetoran</td>
                     <td>DummySetoran</td>
                     <td class="text-center"><button class="btn btn-sm" type="button"><i class="bi bi-pencil-fill"></i></button><button class="btn btn-sm btn-delete" type="button"><i class="bi bi-trash"></i></button></td>
-                  </tr>
+                  </tr> --}}
                 </tbody>
             </table>
 

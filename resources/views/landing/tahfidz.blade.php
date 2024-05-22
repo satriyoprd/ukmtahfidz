@@ -35,15 +35,15 @@
             <nav id="navbar" class="navbar">
                 <div class="mx-5">
                     <ul>
-                        <li><a class="nav-link scrollto" href="index.html">Beranda</a></li>
-                        <li><a class="nav-link scrollto active" href="tahfidz.html">Program Tahfidz</a></li>
-                        <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
-                        <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
+                        <li><a class="nav-link scrollto" href="/">Beranda</a></li>
+                        <li><a class="nav-link scrollto active" href="/program-tahfidz">Program Tahfidz</a></li>
+                        <li><a class="nav-link scrollto" href="/publikasi">Publikasi</a></li>
+                        <li><a class="nav-link scrollto" href="/pengumuman">Pengumuman</a></li>
                     </ul>
                 </div>
                 <div class="ms-5">
                     <ul>
-                        <li><a class="register scrollto" href="register.html">Register</a></li>
+                        <li><a class="register scrollto" href="/register">Register</a></li>
                         <li><button class="login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
                         </li>
                     </ul>
@@ -65,7 +65,7 @@
               <h3>Saya ingin masuk sebagai:</h3>
             </div>
 
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -79,7 +79,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -93,7 +93,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -107,7 +107,7 @@
                   </div>
                 </div>
               </a>
-              <a href="login.html">
+              <a href="/login">
                 <div class="card mb-2">
                   <div class="row">
                     <div class="col-3">
@@ -142,10 +142,10 @@
 
             <div id="dashboard" class="row w-75 mx-auto">
                 <div class="col text-center">
-                    <a href="register.html" class="btn" style="width: 120px;">Register</a>
+                    <a href="/register" class="btn" style="width: 120px;">Register</a>
                 </div>
                 <div class="col text-center">
-                    <a href="login.html" class="btn" style="width: 120px;">Login</a>
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
                 </div>
             </div>
 
