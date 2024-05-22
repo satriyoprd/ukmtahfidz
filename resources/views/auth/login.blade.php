@@ -2,7 +2,8 @@
     <section id="login" class="mt-5 pb-0">
         <div class="container">
 
-            <p><a class="text-black" href={{ route('home') }}>Beranda</a> / <a href={{ route('login.create') }}>Login</a></p>
+            <p><a class="text-black" href={{ route('home') }}>Beranda</a> / <a href={{ route('login.create') }}>Login</a>
+            </p>
 
             <div class="section-title text-center">
                 <h2>Selamat Datang</h2>
@@ -47,7 +48,7 @@
             </form>
             <div class="text-center">
                 <div class="inline">
-                    <p>Belum memiliki akun? <a href={{ route('register') }}>Register</a></p>
+                    <p>Belum memiliki akun? <a data-bs-toggle="modal" data-bs-target="#modalRegister" class="cursor-pointer">Register</a></p>
                 </div>
             </div>
 

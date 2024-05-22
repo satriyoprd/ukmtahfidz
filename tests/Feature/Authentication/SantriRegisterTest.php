@@ -19,6 +19,7 @@ class SantriRegisterTest extends TestCase
     public function test_santri_registration()
     {
         $data = [
+            '_token' => csrf_token(),
             'role_id' => 3,
             'name' => 'santri',
             'email' => 'santri@gmail.com',
@@ -28,6 +29,8 @@ class SantriRegisterTest extends TestCase
             'major_id' => 1,
             'nim' => '3121600044',
         ];
+
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
         $response = $this->post('/santri/register', $data);
 

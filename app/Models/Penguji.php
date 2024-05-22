@@ -17,4 +17,9 @@ class Penguji extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function setoran()
+    {
+        return $this->hasMany(Setoran::class);
+    }
 }
