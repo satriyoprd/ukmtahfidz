@@ -14,17 +14,21 @@ class SetoranController extends Controller
     public function index()
     {
         $setoran = Setoran::all();
+
+        $santriVerified = SantriVerifiedSetoran::where('santri_id', Auth::user()->santri->id)->get();
+
         $setoran->load('penguji.user', 'santri.user', 'nilais');
 
-        return view('dashboard.santri', compact('setoran'));
+        return view('dashboard.santri', compact('setoran', 'santriVerified'));
     }
 
     public function indexSantri()
     {
+        $santriVerified = SantriVerifiedSetoran::where('santri_id', Auth::user()->santri->id)->first();
         $setoran = Setoran::where('santri_id', Auth::user()->santri->id)->get();
         $setoran->load('penguji.user', 'santri.user', 'nilais');
 
-        return view('dashboard.santri', compact('setoran'));
+        return view('dashboard.santri', compact('setoran', 'santriVerified'));
     }
 
 

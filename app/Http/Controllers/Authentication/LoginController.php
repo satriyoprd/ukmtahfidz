@@ -27,6 +27,10 @@ class LoginController extends Controller
             return redirect()->intended(RouteServiceProvider::PENGUJI);
         }
 
+        if (auth()->user()->role->id == config('constants.ROLE_ADMIN')) {
+            return redirect()->intended(RouteServiceProvider::ADMIN);
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

@@ -22,6 +22,10 @@ class RouteServiceProvider extends ServiceProvider
 
     public const PENGUJI = '/penguji';
 
+    public const ADMIN = '/admin';
+
+    public const PANITIA = '/panitia';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */

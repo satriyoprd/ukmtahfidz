@@ -19,7 +19,33 @@
                                 setoran hafalan Al-Qur'an oleh santri kepada penyimak (asatidz) yang bertempat di dua
                                 masjid
                                 UNAIR</p>
-                            <button class="btn" data-bs-toggle="modal" data-bs-target="#modalWarning">Daftar</button>
+
+                            @if (Auth::check() && Auth::user()->role_id == config('constants.ROLE_SANTRI'))
+                                @if (Auth::user()->santri->verifiedSetoran)
+                                    <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
+                                            class="fa-solid fa-circle-check"></i></div>
+                                @else
+                                    @if (Auth::user()->role_id == 3)
+                                        @if (is_null(Auth::user()->santri->jumlah_hafalan))
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalSetoran">
+                                                Daftar
+                                            </button>
+                                        @else
+                                            <form action={{ route('santri-verified-setoran.store') }} method="post">
+                                                @csrf
+                                                <button type="submit" class="btn">
+                                                    Daftar
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @else
+                                        <button class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#modalWarning">Daftar</button>
+                                    @endif
+                                @endif
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -100,7 +126,6 @@
     <div class="modal modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
-
                 <div class="text-center">
                     <img src="assets/img/warning.png" alt="" class="img-fluid mb-3">
                     <h2>Login Untuk Melanjutkan</h2>
@@ -109,7 +134,8 @@
 
                 <div id="dashboard" class="row w-75 mx-auto">
                     <div class="col text-center">
-                        <a href="/register" class="btn" style="width: 120px;">Register</a>
+                        <button class="btn" style="width: 120px;" data-bs-toggle="modal"
+                            data-bs-target="#modalRegister">Register</a>
                     </div>
                     <div class="col text-center">
                         <button class="btn" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
@@ -121,5 +147,21 @@
     </div>
 </div>
 
+<!-- ======= Warning Modal ======= -->
+<div class="modal fade" id="modalSetoran" tabindex="-1">
+    <div class="modal modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="text-2xl font-bold text-center">
+                    Pemberitahuan
+                </p>
+                <div class="text-center font-semibold">
+                    Harap mengisi jumlah hafala terlebih dahulu
+                </div>
 
-
+                <a href={{ route('profile.edit') }} class=" text-white my-2"><button
+                        class="bg-green-800 text-white py-2 rounded-lg w-full mt-4">Halaman Profile</button></a>
+            </div>
+        </div>
+    </div>
+</div>

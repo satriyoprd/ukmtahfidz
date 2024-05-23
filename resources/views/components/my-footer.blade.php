@@ -16,7 +16,7 @@
             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
                 <div class="info">
                     <div class="d-flex align-items-center mb-5">
-                        <img src="assets/img/logo_ukm.png" alt="" class="img-fluid">
+                        <img src="/assets/img/logo_ukm.png" alt="" class="img-fluid">
                         <h4>UKM Tahfidz Qur'an<br>Universitas Airlangga</h4>
                     </div>
                     <div class="row">

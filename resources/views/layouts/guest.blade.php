@@ -25,6 +25,7 @@
     <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c787415acf.js" crossorigin="anonymous"></script>
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 

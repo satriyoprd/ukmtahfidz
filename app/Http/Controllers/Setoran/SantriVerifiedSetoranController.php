@@ -18,19 +18,28 @@ class SantriVerifiedSetoranController extends Controller
 
     public function store(Request $request)
     {
-        SantriVerifiedSetoran::create([
-            'santri_id' => $request->user()->santri->id,
-        ]);
+        $santriVerified = SantriVerifiedSetoran::where('santri_id', $request->user()->santri->id)->first();
 
-        return redirect()->route('dashboard.santri');
+        if (!$santriVerified) {
+            SantriVerifiedSetoran::create([
+                'santri_id' => $request->user()->santri->id,
+            ]);
+        }
+
+        return redirect()->route('dashboard.santri')->with('success', 'Berhasil mendaftar ke program setoran tahfidz!');
     }
 
     public function update(Request $request, SantriVerifiedSetoran $setoran)
     {
-        $setoran->update([
-            'is_verified' => $request->is_verified,
-        ]);
+        if ($request->is_verified == 1) {
+            $setoran->update([
+                'is_verified' => $request->is_verified,
+            ]);
+        } else {
+            $setoran->delete();
+        }
 
-        return redirect()->route('santri-verified-setoran.index');
+
+        return redirect()->route('dashboard.admin.setoran')->with('Success', 'Berhasil merubah data!');
     }
 }

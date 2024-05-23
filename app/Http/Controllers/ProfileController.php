@@ -32,13 +32,13 @@ class ProfileController extends Controller
             'jumlah_hafalan' => $request->jumlah_hafalan,
         ]);
 
+    
+
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
         $request->user()->save();
-
-        $request->user()->santri()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

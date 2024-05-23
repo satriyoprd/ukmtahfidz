@@ -8,7 +8,7 @@
             <div class="mx-5">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                    <li><a class="nav-link scrollto" href={{route('program.tahfidz')}}>Program Tahfidz</a></li>
+                    <li><a class="nav-link scrollto" href={{ route('program.tahfidz') }}>Program Tahfidz</a></li>
                     <li><a class="nav-link scrollto" href="publikasi.html">Publikasi</a></li>
                     <li><a class="nav-link scrollto" href="#pengumuman">Pengumuman</a></li>
                 </ul>
@@ -41,10 +41,13 @@
                                     {{ __('Dashboard') }}
                                 </x-dropdown-link>
 
+                                @if (Auth::user()->role_id != config('constants.ROLE_ADMIN'))
+                                    <x-dropdown-link :href="route('profile.edit')">
+                                        {{ __('Profile') }}
+                                    </x-dropdown-link>
+                                @endif
 
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
+
 
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">

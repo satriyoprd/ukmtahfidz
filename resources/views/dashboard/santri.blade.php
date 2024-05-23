@@ -19,106 +19,125 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-2">
-                    <div class="section-title pb-0">
-                        <h2 id="dashboardTitle">Setoran</h2>
-                    </div>
+            @if (session('success'))
+                <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)"
+                    class="text-center bg-green-100 text-green-600">
+                    <p>{{ session('success') }}</p>
                 </div>
-                <div class="col-1">
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-dashboard" type="button" id="dropdownMenu"
-                            data-bs-toggle="dropdown">
-                            <i class="bi bi-caret-down-fill"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu"
-                            style="--bs-dropdown-link-active-bg: none">
-                            <li><button class="dropdown-item text-black" onclick="dashboardSetoran()">Setoran</button>
-                            </li>
-                            <li><button class="dropdown-item text-black" onclick="dashboardUjian()">Ujian</button>
-                            </li>
-                            <li><button class="dropdown-item text-black" onclick="dashboardAbsen()">Absen</button>
-                            </li>
-                        </ul>
+            @endif
+
+            @if ($santriVerified->is_verified)
+                <div class="row">
+                    <div class="col-2">
+                        <div class="section-title pb-0">
+                            <h2 id="dashboardTitle">Setoran</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="col-9">
-                    <div class="float-end w-50">
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Cari Data">
+                    <div class="col-1">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-dashboard" type="button" id="dropdownMenu"
+                                data-bs-toggle="dropdown">
+                                <i class="bi bi-caret-down-fill"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu"
+                                style="--bs-dropdown-link-active-bg: none">
+                                <li><button class="dropdown-item text-black"
+                                        onclick="dashboardSetoran()">Setoran</button>
+                                </li>
+                                <li><button class="dropdown-item text-black" onclick="dashboardUjian()">Ujian</button>
+                                </li>
+                                <li><button class="dropdown-item text-black" onclick="dashboardAbsen()">Absen</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="float-end w-50">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <input type="text" class="form-control" placeholder="Cari Data">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <table id="tableSetoran" style="display: table;" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Setoran</th>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Setoran</th>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
-                        <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
-                        <th class="text-center" style="background: #CCCF95; width: 10%;">Status</th>
-                        <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-
-
-                    @foreach ($setoran as $s)
+                <table id="tableSetoran" style="display: table;" class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>{{ $s->tanggal_setoran }}</td>
-                            <td>{{ $s->surat }}</td>
-                            <td>{{ $s->jumlah_setoran }}</td>
-                            <td>{{ $s->nilai }}</td>
-
-                            <td>{{ $s->catatan }}</td>
-                            <td>
-                                @if ($s->status)
-                                    <p>Lanjut</p>
-                                @else
-                                    <p>Menunggu</p>
-                                @endif
-                            </td>
-                            <td class="text-center"><a href={{ route('dashboard.santri.setoran', $s->id) }}
-                                    class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a></td>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Setoran</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Setoran</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
+                            <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
+                            <th class="text-center" style="background: #CCCF95; width: 10%;">Status</th>
+                            <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
 
-            @if ($setoran->count() == 0)
-                <p class="text-center text-2xl font-bold">Tidak ada data!</p>
+
+
+                        @foreach ($setoran as $s)
+                            <tr>
+                                <td>{{ $s->tanggal_setoran }}</td>
+                                <td>{{ $s->surat }}</td>
+                                <td>{{ $s->jumlah_setoran }}</td>
+                                <td>{{ $s->nilai }}</td>
+
+                                <td>{{ $s->catatan }}</td>
+                                <td>
+                                    @if ($s->status)
+                                        <p>Lanjut</p>
+                                    @else
+                                        <p>Menunggu</p>
+                                    @endif
+                                </td>
+                                <td class="text-center"><a href={{ route('dashboard.santri.setoran', $s->id) }}
+                                        class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                @if ($setoran->count() == 0)
+                    <p class="text-center text-2xl font-bold">Tidak ada data!</p>
+                @endif
+
+                <table id="tableUjian" style="display: none;" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Ujian</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Hafalan</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
+                            <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
+                            <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DummyUjian</td>
+                            <td>DummyUjian</td>
+                            <td>DummyUjian</td>
+                            <td>DummyUjian</td>
+                            <td>DummyUjian</td>
+                            <td class="text-center"><a href={{ route('dashboard.santri.ujian', 2) }} class="btn btn-sm"
+                                    type="button"><i class="bi bi-journal-text"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div id="tableAbsen" style="display: none;">Under Maintenance</div>
+            @else
+                <div class="bg-green-100 p-4 rounded-lg">
+                    <p class="text-2xl font-bold text-green-700">Menunggu Status Pendaftaran <i
+                            class="fa-solid fa-clock ml-2"></i></p>
+                    <p class="text-gray-800">Kamu sudah mendaftar program setoran tahfidz, mohon menunggu proses
+                        seleksi.
             @endif
 
-            <table id="tableUjian" style="display: none;" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Ujian</th>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Hafalan</th>
-                        <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
-                        <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
-                        <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td class="text-center"><a href={{ route('dashboard.santri.ujian', 2) }} class="btn btn-sm"
-                                type="button"><i class="bi bi-journal-text"></i></a></td>
-                    </tr>
-                </tbody>
-            </table>
 
-            <div id="tableAbsen" style="display: none;">Under Maintenance</div>
+
 
         </div>
     </section>

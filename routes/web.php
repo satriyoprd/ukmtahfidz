@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Authentication\PanitiaRegisterController;
 use App\Http\Controllers\Authentication\PengujiRegisterController;
 use App\Http\Controllers\Authentication\SantriRegisterController;
@@ -97,7 +98,10 @@ Route::get('/program-tahfidz', function () {
     return view('landing.tahfidz');
 })->name('program.tahfidz');
 
+
 Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminDashboardController::class,'index'])->name('dashboard.admin');
+    Route::get('/admin/setoran', [AdminDashboardController::class,'index_setoran'])->name('dashboard.admin.setoran');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

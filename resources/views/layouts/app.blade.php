@@ -29,6 +29,8 @@
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+    <script src="https://kit.fontawesome.com/c787415acf.js" crossorigin="anonymous"></script>
+
 
 </head>
 
