@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Setoran;
+namespace App\Http\Controllers\Ujian;
 
 use App\Http\Controllers\Controller;
-use App\Models\SantriVerifiedSetoran;
+use App\Models\SantriVerifiedUjian;
 use Illuminate\Http\Request;
 
-class SantriVerifiedSetoranController extends Controller
+class SantriVerifiedUjianController extends Controller
 {
     public function index()
     {
-        $setoranVerified = SantriVerifiedSetoran::with('santri.user')->get();
+        $santriVerifiedUjian = SantriVerifiedUjian::with('santri.user')->get();
 
-        return view('setoran.santri-verified', compact('setoranVerified'));
+        return view('ujian.santri-verified', compact('santriVerifiedUjian'));
     }
 
 
     public function store(Request $request)
     {
-        $santriVerified = SantriVerifiedSetoran::where('santri_id', $request->user()->santri->id)->first();
+        $santriVerified = SantriVerifiedUjian::where('santri_id', $request->user()->santri->id)->first();
 
         if (!$santriVerified) {
-            SantriVerifiedSetoran::create([
+            SantriVerifiedUjian::create([
                 'santri_id' => $request->user()->santri->id,
             ]);
         }
@@ -29,14 +29,14 @@ class SantriVerifiedSetoranController extends Controller
         return redirect()->route('dashboard.santri')->with('success', 'Berhasil mendaftar ke program setoran tahfidz!');
     }
 
-    public function update(Request $request, SantriVerifiedSetoran $setoran)
+    public function update(Request $request, SantriVerifiedUjian $santriVerifiedUjian)
     {
         if ($request->is_verified == 1) {
-            $setoran->update([
+            $santriVerifiedUjian->update([
                 'is_verified' => $request->is_verified,
             ]);
         } else {
-            $setoran->delete();
+            $santriVerifiedUjian->delete();
         }
 
         return redirect()->route('dashboard.admin.setoran')->with('Success', 'Berhasil merubah data!');

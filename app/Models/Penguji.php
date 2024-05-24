@@ -22,4 +22,9 @@ class Penguji extends Model
     {
         return $this->hasMany(Setoran::class);
     }
+
+    public function ujian()
+    {
+        return $this->hasMany(Ujian::class);
+    }
 }

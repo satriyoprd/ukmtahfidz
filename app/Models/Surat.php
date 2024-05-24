@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nilai extends Model
+class Surat extends Model
 {
     use HasFactory;
 
@@ -13,11 +13,11 @@ class Nilai extends Model
 
     public function setorans()
     {
-        return $this->belongsToMany(Setoran::class, 'nilai_setorans')->withPivot('nilai')->withTimestamps();
+        return $this->belongsToMany(Setoran::class, 'surat_setorans')->withTimestamps();
     }
 
     public function ujians()
     {
-        return $this->belongsToMany(Ujian::class, 'nilai_ujians')->withPivot('nilai')->withTimestamps();
+        return $this->belongsToMany(Ujian::class, 'surat_ujians')->withTimestamps();
     }
 }

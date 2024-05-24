@@ -1,19 +1,19 @@
 <?php
 
-namespace Tests\Feature\Setoran;
+namespace Tests\Feature\Ujian;
 
 use App\Http\Middleware\VerifyCsrfToken;
-use App\Models\SantriVerifiedSetoran;
+use App\Models\SantriVerifiedUjian;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class SantriVerifiedSetoranTest extends TestCase
+class SantriVerifiedUjianTest extends TestCase
 {
     public function test_index()
     {
-        $response = $this->get(route('santri-verified-setoran.index'));
+        $response = $this->get(route('santri-verified-ujian.index'));
 
         $response->assertStatus(200);
     }
@@ -26,18 +26,18 @@ class SantriVerifiedSetoranTest extends TestCase
 
         $this->actingAs($user);
 
-        $response = $this->post(route('santri-verified-setoran.store'), []);
+        $response = $this->post(route('santri-verified-ujian.store'), []);
 
         $response->assertStatus(302);
     }
 
     public function test_update()
     {
-        $santriVerified = SantriVerifiedSetoran::first();
+        $santriVerified = SantriVerifiedUjian::first();
 
         $this->withoutMiddleware(VerifyCsrfToken::class);
 
-        $response = $this->put(route('santri-verified-setoran.update', $santriVerified->id), [
+        $response = $this->put(route('santri-verified-ujian.update', $santriVerified->id), [
             'is_verified' => true,
         ]);
 

@@ -40,6 +40,8 @@ class ProfileController extends Controller
 
         $request->user()->santri()->update([
             'jumlah_hafalan' => $request->jumlah_hafalan,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal_lahir' => $request->tanggal_lahir,
         ]);
 
 
