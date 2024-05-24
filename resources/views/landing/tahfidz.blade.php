@@ -22,8 +22,13 @@
 
                             @if (Auth::check() && Auth::user()->role_id == config('constants.ROLE_SANTRI'))
                                 @if (Auth::user()->santri->verifiedSetoran)
-                                    <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
-                                            class="fa-solid fa-circle-check"></i></div>
+                                    @if (Auth::user()->santri->verifiedSetoran->is_verified == '1')
+                                        <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
+                                                class="fa-solid fa-circle-check"></i></div>
+                                    @else
+                                        <div class="text-primary-app font-semibold"><span>Proses seleksi</span> <i
+                                                class="fa-regular fa-hourglass-half ml-1"></i> </div>
+                                    @endif
                                 @else
                                     @if (Auth::user()->role_id == 3)
                                         @if (is_null(Auth::user()->santri->jumlah_hafalan))
@@ -32,18 +37,19 @@
                                                 Daftar
                                             </button>
                                         @else
-                                            <form action={{ route('santri-verified-setoran.store') }} method="post">
-                                                @csrf
-                                                <button type="submit" class="btn">
-                                                    Daftar
-                                                </button>
-                                            </form>
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirm">
+                                                Daftar
+                                            </button>
                                         @endif
                                     @else
                                         <button class="btn" data-bs-toggle="modal"
                                             data-bs-target="#modalWarning">Daftar</button>
                                     @endif
                                 @endif
+                            @else
+                                <button class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#modalWarning">Daftar</button>
                             @endif
 
                         </div>
@@ -126,20 +132,18 @@
     <div class="modal modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="text-center">
-                    <img src="assets/img/warning.png" alt="" class="img-fluid mb-3">
+                <div class="flex flex-col items-center justify-center w-full text-center ">
+                    <img src="/assets/img/warning.png" alt="" class="img-fluid mb-3">
                     <h2>Login Untuk Melanjutkan</h2>
                     <h3>Silahkan login untuk melanjutkan. Jika Anda belum memiliki akun, register terlebih dahulu</h3>
                 </div>
 
-                <div id="dashboard" class="row w-75 mx-auto">
-                    <div class="col text-center">
-                        <button class="btn" style="width: 120px;" data-bs-toggle="modal"
-                            data-bs-target="#modalRegister">Register</a>
-                    </div>
-                    <div class="col text-center">
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</button>
-                    </div>
+                <div id="dashboard" class="flex gap-2 justify-center w-full items-center my-4">
+                    <button class="btn w-full max-w-[150px]" style="width: 120px;" data-bs-toggle="modal"
+                        data-bs-target="#modalRegister">Register</a>
+
+                        <button class="btn max-w-[150px] w-full" data-bs-toggle="modal"
+                            data-bs-target="#modalLogin">Login</button>
                 </div>
 
             </div>
@@ -156,7 +160,7 @@
                     Pemberitahuan
                 </p>
                 <div class="text-center font-semibold">
-                    Harap mengisi jumlah hafala terlebih dahulu
+                    Harap mengisi jumlah hafalan terlebih dahulu di halaman profile
                 </div>
 
                 <a href={{ route('profile.edit') }} class=" text-white my-2"><button
@@ -165,3 +169,101 @@
         </div>
     </div>
 </div>
+
+
+@if (Auth::check())
+    @if (Auth::user()->role_id == config('constants.ROLE_SANTRI'))
+        <div class="modal fade" id="modalConfirm" tabindex="-1">
+            <div class="modal modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-2xl font-bold text-center">
+                            Pemberitahuan
+                        </p>
+                        <div class="text-center font-medium">
+                            Pastikan Data Pribadi mu sudah benar
+                        </div>
+
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    Nama Lengkap
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    NIM
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->santri->nim }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    Nama Handphone (WhatsApp)
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->phone }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    Jumlah Hafalan
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->santri->jumlah_hafalan }} Juz
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6 flex gap-4 items-center w-full">
+                            <div class="w-full">
+                                <div class="font-semibold mb-1">
+                                    Fakultas
+                                </div>
+
+                                <div class="p-2 border rounded w-full">
+                                    {{ Auth::user()->santri->major->faculty->name }}
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <div class="font-semibold mb-1">
+                                    Jurusan
+                                </div>
+
+                                <div class="p-2 border rounded w-full">
+                                    {{ Auth::user()->santri->major->name }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('profile.edit') }}" class="text-center font-semibold mb-4">
+                            <div class="border rounded py-2">
+                                Ubah Data
+                            </div>
+                        </a>
+
+                        <form action={{ route('santri-verified-setoran.store') }} method="post" class="mt-4">
+                            @csrf
+                            <button type="submit" class="!bg-primary-app text-white py-2 w-full rounded">
+                                Daftar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@endif

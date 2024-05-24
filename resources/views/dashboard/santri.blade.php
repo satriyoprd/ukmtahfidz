@@ -26,7 +26,17 @@
                 </div>
             @endif
 
-            @if ($santriVerified->is_verified)
+            @if ($santriVerified && $santriVerified->is_verified)
+                <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
+                    <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
+                    <p class="text-xl font-medium mb-0">
+                        Selamat! Anda telah <strong>diterima</strong> menjadi bagian program tahfidz setoran UKM Tahfidz
+                        Universitas
+                        Airlangga.
+                    </p>
+
+                </div>
+
                 <div class="row">
                     <div class="col-2">
                         <div class="section-title pb-0">
@@ -129,11 +139,21 @@
 
                 <div id="tableAbsen" style="display: none;">Under Maintenance</div>
             @else
-                <div class="bg-green-100 p-4 rounded-lg">
-                    <p class="text-2xl font-bold text-green-700">Menunggu Status Pendaftaran <i
-                            class="fa-solid fa-clock ml-2"></i></p>
-                    <p class="text-gray-800">Kamu sudah mendaftar program setoran tahfidz, mohon menunggu proses
-                        seleksi.
+                @if ($santriVerified)
+                    <div class="bg-green-100 p-4 rounded-lg">
+                        <p class="text-2xl font-bold text-green-700">Menunggu Status Pendaftaran <i
+                                class="fa-solid fa-clock ml-2"></i></p>
+                        <p class="text-gray-800">Kamu sudah mendaftar program setoran tahfidz, mohon menunggu proses
+                            seleksi.
+                    </div>
+                @else
+                    <div class="bg-yellow-100 p-4 rounded-lg">
+                        <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
+                        <p class="text-yellow-800">Kamu belum mendaftar program setoran tahfidz, silahkan <a
+                                class="text-bold underline text-yellow-900" href={{ route('program.tahfidz') }}>Daftar
+                                di sini</a>
+                    </div>
+                @endif
             @endif
 
 

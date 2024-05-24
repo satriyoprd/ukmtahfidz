@@ -60,7 +60,7 @@
                             href="{{ route('program.tahfidz') }}">Program Tahfidz</a></li>
 
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'publikasi' ? 'active' : '' }}"
-                            href="publikasi.html">Publikasi</a></li>
+                            href={{route('publikasi')}}>Publikasi</a></li>
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'pengumuman' ? 'active' : '' }}"
                             href="#pengumuman">Pengumuman</a></li>
 

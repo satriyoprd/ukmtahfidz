@@ -198,13 +198,17 @@
                                 </div>
 
                                 <div>
-                                    <x-input-label for="jumlah_hafalan" :value="__('Informasi Hafalan')" />
-                                    <x-text-input id="jumlah_hafalan" name="jumlah_hafalan" type="number"
-                                        class="mt-1 block w-full" :value="old('name', $user->santri->jumlah_hafalan)" required autofocus
-                                        autocomplete="jumlah_hafalan" />
+                                    <x-input-label for="informasi_hafalan" :value="__('Informasi Hafalan')" />
+                                    <select id="informasi_hafalan" name="informasi_hafalan[]"
+                                        class="mt-1 block w-full" required autofocus autocomplete="informasi_hafalan"
+                                        multiple>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <!-- Add more options here -->
+                                    </select>
                                     <x-input-error class="mt-2" :messages="$errors->get('jumlah_hafalan')" />
                                 </div>
-
                             </div>
                         </div>
 
@@ -251,4 +255,19 @@
             toggleResetButton(false);
         }
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const element = document.getElementById('informasi_hafalan');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                placeholderValue: 'Select options',
+                removeItemButton: true,
+                duplicateItemsAllowed: false,
+                itemSelectText: '',
+            });
+        });
+    </script>
+
+
 </x-app-layout>

@@ -92,7 +92,7 @@ Route::get('/departemen-ukhuwah', function () {
 
 Route::get('/publikasi', function () {
     return view('landing.publikasi');
-});
+})->name('publikasi');
 
 Route::get('/program-tahfidz', function () {
     return view('landing.tahfidz');
