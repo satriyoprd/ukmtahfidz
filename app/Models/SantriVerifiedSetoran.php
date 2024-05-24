@@ -19,4 +19,6 @@ class SantriVerifiedSetoran extends Model
     {
         return $this->belongsTo(Santri::class);
     }
+
+    
 }

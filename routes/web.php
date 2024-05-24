@@ -72,15 +72,15 @@ Route::get('/penguji/ujian/{id}', function () {
 
 Route::get('/departemen-mudarosah', function () {
     return view('landing.departemen_mudarosah');
-});
+})->name('departemen.mudarosah');
 
 Route::get('/departemen-munaqosyah', function () {
     return view('landing.departemen_munaqosyah');
-});
+})->name('departemen.munaqosyah');
 
 Route::get('/departemen-syiar', function () {
     return view('landing.departemen_syiar');
-});
+})->name('departemen.syiar');
 
 Route::get('/departemen-tahfidz', function () {
     return view('landing.departemen_tahfidz');
@@ -88,7 +88,7 @@ Route::get('/departemen-tahfidz', function () {
 
 Route::get('/departemen-ukhuwah', function () {
     return view('landing.departemen_ukhuwah');
-});
+})->name('departemen.ukhuwah');
 
 Route::get('/publikasi', function () {
     return view('landing.publikasi');
@@ -100,9 +100,10 @@ Route::get('/program-tahfidz', function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', [AdminDashboardController::class,'index'])->name('dashboard.admin');
-    Route::get('/admin/setoran', [AdminDashboardController::class,'index_setoran'])->name('dashboard.admin.setoran');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('dashboard.admin');
+    Route::get('/admin/setoran', [AdminDashboardController::class, 'index_setoran'])->name('dashboard.admin.setoran');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Faculty;
+use App\Models\Major;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +13,12 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function index(Request $request)
+    {
+        return view("profile.index", [
+            'user' => $request->user(),
+        ]);
+    }
     /**
      * Display the user's profile form.
      */
@@ -18,6 +26,8 @@ class ProfileController extends Controller
     {
         return view('profile.edit', [
             'user' => $request->user(),
+            'faculties' => Faculty::all(),
+            'majors' => Major::all()
         ]);
     }
 
@@ -32,7 +42,7 @@ class ProfileController extends Controller
             'jumlah_hafalan' => $request->jumlah_hafalan,
         ]);
 
-    
+
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;

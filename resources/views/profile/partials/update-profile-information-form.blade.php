@@ -50,17 +50,6 @@
             @endif
         </div>
 
-
-        @if (Auth::user()->role_id != config('constants.ROLE_ADMIN'))
-            <div>
-                <x-input-label for="jumlah_hafalan" :value="__('Jumlah Hafalan')" />
-                <x-text-input id="jumlah_hafalan" name="jumlah_hafalan" type="number" class="mt-1 block w-full"
-                    :value="old('jumlah_setoran', $user->santri->jumlah_hafalan)" required autofocus autocomplete="name" />
-                <x-input-error class="mt-2" :messages="$errors->get('name')" />
-            </div>
-        @endif
-
-
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

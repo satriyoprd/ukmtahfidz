@@ -60,7 +60,7 @@
                                 name="santri_id" value="{{ old('nama_santri') }}" required>
                                 <option disabled selected>Pilih Nama Santri</option>
                                 @foreach ($santri as $s)
-                                    <option value={{ $s->id }}>{{ $s->user->name }}</option>
+                                    <option value={{ $s->santri->id }}>{{ $s->santri->user->name }}</option>
                                 @endforeach
                             </select>
                             @error('nama_santri')

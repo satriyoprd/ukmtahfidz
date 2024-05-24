@@ -40,7 +40,7 @@ class SetoranController extends Controller
         $penguji = Penguji::all();
         $penguji->load('user');
         $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
-        $santri->load('user');
+        $santri->load('santri');
 
         return view('dashboard.penguji-setoran-create', compact('penguji', 'santri'));
     }
