@@ -9,7 +9,7 @@ class Setoran extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['penguji_id', 'santri_id', 'surat', 'jumlah_setoran', 'catatan', 'status', 'nilai', 'tanggal_setoran'];
+    protected $fillable = ['penguji_id', 'santri_id',  'jumlah_setoran', 'catatan', 'status', 'nilai', 'tanggal_setoran'];
 
     public function santri()
     {
@@ -23,6 +23,11 @@ class Setoran extends Model
 
     public function nilais()
     {
-        return $this->belongsToMany(Nilai::class, 'nilai_setorans')->withPivot('nilai');
+        return $this->belongsToMany(Nilai::class, 'nilai_setorans')->withPivot('nilai')->withTimestamps();
+    }
+
+    public function surats()
+    {
+        return $this->belongsToMany(Surat::class, 'surat_setorans')->withTimestamps();
     }
 }

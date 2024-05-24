@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('penguji_id')->constrained('pengujis')->cascadeOnDelete();
             $table->foreignId('santri_id')->constrained('santris')->cascadeOnDelete();
             $table->string('tanggal_setoran');
-            $table->string('surat');
             $table->string('jumlah_setoran');
             $table->text('catatan')->nullable();
             $table->boolean('status');

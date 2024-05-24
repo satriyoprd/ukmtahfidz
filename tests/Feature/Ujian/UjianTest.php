@@ -1,29 +1,37 @@
 <?php
 
-namespace Tests\Feature\Setoran;
+namespace Tests\Feature\Ujian;
 
-use App\Models\Setoran;
+use App\Models\Santri;
+use App\Models\Ujian;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class SetoranTest extends TestCase
+class UjianTest extends TestCase
 {
     public function test_route(): void
     {
-        $response = $this->get('/setoran/create');
+        $response = $this->get('/ujian/create');
 
         $response->assertStatus(200);
 
-        $response = $this->get('/setoran');
+        $santri = User::where('role_id', 3)->first();
+
+        $this->actingAs($santri);
+
+        $response = $this->get('/ujian');
 
         $response->assertStatus(200);
 
-        $response = $this->get('/setoran/1/edit');
+        $response = $this->get('/ujian/1/edit');
 
-        $response->assertStatus(404);
+        $response->assertStatus(200);
 
-        $response = $this->get('/setoran/1');
+        $response = $this->get('/ujian/1');
 
-        $response->assertStatus(404);
+        $response->assertStatus(200);
     }
 
     public function test_store(): void
@@ -33,10 +41,9 @@ class SetoranTest extends TestCase
                 'penguji_id' => 1,
                 'santri_id' => 1,
                 'surat' => [1,2],
-                'tanggal_setoran' => '2024-05-20',
-                'jumlah_setoran' => '1 juz',
-                'catatan' => 'Catatan setoran',
-                'status' => true,
+                'tanggal_ujian' => '2024-05-20',
+                'jumlah_ujian' => '1 juz',
+                'catatan' => 'Catatan Ujian',
                 'nilai_kelancaran' => 80,
                 'nilai_makhraj' => 90,
                 'nilai_lagu' => 90,
@@ -45,29 +52,25 @@ class SetoranTest extends TestCase
 
             $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-            $response = $this->post(route('setoran.store'), $requestData);
+            $this->post(route('ujian.store'), $requestData);
 
-            $response->assertRedirect(route('setoran.create'));
-
-            $this->assertDatabaseHas('setorans', [
+            $this->assertDatabaseHas('ujians', [
                 'penguji_id' => $requestData['penguji_id'],
                 'santri_id' => $requestData['santri_id'],
-                'surat' => $requestData['surat'],
-                'tanggal_setoran' => $requestData['tanggal_setoran'],
-                'jumlah_setoran' => $requestData['jumlah_setoran'],
+                'tanggal_ujian' => $requestData['tanggal_ujian'],
+                'jumlah_ujian' => $requestData['jumlah_ujian'],
                 'catatan' => $requestData['catatan'],
-                'status' => $requestData['status'],
             ]);
 
-            $setoran = Setoran::latest()->first();
+            $ujian = Ujian::latest()->first();
 
             $averageNilai = ($requestData['nilai_kelancaran'] + $requestData['nilai_makhraj'] + $requestData['nilai_lagu'] + $requestData['nilai_adab']) / 4;
-            $this->assertEquals($averageNilai, $setoran->nilai);
+            $this->assertEquals($averageNilai, $ujian->nilai);
 
             foreach (['nilai_kelancaran', 'nilai_makhraj', 'nilai_lagu', 'nilai_adab'] as $nilaiField) {
                 $no = 1;
-                $this->assertDatabaseHas('nilai_setorans', [
-                    'setoran_id' => $setoran->id,
+                $this->assertDatabaseHas('nilai_ujians', [
+                    'ujian_id' => $ujian->id,
                     'nilai_id' => $no++,
                     'nilai' => $requestData[$nilaiField],
                 ]);
@@ -84,10 +87,9 @@ class SetoranTest extends TestCase
                 'penguji_id' => 1,
                 'santri_id' => 1,
                 'surat' => [1],
-                'tanggal_setoran' => '2024-05-20',
-                'jumlah_setoran' => '1 juz',
-                'catatan' => 'Catatan setoran',
-                'status' => true,
+                'tanggal_ujian' => '2024-05-20',
+                'jumlah_ujian' => '1 juz',
+                'catatan' => 'Catatan ujian',
                 'nilai_kelancaran' => 95,
                 'nilai_makhraj' => 95,
                 'nilai_lagu' => 95,
@@ -96,30 +98,26 @@ class SetoranTest extends TestCase
 
             $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-            $response = $this->put(route('setoran.update', 1), $requestData);
+            $this->put(route('ujian.update', 1), $requestData);
 
-            $response->assertRedirect(route('setoran.create'));
-
-            $this->assertDatabaseHas('setorans', [
+            $this->assertDatabaseHas('ujians', [
                 'id' => 1,
                 'penguji_id' => $requestData['penguji_id'],
                 'santri_id' => $requestData['santri_id'],
-                'surat' => $requestData['surat'],
-                'tanggal_setoran' => $requestData['tanggal_setoran'],
-                'jumlah_setoran' => $requestData['jumlah_setoran'],
+                'tanggal_ujian' => $requestData['tanggal_ujian'],
+                'jumlah_ujian' => $requestData['jumlah_ujian'],
                 'catatan' => $requestData['catatan'],
-                'status' => $requestData['status'],
             ]);
 
-            $setoran = Setoran::latest()->first();
+            $ujian = Ujian::latest()->first();
 
             $averageNilai = ($requestData['nilai_kelancaran'] + $requestData['nilai_makhraj'] + $requestData['nilai_lagu'] + $requestData['nilai_adab']) / 4;
-            $this->assertEquals($averageNilai, $setoran->nilai);
+            $this->assertEquals($averageNilai, $ujian->nilai);
 
             foreach (['nilai_kelancaran', 'nilai_makhraj', 'nilai_lagu', 'nilai_adab'] as $nilaiField) {
                 $no = 1;
-                $this->assertDatabaseHas('nilai_setorans', [
-                    'setoran_id' => $setoran->id,
+                $this->assertDatabaseHas('nilai_ujians', [
+                    'ujian_id' => $ujian->id,
                     'nilai_id' => $no++,
                     'nilai' => $requestData[$nilaiField],
                 ]);
@@ -133,9 +131,8 @@ class SetoranTest extends TestCase
     {
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-        $setoran = Setoran::latest()->first();
-        $response = $this->delete(route('setoran.destroy', $setoran->id));
-        $response->assertRedirect(route('setoran.create'));
-        $this->assertDatabaseMissing('setorans', ['id' => $setoran->id]);
+        $ujian = Ujian::first();
+        $this->delete(route('ujian.destroy', $ujian->id));
+        $this->assertDatabaseMissing('ujians', ['id' => $ujian->id]);
     }
 }

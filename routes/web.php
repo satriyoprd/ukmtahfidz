@@ -8,7 +8,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\Setoran\SantriVerifiedSetoranController;
 use App\Http\Controllers\Setoran\SetoranController;
+use App\Http\Controllers\Ujian\SantriVerifiedUjianController;
+use App\Http\Controllers\Ujian\UjianController;
 use App\Models\Setoran;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,9 +39,15 @@ Route::post('/panitia/register', [PanitiaRegisterController::class, 'store'])->n
 
 Route::resource('/setoran', SetoranController::class);
 
+Route::resource('/ujian', UjianController::class);
+
 Route::get('/santri/verified/setoran', [SantriVerifiedSetoranController::class, 'index'])->name('santri-verified-setoran.index');
 Route::post('/santri/verified/setoran', [SantriVerifiedSetoranController::class, 'store'])->name('santri-verified-setoran.store');
 Route::put('/santri/verified/setoran/{setoran}', [SantriVerifiedSetoranController::class, 'update'])->name('santri-verified-setoran.update');
+
+Route::get('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'index'])->name('santri-verified-ujian.index');
+Route::post('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'store'])->name('santri-verified-ujian.store');
+Route::put('/santri/verified/ujian/{santriVerifiedUjian}', [SantriVerifiedUjianController::class, 'update'])->name('santri-verified-ujian.update');
 
 Route::get('/santri', [SetoranController::class, 'indexSantri'])->name('dashboard.santri');
 
@@ -108,4 +117,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require_once __DIR__ . '/auth.php';

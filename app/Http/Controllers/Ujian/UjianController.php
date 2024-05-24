@@ -1,24 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Setoran;
+namespace App\Http\Controllers\Ujian;
 
 use App\Http\Controllers\Controller;
 use App\Models\Penguji;
-use App\Models\SantriVerifiedSetoran;
-use App\Models\Setoran;
+use App\Models\SantriVerifiedUjian;
 use App\Models\Surat;
+use App\Models\Ujian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SetoranController extends Controller
+class UjianController extends Controller
 {
-    public function indexSantri()
+    public function index()
     {
-        $santriVerified = SantriVerifiedSetoran::where('santri_id', Auth::user()->santri->id)->first();
-        $setoran = Setoran::where('santri_id', Auth::user()->santri->id)->get();
-        $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
+        $ujian = Ujian::where('santri_id', Auth::user()->santri->id)->get();
 
-        return view('dashboard.santri', compact('setoran', 'santriVerified'));
+        $santriVerified = SantriVerifiedUjian::where('santri_id', Auth::user()->santri->id)->first();
+
+        $ujian->load('penguji.user', 'santri.user', 'nilais', 'surats');
+
+        return view('dashboard.santri-ujian', compact('ujian', 'santriVerified'));
     }
 
     public function create()
@@ -26,10 +28,10 @@ class SetoranController extends Controller
         $surat = Surat::all();
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
+        $santri = SantriVerifiedUjian::where('is_verified', 1)->get();
         $santri->load('santri');
 
-        return view('dashboard.penguji-setoran-create', compact('penguji', 'santri', 'surat'));
+        return view('dashboard.penguji-ujian-create', compact('penguji', 'santri', 'surat'));
     }
 
     public function store(Request $request)
@@ -38,10 +40,9 @@ class SetoranController extends Controller
             'penguji_id' => 'required',
             'santri_id' => 'required',
             'surat' => 'required',
-            'tanggal_setoran' => 'required|date',
-            'jumlah_setoran' => 'required',
+            'tanggal_ujian' => 'required|date',
+            'jumlah_ujian' => 'required',
             'catatan' => 'nullable',
-            'status' => 'required',
             'nilai_kelancaran' => 'required',
             'nilai_makhraj' => 'required',
             'nilai_lagu' => 'required',
@@ -50,20 +51,18 @@ class SetoranController extends Controller
 
         $average = ($request->nilai_kelancaran + $request->nilai_makhraj + $request->nilai_lagu + $request->nilai_adab) / 4;
 
-        $setoran = Setoran::create([
+        $ujian = Ujian::create([
             'penguji_id' => $request->penguji_id,
             'santri_id' => $request->santri_id,
-            'surat' => $request->surat,
-            'tanggal_setoran' => $request->tanggal_setoran,
-            'jumlah_setoran' => $request->jumlah_setoran,
+            'tanggal_ujian' => $request->tanggal_ujian,
+            'jumlah_ujian' => '1 juz',
             'catatan' => $request->catatan,
-            'status' => $request->status,
             'nilai' => $average,
         ]);
 
-        $setoran->surats()->attach($request->surat);
+        $ujian->surats()->attach($request->surat);
 
-        $setoran->nilais()->attach([
+        $ujian->nilais()->attach([
             1 => ['nilai' => $request->nilai_kelancaran],
             2 => ['nilai' => $request->nilai_makhraj],
             3 => ['nilai' => $request->nilai_lagu],
@@ -73,35 +72,34 @@ class SetoranController extends Controller
         return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id)->with('success', 'Data has been saved successfully');
     }
 
-    public function show(Setoran $setoran)
+    public function show(Ujian $ujian)
     {
-        $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
+        $ujian->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
-        return view('setoran.show', compact('setoran'));
+        return view('ujian.show', compact('ujian'));
     }
 
-    public function edit(Setoran $setoran)
+    public function edit(Ujian $ujian)
     {
+        $ujian->load('penguji.user', 'santri.user', 'nilais', 'surats');
         $surat = Surat::all();
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
+        $santri = SantriVerifiedUjian::where('is_verified', 1)->get();
         $santri->load('user');
-        $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
-        return view('dashboard.penguji-setoran-update', compact('setoran', 'penguji', 'santri', 'surat'));
+        return view('dashboard.penguji-ujian-update', compact('ujian', 'penguji', 'santri', 'surat'));
     }
 
-    public function update(Request $request, Setoran $setoran)
+    public function update(Request $request, Ujian $ujian)
     {
         $request->validate([
             'penguji_id' => 'required',
             'santri_id' => 'required',
             'surat' => 'required',
-            'tanggal_setoran' => 'required',
-            'jumlah_setoran' => 'required',
+            'tanggal_ujian' => 'required',
+            'jumlah_ujian' => 'required',
             'catatan' => 'nullable',
-            'status' => 'required',
             'nilai_kelancaran' => 'required',
             'nilai_makhraj' => 'required',
             'nilai_lagu' => 'required',
@@ -110,20 +108,19 @@ class SetoranController extends Controller
 
         $average = ($request->nilai_kelancaran + $request->nilai_makhraj + $request->nilai_lagu + $request->nilai_adab) / 4;
 
-        $setoran->update([
+        $ujian->update([
             'penguji_id' => $request->penguji_id,
             'santri_id' => $request->santri_id,
             'surat' => $request->surat,
-            'tanggal_setoran' => $request->tanggal_setoran,
-            'jumlah_setoran' => $request->jumlah_setoran,
+            'tanggal_ujian' => $request->tanggal_ujian,
+            'jumlah_ujian' => $request->jumlah_ujian,
             'catatan' => $request->catatan,
-            'status' => $request->status,
             'nilai' => $average,
         ]);
 
-        $setoran->surats()->sync($request->surat);
+        $ujian->surats()->sync($request->surat);
 
-        $setoran->nilais()->sync([
+        $ujian->nilais()->sync([
             1 => ['nilai' => $request->nilai_kelancaran],
             2 => ['nilai' => $request->nilai_makhraj],
             3 => ['nilai' => $request->nilai_lagu],
@@ -133,9 +130,9 @@ class SetoranController extends Controller
         return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id);
     }
 
-    public function destroy(Setoran $setoran)
+    public function destroy(Ujian $ujian)
     {
-        $setoran->delete();
+        $ujian->delete();
 
         return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id);
     }
