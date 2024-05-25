@@ -19,9 +19,7 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
-    /**
-     * Display the user's profile form.
-     */
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -31,33 +29,56 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        $request->user()->santri()->update([
-            'jumlah_hafalan' => $request->jumlah_hafalan,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tanggal_lahir' => $request->tanggal_lahir,
-        ]);
+        if ($user->role_id == 3) {
+            $request->validate([
+                'nim' => ['required', 'string', 'max:255', 'unique:santris,nim,' . $user->santri->id],
+                'jumlah_hafalan' => ['nullable', 'numeric'],
+                'major_id' => ['required', 'exists:majors,id'],
+            ]);
 
+            $santri = $user->santri;
+            $santri->nim = $request->nim;
+            $santri->major_id = $request->major_id;
+            if($request->filled('jumlah_hafalan')){
+                $santri->jumlah_hafalan = $request->jumlah_hafalan;
+            }
 
+            if (!$santri->save()) {
+                return back()->withErrors(['msg' => 'Failed to update santri data. Please try again.']);
+            }
+        } elseif ($user->role_id == 2) {
+            $request->validate([
+                'nim' => ['required', 'string', 'max:255', 'unique:panitias,nim,' . $user->panitia->id],
+                'major_id' => ['required', 'exists:majors,id'],
+            ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+            $panitia = $user->panitia;
+            $panitia->nim = $request->nim;
+            $panitia->major_id = $request->major_id;
+
+            if (!$panitia->save()) {
+                return back()->withErrors(['msg' => 'Failed to update panitia data. Please try again.']);
+            }
         }
 
-        $request->user()->save();
+        $user->fill($request->validated());
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        if (!$user->save()) {
+            return back()->withErrors(['msg' => 'Failed to update user data. Please try again.']);
+        }
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

@@ -9,14 +9,14 @@ use Tests\TestCase;
 class PanitiaRegisterTest extends TestCase
 {
 
-    public function test_example(): void
+    public function test_index(): void
     {
         $response = $this->get('/panitia/register');
 
         $response->assertStatus(200);
     }
 
-    public function testPanitiaRegistration()
+    public function test_store()
     {
         $data = [
             'role_id' => 2,
@@ -29,13 +29,15 @@ class PanitiaRegisterTest extends TestCase
             'nim' => '3121600047',
         ];
 
+        $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+
         $response = $this->post('/panitia/register', $data);
 
         $response->assertRedirect('/dashboard');
 
         $this->assertDatabaseHas('users', [
             'email' => 'panitia3@gmail.com',
-            'role_id' => 3,
+            'role_id' => 2,
             'name' => 'Panitia',
             'phone' => '081234567890',
         ]);
