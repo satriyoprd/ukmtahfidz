@@ -36,14 +36,16 @@ class ProfileController extends Controller
         if ($user->role_id == 3) {
             $request->validate([
                 'nim' => ['required', 'string', 'max:255', 'unique:santris,nim,' . $user->santri->id],
-                'jumlah_hafalan' => ['required', 'numeric'],
+                'jumlah_hafalan' => ['nullable', 'numeric'],
                 'major_id' => ['required', 'exists:majors,id'],
             ]);
 
             $santri = $user->santri;
             $santri->nim = $request->nim;
-            $santri->jumlah_hafalan = $request->jumlah_hafalan;
             $santri->major_id = $request->major_id;
+            if($request->filled('jumlah_hafalan')){
+                $santri->jumlah_hafalan = $request->jumlah_hafalan;
+            }
 
             if (!$santri->save()) {
                 return back()->withErrors(['msg' => 'Failed to update santri data. Please try again.']);
