@@ -4,12 +4,15 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Authentication\PanitiaRegisterController;
 use App\Http\Controllers\Authentication\PengujiRegisterController;
 use App\Http\Controllers\Authentication\SantriRegisterController;
+use App\Http\Controllers\PanitiaDashboardController;
+use App\Http\Controllers\PengujiDashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SantriController;
 use App\Http\Controllers\Setoran\SantriVerifiedSetoranController;
 use App\Http\Controllers\Setoran\SetoranController;
 use App\Http\Controllers\Ujian\SantriVerifiedUjianController;
 use App\Http\Controllers\Ujian\UjianController;
+use App\Models\SantriVerifiedSetoran;
 use App\Models\Setoran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -60,24 +63,27 @@ Route::get('/santri/ujian/{id}', function () {
 Route::get('/penguji', function () {
     $setoran = Setoran::where('penguji_id', Auth::user()->penguji->id)->get();
 
+    $pendaftaranSetoran = SantriVerifiedSetoran::all();
+
     $setoran->load('penguji.user', 'santri.user', 'nilais');
 
-    return view('dashboard.penguji', compact('setoran'));
+    return view('dashboard.penguji', compact('setoran', 'pendaftaranSetoran'));
 })->name('dashboard.penguji');
+
+Route::get('/peguji/setoran/{id}', [PengujiDashboardController::class, 'indexDetailSantri'])->name('dashboard.penguji.detail-santri');
 
 Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dashboard.penguji.setoran.create');
 
 Route::get('/penguji/setoran/{setoran}', [SetoranController::class, 'edit'])->name('dashboard.penguji.setoran.update');
 
 
-Route::get('/penguji/ujian', function () {
-    return view('dashboard.penguji-ujian-create');
-})->name('dashboard.penguji.ujian.create');
+Route::get('/penguji/ujian', [UjianController::class, 'create'])->name('dashboard.penguji.ujian.create');
 
-Route::get('/penguji/ujian/{id}', function () {
-    return view('dashboard.penguji-ujian-update');
-})->name('dashboard.penguji.ujian.update');
+Route::get('/penguji/ujian/{id}', [UjianController::class, 'edit'])->name('dashboard.penguji.ujian.update');
 
+Route::get('/panitia', [PanitiaDashboardController::class, 'index'])->name('dashboard.panitia');
+
+Route::get('/panitia/pendaftaran-setoran/{id}', [PanitiaDashboardController::class, 'indexSetoran'])->name('dashboard.panitia.pendaftaranSetoran');
 
 Route::get('/departemen-mudarosah', function () {
     return view('landing.departemen_mudarosah');
@@ -111,6 +117,9 @@ Route::get('/program-tahfidz', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminDashboardController::class, 'index'])->name('dashboard.admin');
     Route::get('/admin/setoran', [AdminDashboardController::class, 'index_setoran'])->name('dashboard.admin.setoran');
+    Route::get('/admin/ujian', [AdminDashboardController::class, 'indexUjian'])->name('dashboard.admin.ujian');
+
+
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

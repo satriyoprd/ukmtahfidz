@@ -23,8 +23,7 @@
                     Kelola Pendaftaran Program Tahfidz
                 </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-2">
-
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div class="shadow-lg rounded-lg p-4">
                         <p class="text-xl font-semibold">Setoran</p>
                         <p>Program inti di UKM-TQ yang disusun oleh Departemen Kelas Tahfidz berupa setoran hafalan
@@ -36,12 +35,19 @@
                         </div>
 
                     </div>
+                    <div class="shadow-lg rounded-lg p-4">
+                        <p class="text-xl font-semibold">Ujian</p>
+                        <p>Program inti di UKM-TQ yang disusun oleh Departemen Kelas Tahfidz berupa setoran hafalan
+                            Al-Qur’an oleh santri kepada penyimak (asatidz) yang bertempat di dua masjid UNAIR</p>
+
+                        <div class="flex justify-end">
+                            <a href={{route('dashboard.admin.ujian')}}><button
+                                    class="bg-primary-app text-white py-2 px-3 rounded-lg min-w-[150px]">Kelola</button></a>
+                        </div>
+
+                    </div>
                 </div>
-
             </div>
-
-
-
         </div>
     </section>
 </x-app-layout>

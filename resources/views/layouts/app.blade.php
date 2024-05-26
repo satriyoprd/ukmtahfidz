@@ -64,26 +64,54 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     <script>
-        function dashboardSetoran() {
-            document.getElementById("dashboardTitle").innerHTML = "Setoran";
-            document.getElementById("tableSetoran").style.display = "table";
-            document.getElementById("tableUjian").style.display = "none";
-            document.getElementById("tableAbsen").style.display = "none";
-        };
-
         function dashboardUjian() {
             document.getElementById("dashboardTitle").innerHTML = "Ujian";
             document.getElementById("tableUjian").style.display = "table";
             document.getElementById("tableSetoran").style.display = "none";
             document.getElementById("tableAbsen").style.display = "none";
-        };
+            document.getElementById("tablePendaftaran").style.display = "none";
+
+            var button = document.getElementById("dynamicButton");
+            button.style.display = "block"
+            button.innerHTML = "Tambah Data Ujian";
+            button.href = "{{ route('dashboard.penguji.ujian.create') }}";
+        }
+
+        function dashboardSetoran() {
+            document.getElementById("dashboardTitle").innerHTML = "Setoran";
+            document.getElementById("tableUjian").style.display = "none";
+            document.getElementById("tableSetoran").style.display = "table";
+            document.getElementById("tableAbsen").style.display = "none";
+            document.getElementById("tablePendaftaran").style.display = "none";
+
+            var button = document.getElementById("dynamicButton");
+            button.style.display = "block"
+            button.innerHTML = "Tambah Data Setoran";
+            button.href = "{{ route('dashboard.penguji.setoran.create') }}";
+        }
+
 
         function dashboardAbsen() {
             document.getElementById("dashboardTitle").innerHTML = "Absen";
             document.getElementById("tableAbsen").style.display = "table";
             document.getElementById("tableSetoran").style.display = "none";
             document.getElementById("tableUjian").style.display = "none";
+            document.getElementById("tablePendaftaran").style.display = "none";
+
+            var button = document.getElementById("dynamicButton");
+            button.style.display = "none";
         };
+
+        function dashboardPendaftaranSetoran() {
+            document.getElementById("dashboardTitle").innerHTML = "Pendaftaran Setoran";
+            document.getElementById("tableAbsen").style.display = "none";
+            document.getElementById("tableSetoran").style.display = "none";
+            document.getElementById("tableUjian").style.display = "none";
+            document.getElementById("tablePendaftaran").style.display = "table";
+
+            var button = document.getElementById("dynamicButton");
+            button.style.display = "none";
+        }
     </script>
 </body>
 

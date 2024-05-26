@@ -15,8 +15,9 @@ class RouteHelper
                 return redirect()->intended(RouteServiceProvider::SANTRI);
             case config('constants.ROLE_ADMIN'):
                 return redirect()->intended(RouteServiceProvider::ADMIN);
+            case config('constants.ROLE_PANITIA'):
+                return redirect()->intended(RouteServiceProvider::PANITIA);
             default:
-                // You might want to handle the default case as well
                 return redirect()->intended(RouteServiceProvider::HOME);
         }
     }

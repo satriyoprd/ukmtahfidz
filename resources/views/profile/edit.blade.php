@@ -94,33 +94,28 @@
                         </div>
 
                         <div>
-                            <x-input-label for="gender" :value="__('Jenis Kelamin')" />
+                            <x-input-label for="jenis_kelamin" :value="__('Jenis Kelamin')" />
                             <div class="mt-1 flex items-center">
-                                <input id="male" name="gender" type="radio" value="Laki-Laki" class="mr-2"
-                                    {{ old('gender', $user->gender) == 'Laki-Laki' ? 'checked' : '' }} required />
+                                <input id="male" name="jenis_kelamin" type="radio" value="1" class="mr-2"
+                                    {{ old('jenis_kelamin', $user->jenis_kelamin) == '1' ? 'checked' : '' }} />
                                 <label for="male" class="mr-4">{{ __('Laki-Laki') }}</label>
 
-                                <input id="female" name="gender" type="radio" value="Perempuan" class="mr-2"
-                                    {{ old('gender', $user->gender) == 'Perempuan' ? 'checked' : '' }} required />
+                                <input id="female" name="jenis_kelamin" type="radio" value="0" class="mr-2"
+                                    {{ old('jenis_kelamin', $user->jenis_kelamin) == 0 ? 'checked' : '' }} />
                                 <label for="female">{{ __('Perempuan') }}</label>
                             </div>
-                            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('jenis_kelamin')" />
                         </div>
 
                         <div>
-                            <x-input-label for="birthdate" :value="__('Tanggal Lahir')" />
-                            <x-text-input id="birthdate" name="birthdate" type="date" class="mt-1 block w-full"
-                                :value="old('birthdate', $user->birthdate)" required />
-                            <x-input-error class="mt-2" :messages="$errors->get('birthdate')" />
+                            <x-input-label for="tanggal_lahir" :value="__('Tanggal Lahir')" />
+                            <x-text-input id="tanggal_lahir" name="tanggal_lahir" type="date"
+                                class="mt-1 block w-full" :value="old('tanggal_lahir', $user->tanggal_lahir)" />
+                            <x-input-error class="mt-2" :messages="$errors->get('tanggal_lahir')" />
                         </div>
-
-
-
-
-
-
-
                     </div>
+
+
 
                     <div class="flex items-center gap-4 mt-6">
                         <x-primary-button class="!bg-primary-app !px-4">{{ __('Simpan') }}</x-primary-button>
@@ -135,85 +130,87 @@
                     </div>
                 </div>
 
-                <div>
+                @if ($user->role_id == config('constants.ROLE_SANTRI'))
                     <div>
-                        <div class="text-xl font-bold">Data Institusi</div>
+                        <div>
+                            <div class="text-xl font-bold">Data Institusi</div>
 
-                        <div class="border shadow-md p-4 rounded mt-4">
-                            <div class="flex flex-col gap-6">
+                            <div class="border shadow-md p-4 rounded mt-4">
+                                <div class="flex flex-col gap-6">
 
-                                <div>
-                                    <x-input-label for="inputFakultas" :value="__('Fakultas')" />
-                                    <select class="form-select" id="inputFakultas" name="fakultas" required>
-                                        <option selected disabled>Pilih Fakultas</option>
-                                        @foreach ($faculties as $f)
-                                            <option value="{{ $f->id }}"
-                                                {{ old('fakultas', $user->santri->major->faculty->id) == $f->id ? 'selected' : '' }}>
-                                                {{ $f->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <x-input-error :messages="$errors->get('fakultas')" class="mt-2" />
+                                    <div>
+                                        <x-input-label for="inputFakultas" :value="__('Fakultas')" />
+                                        <select class="form-select" id="inputFakultas" name="fakultas" required>
+                                            <option selected disabled>Pilih Fakultas</option>
+                                            @foreach ($faculties as $f)
+                                                <option value="{{ $f->id }}"
+                                                    {{ old('fakultas', $user->santri->major->faculty->id) == $f->id ? 'selected' : '' }}>
+                                                    {{ $f->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <x-input-error :messages="$errors->get('fakultas')" class="mt-2" />
 
-                                </div>
+                                    </div>
 
-                                <div class="col">
-                                    <x-input-label for="inputJurusan" :value="__('Jurusan')" />
-                                    <select class="form-select" id="inputJurusan" name="major_id" required>
-                                        <option selected disabled>Pilih Jurusan</option>
-                                        @foreach ($majors as $m)
-                                            <option value="{{ $m->id }}"
-                                                {{ old('fakultas', $user->santri->major->id) == $m->id ? 'selected' : '' }}
-                                                data-faculty="{{ $m->faculty_id }}">
-                                                {{ $m->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <x-input-error :messages="$errors->get('jurusan')" class="mt-2" />
-                                </div>
+                                    <div class="col">
+                                        <x-input-label for="inputJurusan" :value="__('Jurusan')" />
+                                        <select class="form-select" id="inputJurusan" name="major_id" required>
+                                            <option selected disabled>Pilih Jurusan</option>
+                                            @foreach ($majors as $m)
+                                                <option value="{{ $m->id }}"
+                                                    {{ old('fakultas', $user->santri->major->id) == $m->id ? 'selected' : '' }}
+                                                    data-faculty="{{ $m->faculty_id }}">
+                                                    {{ $m->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <x-input-error :messages="$errors->get('jurusan')" class="mt-2" />
+                                    </div>
 
-                                <div>
-                                    <x-input-label for="nim" :value="__('NIM')" />
-                                    <x-text-input id="nim" name="nim" type="text"
-                                        class="mt-1 block w-full" :value="old('name', $user->santri->nim)" required autofocus
-                                        autocomplete="nim" />
-                                    <x-input-error class="mt-2" :messages="$errors->get('nim')" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8">
-                        <div class="text-xl font-bold">Data Hafalan</div>
-
-                        <div class="border shadow-md p-4 rounded mt-4">
-                            <div class="flex flex-col gap-6">
-
-
-                                <div>
-                                    <x-input-label for="jumlah_hafalan" :value="__('Jumlah Hafalan')" />
-                                    <x-text-input id="jumlah_hafalan" name="jumlah_hafalan" type="number"
-                                        class="mt-1 block w-full" :value="old('name', $user->santri->jumlah_hafalan)" required autofocus
-                                        autocomplete="jumlah_hafalan" />
-                                    <x-input-error class="mt-2" :messages="$errors->get('jumlah_hafalan')" />
-                                </div>
-
-                                <div>
-                                    <x-input-label for="informasi_hafalan" :value="__('Informasi Hafalan')" />
-                                    <select id="informasi_hafalan" name="informasi_hafalan[]"
-                                        class="mt-1 block w-full" required autofocus autocomplete="informasi_hafalan"
-                                        multiple>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <!-- Add more options here -->
-                                    </select>
-                                    <x-input-error class="mt-2" :messages="$errors->get('jumlah_hafalan')" />
+                                    <div>
+                                        <x-input-label for="nim" :value="__('NIM')" />
+                                        <x-text-input id="nim" name="nim" type="text"
+                                            class="mt-1 block w-full" :value="old('name', $user->santri->nim)" required autofocus
+                                            autocomplete="nim" />
+                                        <x-input-error class="mt-2" :messages="$errors->get('nim')" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="mt-8">
+                            <div class="text-xl font-bold">Data Hafalan</div>
+
+                            <div class="border shadow-md p-4 rounded mt-4">
+                                <div class="flex flex-col gap-6">
+
+
+                                    <div>
+                                        <x-input-label for="jumlah_hafalan" :value="__('Jumlah Hafalan')" />
+                                        <x-text-input id="jumlah_hafalan" name="jumlah_hafalan" type="number"
+                                            class="mt-1 block w-full" :value="old('name', $user->santri->jumlah_hafalan)" required autofocus
+                                            autocomplete="jumlah_hafalan" />
+                                        <x-input-error class="mt-2" :messages="$errors->get('jumlah_hafalan')" />
+                                    </div>
+
+                                    <div>
+                                        <x-input-label for="informasi_hafalan" :value="__('Informasi Hafalan')" />
+                                        <select id="informasi_hafalan" name="informasi_hafalan"
+                                            class="mt-1 block w-full" multiple>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <!-- Add more options here -->
+                                        </select>
+                                        <x-input-error class="mt-2" :messages="$errors->get('jumlah_hafalan')" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                @endif
+
 
         </form>
 

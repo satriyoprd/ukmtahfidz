@@ -8,7 +8,7 @@
             <div class="welcome mb-5">
                 <div class="row">
                     <div class="col-3">
-                        <img src="assets/img/welcome.png" alt="" class="img-fluid">
+                        <img src="/assets/img/welcome.png" alt="" class="img-fluid">
                     </div>
                     <div class="col-9 my-auto">
                         <div class="section-title pb-0">
@@ -66,7 +66,7 @@
                                 @foreach ($santri as $s)
                                     <option value="{{ $s->id }}"
                                         {{ old('santri_id', $setoran->santri->id ?? '') == $s->id ? 'selected' : '' }}>
-                                        {{ $s->user->name }}
+                                        {{ $s->santri->user->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -78,11 +78,18 @@
 
                     <div class="row mb-3">
                         <div class="col-2 my-auto">
-                            <label for="inputSurat" class="form-label mb-0">Surat</label>
+                            <label for="surat" class="form-label mb-0">Surat</label>
                         </div>
                         <div class="col-10">
-                            <input type="text" class="form-control form-control-sm" id="inputSurat" name="surat"
-                                value="{{ old('surat', $setoran->surat ?? '') }}"required>
+                            <select class="form-control form-control-sm" id="surat" name="surat[]" multiple>
+                                <option disabled>Surat</option>
+                                @foreach ($surat as $s)
+                                    <option value="{{ $s->id }}"
+                                        {{ in_array($s->id, $setoran->surats->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                        {{ $s->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('surat')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
@@ -120,7 +127,7 @@
                                     value="0" {{ old('status', $setoran->status) == '0' ? 'checked' : '' }}
                                     required>
                                 <label class="form-check-label" for="statusMenunggu">
-                                    Menunggu
+                                    Ulang
                                 </label>
                             </div>
                             @error('status')
@@ -205,4 +212,17 @@
 
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const element = document.getElementById('surat');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                placeholderValue: 'Surat',
+                removeItemButton: true,
+                duplicateItemsAllowed: false,
+                itemSelectText: '',
+            });
+        });
+    </script>
 </x-app-layout>

@@ -48,6 +48,8 @@ class SetoranController extends Controller
             'nilai_adab' => 'required',
         ]);
 
+        
+
         $average = ($request->nilai_kelancaran + $request->nilai_makhraj + $request->nilai_lagu + $request->nilai_adab) / 4;
 
         $setoran = Setoran::create([
@@ -86,7 +88,7 @@ class SetoranController extends Controller
         $penguji = Penguji::all();
         $penguji->load('user');
         $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
-        $santri->load('user');
+        $santri->load('santri');
         $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
         return view('dashboard.penguji-setoran-update', compact('setoran', 'penguji', 'santri', 'surat'));

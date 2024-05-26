@@ -20,7 +20,7 @@
             </div>
 
             <div class="row">
-                <div class="col-2">
+                <div class="col-2 mr-10">
                     <div class="section-title pb-0">
                         <h2 id="dashboardTitle">Setoran</h2>
                     </div>
@@ -35,6 +35,8 @@
                             style="--bs-dropdown-link-active-bg: none">
                             <li><button class="dropdown-item text-black" onclick="dashboardSetoran()">Setoran</button>
                             </li>
+                            <li><button class="dropdown-item text-black"
+                                    onclick="dashboardPendaftaranSetoran()">Pendaftaran Setoran</button></li>
                             <li><button class="dropdown-item text-black" onclick="dashboardUjian()">Ujian</button></li>
                             <li><button class="dropdown-item text-black" onclick="dashboardAbsen()">Absen</button></li>
                         </ul>
@@ -57,11 +59,14 @@
                         <input type="text" class="form-control" placeholder="Cari Data">
                     </div>
                 </div>
+
                 <div class="col-7">
                     <div class="float-end w-25">
-                        <a class="btn" href={{ route('dashboard.penguji.setoran.create') }}>Tambah Data</a>
+                        <a class="btn" id="dynamicButton"
+                            href="{{ route('dashboard.penguji.setoran.create') }}">Tambah Data Setoran</a>
                     </div>
                 </div>
+
             </div>
 
             <table id="tableSetoran" style="display: table;" class="table table-bordered">
@@ -82,7 +87,13 @@
                         <tr>
                             <td>{{ $s->tanggal_setoran }}</td>
                             <td>{{ $s->santri->user->name }}</td>
-                            <td>{{ $s->surat }}</td>
+                            <td class="flex flex-wrap gap-1 text-white">
+                                @foreach ($s->surats as $item)
+                                    <div class="bg-primary-app text-xs p-2 rounded">
+                                        {{ $item->name }}
+                                    </div>
+                                @endforeach
+                            </td>
                             <td>{{ $s->jumlah_setoran }}</td>
                             <td>{{ $s->nilai }}</td>
 
@@ -137,6 +148,37 @@
                     </tr>
                 </tbody>
             </table>
+            <table id="tablePendaftaran" style="display: none;" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="background: #CCCF95; ">Tgl Daftar</th>
+                        <th class="text-center" style="background: #CCCF95;">Nama Santri</th>
+                        <th class="text-center" style="background: #CCCF95;">Jumlah Hafalan</th>
+                        <th class="text-center" style="background: #CCCF95;">Fakultas</th>
+                        <th class="text-center" style="background: #CCCF95;">Jurusan</th>
+                        <th class="text-center" style="background: #CCCF95; ">Status</th>
+                        <th class="text-center" style="background: #CCCF95; ">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($pendaftaranSetoran as $p)
+                        <tr>
+                            <td>{{ $p->santri->created_at }}</td>
+                            <td>{{ $p->santri->user->name }}</td>
+                            <td>{{ $p->santri->jumlah_hafalan }}</td>
+                            <td>{{ $p->santri->major->faculty->name }}</td>
+                            <td>{{ $p->santri->major->name }}</td>
+                            <td>{{ $p->is_verified == 1 ? 'Disetujui' : 'Ditolak' }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('dashboard.penguji.detail-santri', $p->id) }}" class="btn btn-sm"
+                                    type="button"><i class="bi bi-journal-text"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+
 
             <div id="tableAbsen" style="display: none;">Under Maintenance</div>
 

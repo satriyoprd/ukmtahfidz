@@ -85,7 +85,8 @@
                                     {{ $s->santri->jumlah_hafalan }} Juz
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="border rounded p-2 font-bold">{{ $s->is_verified ? 'Disetujui' : 'Ditolak' }} </div>
+                                    <div class="border rounded p-2 font-bold">
+                                        {{ $s->is_verified ? 'Disetujui' : 'Ditolak' }} </div>
                                 </td>
                                 <td class="px-6 py-4 font-bold">
                                     <div class="flex gap-2">

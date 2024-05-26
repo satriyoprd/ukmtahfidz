@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Surat;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use GuzzleHttp\Client;
 use Illuminate\Database\Seeder;
 
 class SuratSeeder extends Seeder
@@ -11,19 +11,16 @@ class SuratSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
-        $surat = [
-            [
-                'name' => 'Al-Fatihah'
-            ],
-            [
-                'name' => 'Al-Baqarah'
-            ]
-        ];
+        $client = new Client();
+        $response = $client->get('https://equran.id/api/v2/surat');
+        $suratData = json_decode($response->getBody()->getContents(), true);
 
-        foreach ($surat as $s) {
-            Surat::create($s);
+        foreach ($suratData['data'] as $s) {
+            Surat::create([
+                'name' => $s['namaLatin']
+            ]);
         }
     }
 }

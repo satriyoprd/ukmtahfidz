@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Setoran;
 
+use App\Helper\RouteHelper;
 use App\Http\Controllers\Controller;
 use App\Models\SantriVerifiedSetoran;
 use Illuminate\Http\Request;
@@ -31,14 +32,12 @@ class SantriVerifiedSetoranController extends Controller
 
     public function update(Request $request, SantriVerifiedSetoran $setoran)
     {
-        if ($request->is_verified == 1) {
-            $setoran->update([
-                'is_verified' => $request->is_verified,
-            ]);
-        } else {
-            $setoran->delete();
-        }
 
-        return redirect()->route('dashboard.admin.setoran')->with('Success', 'Berhasil merubah data!');
+        $setoran->update([
+            'is_verified' => $request->is_verified,
+        ]);
+
+
+        return RouteHelper::getRedirect($request->user()->role_id)->with('Success', 'Berhasil merubah data!');
     }
 }

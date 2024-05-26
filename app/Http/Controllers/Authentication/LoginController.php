@@ -30,6 +30,9 @@ class LoginController extends Controller
         if (auth()->user()->role->id == config('constants.ROLE_ADMIN')) {
             return redirect()->intended(RouteServiceProvider::ADMIN);
         }
+        if (auth()->user()->role->id == config('constants.ROLE_PANITIA')) {
+            return redirect()->intended(RouteServiceProvider::PANITIA);
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
