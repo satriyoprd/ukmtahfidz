@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('santri_verified_setorans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('santri_id')->constrained()->onDelete('cascade');
-            $table->boolean('panitia_verified')->default(false);
-            $table->boolean('penguji_verified')->default(false);
+            $table->boolean('panitia_verified')->nullable();
+            $table->boolean('penguji_verified')->nullable();
             $table->timestamps();
         });
     }

@@ -22,7 +22,7 @@
 
                             @if (Auth::check() && Auth::user()->role_id == config('constants.ROLE_SANTRI'))
                                 @if (Auth::user()->santri->verifiedSetoran)
-                                    @if (Auth::user()->santri->verifiedSetoran->is_verified == '1')
+                                    @if (Auth::user()->santri->verifiedSetoran->penguji_verified && Auth::user()->santri->verifiedSetoran->panitia_verified)
                                         <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
                                                 class="fa-solid fa-circle-check"></i></div>
                                     @else
@@ -55,20 +55,54 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Ujian Sertifikasi</h5>
-                            <p class="card-text">Program ujian hafalan Al-Qur'an kelipatan 5 juz dengan sistem lanjut
-                                ayat.
-                                Santri yang mendapat nilai diatas nilai yang ditentukan akan mendapat beasiswa berupa
-                                bebas
-                                UKT untuk satu semester</p>
-                            <button class="btn" data-bs-toggle="modal" data-bs-target="#modalWarning">Daftar</button>
+                            <h5 class="card-title">Ujian</h5>
+                            <p class="card-text">Program inti di UKM-TQ yang disusun oleh Departemen Kelas Tahfidz
+                                berupa
+                                setoran hafalan Al-Qur'an oleh santri kepada penyimak (asatidz) yang bertempat di dua
+                                masjid
+                                UNAIR</p>
+
+                            @if (Auth::check() && Auth::user()->role_id == config('constants.ROLE_SANTRI'))
+                                @if (Auth::user()->santri->verifiedUjian)
+                                    @if (Auth::user()->santri->verifiedUjian->penguji_verified && Auth::user()->santri->verifiedUjian->panitia_verified)
+                                        <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
+                                                class="fa-solid fa-circle-check"></i></div>
+                                    @else
+                                        <div class="text-primary-app font-semibold"><span>Proses seleksi</span> <i
+                                                class="fa-regular fa-hourglass-half ml-1"></i> </div>
+                                    @endif
+                                @else
+                                    @if (Auth::user()->role_id == 3)
+                                        @if (is_null(Auth::user()->santri->jumlah_hafalan))
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalSetoran">
+                                                Daftar
+                                            </button>
+                                        @else
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirmUjian">
+                                                Daftar
+                                            </button>
+                                        @endif
+                                    @else
+                                        <button class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#modalWarning">Daftar</button>
+                                    @endif
+                                @endif
+                            @else
+                                <button class="btn" data-bs-toggle="modal"
+                                    data-bs-target="#modalWarning">Daftar</button>
+                            @endif
+
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="row mb-4">
                 <div class="col">
                     <div class="card">
@@ -178,7 +212,7 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <p class="text-2xl font-bold text-center">
-                            Pemberitahuan
+                            Pemberitahuan Pendaftaran Setoran
                         </p>
                         <div class="text-center font-medium">
                             Pastikan Data Pribadi mu sudah benar
@@ -258,7 +292,100 @@
                         <form action={{ route('santri-verified-setoran.store') }} method="post" class="mt-4">
                             @csrf
                             <button type="submit" class="!bg-primary-app text-white py-2 w-full rounded">
-                                Daftar
+                                Daftar Setoran
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalConfirmUjian" tabindex="-1">
+            <div class="modal modal-dialog modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="text-2xl font-bold text-center">
+                            Pemberitahuan Pendaftaran Ujian
+                        </p>
+                        <div class="text-center font-medium">
+                            Pastikan Data Pribadi mu sudah benar
+                        </div>
+
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    Nama Lengkap
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    NIM
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->santri->nim }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    Nama Handphone (WhatsApp)
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->phone }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6">
+                            <div>
+                                <div class="font-semibold mb-1">
+                                    Jumlah Hafalan
+                                </div>
+
+                                <div class="p-2 border rounded">
+                                    {{ Auth::user()->santri->jumlah_hafalan }} Juz
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-6 flex gap-4 items-center w-full">
+                            <div class="w-full">
+                                <div class="font-semibold mb-1">
+                                    Fakultas
+                                </div>
+
+                                <div class="p-2 border rounded w-full">
+                                    {{ Auth::user()->santri->major->faculty->name }}
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <div class="font-semibold mb-1">
+                                    Jurusan
+                                </div>
+
+                                <div class="p-2 border rounded w-full">
+                                    {{ Auth::user()->santri->major->name }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('profile.edit') }}" class="text-center font-semibold mb-4">
+                            <div class="border rounded py-2">
+                                Ubah Data
+                            </div>
+                        </a>
+
+                        <form action={{ route('santri-verified-ujian.store') }} method="post" class="mt-4">
+                            @csrf
+                            <button type="submit" class="!bg-primary-app text-white py-2 w-full rounded">
+                                Daftar Ujian
                             </button>
                         </form>
                     </div>

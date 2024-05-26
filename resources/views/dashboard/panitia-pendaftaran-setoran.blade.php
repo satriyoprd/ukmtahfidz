@@ -148,13 +148,13 @@
                             </div>
                             <div class="flex gap-4 items-center">
                                 <div class="flex gap-1 items-center">
-                                    <input type="radio" name="is_verified" value="1"
-                                        {{ $pendaftaran->is_verified == 1 ? 'checked' : '' }}>
+                                    <input type="radio" name="panitia_verified" value="1"
+                                        {{ $pendaftaran->panitia_verified == 1 ? 'checked' : '' }}>
                                     <div>Disetujui</div>
                                 </div>
                                 <div class="flex gap-1 items-center">
-                                    <input type="radio" name="is_verified" value="0"
-                                        {{ $pendaftaran->is_verified == 0 ? 'checked' : '' }}>
+                                    <input type="radio" name="panitia_verified" value="0"
+                                        {{ $pendaftaran->panitia_verified == 0 ? 'checked' : '' }}>
                                     <div>Ditolak</div>
                                 </div>
                             </div>

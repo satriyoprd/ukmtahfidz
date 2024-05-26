@@ -26,7 +26,7 @@
                 </div>
             @endif
 
-            @if ($santriVerified && $santriVerified->is_verified)
+            @if ($santriVerified && $santriVerified->panitia_verified && $santriVerified->penguji_verified)
                 <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
                     <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
                     <p class="text-xl font-medium mb-0">
@@ -84,13 +84,16 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
-
                         @foreach ($setoran as $s)
                             <tr>
                                 <td>{{ $s->tanggal_setoran }}</td>
-                                <td>{{ $s->surat }}</td>
+                                <td class="flex flex-wrap gap-1 text-white">
+                                    @foreach ($s->surats as $item)
+                                        <div class="bg-primary-app text-xs p-2 rounded">
+                                            {{ $item->name }}
+                                        </div>
+                                    @endforeach
+                                </td>
                                 <td>{{ $s->jumlah_setoran }}</td>
                                 <td>{{ $s->nilai }}</td>
 
@@ -125,15 +128,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>DummyUjian</td>
-                            <td>DummyUjian</td>
-                            <td>DummyUjian</td>
-                            <td>DummyUjian</td>
-                            <td>DummyUjian</td>
-                            <td class="text-center"><a href={{ route('dashboard.santri.ujian', 2) }} class="btn btn-sm"
-                                    type="button"><i class="bi bi-journal-text"></i></a></td>
-                        </tr>
+                        @foreach ($ujian as $j)
+                            <tr>
+                                <td>{{ $j->tanggal_ujian }}</td>
+                                <td class="flex flex-wrap gap-1 text-white">
+                                    @foreach ($j->surats as $item)
+                                        <div class="bg-primary-app text-xs p-2 rounded">
+                                            {{ $item->name }}
+                                        </div>
+                                    @endforeach
+                                </td>
+                                <td>{{ $j->jumlah_setoran }}</td>
+                                <td>{{ $j->nilai }}</td>
+
+                                <td>{{ $j->catatan }}</td>
+
+                                <td class="text-center"><a href={{ route('dashboard.santri.ujian', $j->id) }}
+                                        class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
 

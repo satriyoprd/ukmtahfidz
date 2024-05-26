@@ -134,20 +134,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td>DummyUjian</td>
-                        <td class="text-center"><a href={{ route('dashboard.penguji.ujian.update', 2) }}
-                                class="btn btn-sm" type="button"><i class="bi bi-pencil-fill"></i></a><button
-                                class="btn btn-sm btn-delete" type="button"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
+                    @foreach ($ujian as $j)
+                        <tr>
+                            <td>{{ $j->tanggal_ujian }}</td>
+                            <td>{{ $j->santri->user->name }}</td>
+                            <td class="flex flex-wrap gap-1 text-white">
+                                @foreach ($j->surats as $item)
+                                    <div class="bg-primary-app text-xs p-2 rounded">
+                                        {{ $item->name }}
+                                    </div>
+                                @endforeach
+                            </td>
+                            <td>{{ $j->jumlah_ujian }}</td>
+                            <td>{{ $j->nilai }}</td>
+
+                            <td>{{ $j->catatan }}</td>
+
+                          
+
+                            <td class="text-center"><a href={{ route('dashboard.penguji.ujian.update', $j->id) }}
+                                    class="btn btn-sm" type="button"><i class="bi bi-pencil-fill"></i></a>
+                                <form action={{ route('ujian.destroy', $j->id) }} method="POST">
+
+                                    @csrf
+                                    @method('delete')
+
+                                    <button class="btn btn-sm btn-delete" type="submit"><i
+                                            class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+
             <table id="tablePendaftaran" style="display: none;" class="table table-bordered">
                 <thead>
                     <tr>
@@ -168,7 +188,8 @@
                             <td>{{ $p->santri->jumlah_hafalan }}</td>
                             <td>{{ $p->santri->major->faculty->name }}</td>
                             <td>{{ $p->santri->major->name }}</td>
-                            <td>{{ $p->is_verified == 1 ? 'Disetujui' : 'Ditolak' }}</td>
+                            <td>{{ $p->penguji_verified == '1' ? 'Disetujui' : ($p->penguji_verified == '0' ? 'Ditolak' : 'Diproses') }}
+                            </td>
                             <td class="text-center">
                                 <a href="{{ route('dashboard.penguji.detail-santri', $p->id) }}" class="btn btn-sm"
                                     type="button"><i class="bi bi-journal-text"></i></a>

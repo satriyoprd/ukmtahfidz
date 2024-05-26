@@ -56,7 +56,10 @@
                                 Jumlah Hafalan
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Status
+                                Status Penguji
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status Panitia
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Aksi
@@ -85,34 +88,26 @@
                                     {{ $s->santri->jumlah_hafalan }} Juz
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="border rounded p-2 font-bold">{{ $s->is_verified ? 'Disetujui' : 'Ditolak' }} </div>
+                                    <div class="border rounded p-2 font-bold">
+                                        {{ $s->penguji_verified == '1' ? 'Disetujui' : ($s->penguji_verified == '0' ? 'Ditolak' : 'Diproses') }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="border rounded p-2 font-bold">
+                                        {{ $s->panitia_verified == '1' ? 'Disetujui' : ($s->panitia_verified == '0' ? 'Ditolak' : 'Diproses') }}
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4 font-bold">
                                     <div class="flex gap-2">
-                                        <form action={{ route('santri-verified-setoran.update', $s->id) }}
-                                            method="post">
-                                            @csrf
-                                            @method('put')
-                                            <input type="hidden" name="is_verified" value="1">
+                                        <a href="{{ route('dashboard.admin.setoran-penguji', $s->id) }}"
+                                            class="btn btn-sm" type="button">
+                                            Penguji
+                                            <i class="bi bi-journal-text"></i></a>
 
-                                            <button type="submit" onclick="confirm('Yakin?')"
-                                                class="bg-green-100 text-green-600 rounded-lg py-2 px-3">
-                                                Terima
-                                            </button>
-                                        </form>
-
-                                        <form action={{ route('santri-verified-setoran.update', $s->id) }}
-                                            method="post">
-                                            @csrf
-                                            @method('put')
-                                            <input type="hidden" name="is_verified" value="0">
-
-                                            <button onclick="confirm('Yakin?')"
-                                                class="bg-red-100 text-red-600 rounded-lg py-2 px-3">
-                                                Tolak
-                                            </button>
-                                        </form>
-
+                                        <a href="{{ route('dashboard.admin.setoran-panitia', $s->id) }}"
+                                            class="btn btn-sm" type="button">
+                                            Panitia
+                                            <i class="bi bi-journal-text"></i></a>
 
 
                                     </div>

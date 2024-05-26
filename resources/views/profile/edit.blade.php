@@ -101,7 +101,7 @@
                                 <label for="male" class="mr-4">{{ __('Laki-Laki') }}</label>
 
                                 <input id="female" name="jenis_kelamin" type="radio" value="0" class="mr-2"
-                                    {{ old('jenis_kelamin', $user->jenis_kelamin) == 0 ? 'checked' : '' }} />
+                                    {{ old('jenis_kelamin', $user->jenis_kelamin) == '0' ? 'checked' : '' }} />
                                 <label for="female">{{ __('Perempuan') }}</label>
                             </div>
                             <x-input-error class="mt-2" :messages="$errors->get('jenis_kelamin')" />

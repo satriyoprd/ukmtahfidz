@@ -86,7 +86,7 @@ class UjianController extends Controller
         $penguji = Penguji::all();
         $penguji->load('user');
         $santri = SantriVerifiedUjian::where('penguji_verified', 1)->where('panitia_verified', 1)->get();
-        $santri->load('user');
+        $santri->load('santri.user');
 
         return view('dashboard.penguji-ujian-update', compact('ujian', 'penguji', 'santri', 'surat'));
     }

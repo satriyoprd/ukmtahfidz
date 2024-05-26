@@ -1,7 +1,7 @@
 <x-app-layout>
     <section id="dashboard" class="mt-5 pb-0">
         <div class="container">
-            <p><a class="text-black" href={{ route('dashboard.penguji') }}>Beranda</a> / <a href="">Detail Data
+            <p><a class="text-black" href={{ route('dashboard.admin') }}>Beranda</a> / <a href="">Detail Data
                     Santri</a>
             </p>
 
@@ -150,12 +150,12 @@
                             <div class="flex gap-4 items-center">
                                 <div class="flex gap-1 items-center">
                                     <input type="radio" name="penguji_verified" value="1"
-                                        {{ $pendaftaran->penguji_verified == 1 ? 'checked' : '' }}>
+                                        {{ $pendaftaran->penguji_verified == '1' ? 'checked' : '' }}>
                                     <div>Disetujui</div>
                                 </div>
                                 <div class="flex gap-1 items-center">
                                     <input type="radio" name="penguji_verified" value="0"
-                                        {{ $pendaftaran->penguji_verified == 0 ? 'checked' : '' }}>
+                                        {{ $pendaftaran->penguji_verified == '0' ? 'checked' : '' }}>
                                     <div>Ditolak</div>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                 <div class="flex items-end gap-4 mt-6">
                     <x-primary-button class="!bg-primary-app !px-4">{{ __('Simpan') }}</x-primary-button>
 
-                    <a href={{ route('dashboard.penguji') }}><button type="button"
+                    <a href={{ route('dashboard.admin.setoran') }}><button type="button"
                             class="border-[2px] py-1 px-4 font-bold text-primary-app rounded !border-primary-app">Batal</button></a>
 
                     @if (session('status') === 'profile-updated')

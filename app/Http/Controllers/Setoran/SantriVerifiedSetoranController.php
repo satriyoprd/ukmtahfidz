@@ -32,17 +32,32 @@ class SantriVerifiedSetoranController extends Controller
 
     public function update(Request $request, SantriVerifiedSetoran $santriVerifiedSetoran)
     {
-        if($request->user()->role_id == 2)
-        {
+
+       
+        if ($request->user()->role_id == 2) {
             $santriVerifiedSetoran->update([
                 'panitia_verified' => $request->panitia_verified,
             ]);
-        }elseif($request->user()->role_id == 4)
-        {
+        } elseif ($request->user()->role_id == 4) {
+           
             $santriVerifiedSetoran->update([
                 'penguji_verified' => $request->penguji_verified,
             ]);
+        } elseif ($request->user()->role_id == config('constants.ROLE_ADMIN')) {
+            if (isset($request->panitia_verified)) {
+                $santriVerifiedSetoran->update([
+                    'panitia_verified' => $request->panitia_verified,
+                ]);
+            } elseif (isset($request->penguji_verified)) {
+                $santriVerifiedSetoran->update([
+                    'penguji_verified' => $request->penguji_verified,
+                ]);
+            }
+
+            return redirect()->intended('/admin/setoran')->with('success', 'Data berhasil di ubah!');
         }
+
+
 
         return RouteHelper::getRedirect($request->user()->role_id)->with('Success', 'Berhasil merubah data!');
     }

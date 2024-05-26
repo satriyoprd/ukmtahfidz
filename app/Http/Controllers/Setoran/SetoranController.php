@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Setoran;
 use App\Http\Controllers\Controller;
 use App\Models\Penguji;
 use App\Models\SantriVerifiedSetoran;
+use App\Models\SantriVerifiedUjian;
 use App\Models\Setoran;
 use App\Models\Surat;
+use App\Models\Ujian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,10 +17,17 @@ class SetoranController extends Controller
     public function indexSantri()
     {
         $santriVerified = SantriVerifiedSetoran::where('santri_id', Auth::user()->santri->id)->first();
+        $ujianVerified = SantriVerifiedUjian::where('santri_id',Auth::user()->santri->id)->first();
+
         $setoran = Setoran::where('santri_id', Auth::user()->santri->id)->get();
+
+        $ujian = Ujian::where('santri_id', Auth::user()->santri->id)->get();
+
+        $ujian->load('penguji.user', 'santri.user', 'nilais', 'surats');
+
         $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
-        return view('dashboard.santri', compact('setoran', 'santriVerified'));
+        return view('dashboard.santri', compact('setoran', 'ujian', 'ujianVerified', 'santriVerified'));
     }
 
     public function create()
