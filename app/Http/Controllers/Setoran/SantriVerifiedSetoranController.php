@@ -30,13 +30,19 @@ class SantriVerifiedSetoranController extends Controller
         return redirect()->route('dashboard.santri')->with('success', 'Berhasil mendaftar ke program setoran tahfidz!');
     }
 
-    public function update(Request $request, SantriVerifiedSetoran $setoran)
+    public function update(Request $request, SantriVerifiedSetoran $santriVerifiedSetoran)
     {
-
-        $setoran->update([
-            'is_verified' => $request->is_verified,
-        ]);
-
+        if($request->user()->role_id == 2)
+        {
+            $santriVerifiedSetoran->update([
+                'panitia_verified' => $request->panitia_verified,
+            ]);
+        }elseif($request->user()->role_id == 4)
+        {
+            $santriVerifiedSetoran->update([
+                'penguji_verified' => $request->penguji_verified,
+            ]);
+        }
 
         return RouteHelper::getRedirect($request->user()->role_id)->with('Success', 'Berhasil merubah data!');
     }

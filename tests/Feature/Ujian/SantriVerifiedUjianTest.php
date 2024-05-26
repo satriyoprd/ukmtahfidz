@@ -30,19 +30,47 @@ class SantriVerifiedUjianTest extends TestCase
 
         $response->assertStatus(302);
     }
-
-    public function test_update()
+    public function test_update_panitia()
     {
+        $user = User::where('role_id', 2)->first();
+
+        $this->actingAs($user);
+
         $santriVerified = SantriVerifiedUjian::first();
 
         $this->withoutMiddleware(VerifyCsrfToken::class);
 
         $response = $this->put(route('santri-verified-ujian.update', $santriVerified->id), [
-            'is_verified' => true,
+            'panitia_verified' => true,
         ]);
 
         $response->assertStatus(302);
 
-        $this->assertTrue($santriVerified->fresh()->is_verified == 1);
+        $this->assertDatabaseHas('santri_verified_ujians', [
+            'id' => $santriVerified->id,
+            'panitia_verified' => true,
+        ]);
+    }
+
+    public function test_update_penguji()
+    {
+        $user = User::where('role_id', 4)->first();
+
+        $this->actingAs($user);
+
+        $santriVerified = SantriVerifiedUjian::first();
+
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
+        $response = $this->put(route('santri-verified-ujian.update', $santriVerified->id), [
+            'penguji_verified' => true,
+        ]);
+
+        $response->assertStatus(302);
+
+        $this->assertDatabaseHas('santri_verified_ujians', [
+            'id' => $santriVerified->id,
+            'penguji_verified' => true,
+        ]);
     }
 }

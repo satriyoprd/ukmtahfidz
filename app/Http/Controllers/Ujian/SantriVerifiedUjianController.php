@@ -31,12 +31,16 @@ class SantriVerifiedUjianController extends Controller
 
     public function update(Request $request, SantriVerifiedUjian $santriVerifiedUjian)
     {
-        if ($request->is_verified == 1) {
+        if($request->user()->role_id == 2)
+        {
             $santriVerifiedUjian->update([
-                'is_verified' => $request->is_verified,
+                'panitia_verified' => $request->panitia_verified,
             ]);
-        } else {
-            $santriVerifiedUjian->delete();
+        }elseif($request->user()->role_id == 4)
+        {
+            $santriVerifiedUjian->update([
+                'penguji_verified' => $request->penguji_verified,
+            ]);
         }
 
         return redirect()->route('dashboard.admin.setoran')->with('Success', 'Berhasil merubah data!');
