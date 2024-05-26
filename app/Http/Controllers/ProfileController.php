@@ -37,14 +37,20 @@ class ProfileController extends Controller
             $request->validate([
                 'nim' => ['required', 'string', 'max:255', 'unique:santris,nim,' . $user->santri->id],
                 'jumlah_hafalan' => ['nullable', 'numeric'],
+                'informasi_hafalan' => ['nullable', 'array'],
                 'major_id' => ['required', 'exists:majors,id'],
             ]);
 
             $santri = $user->santri;
             $santri->nim = $request->nim;
             $santri->major_id = $request->major_id;
+            
             if($request->filled('jumlah_hafalan')){
                 $santri->jumlah_hafalan = $request->jumlah_hafalan;
+            }
+
+            if($request->filled('informasi_hafalan')){
+                $santri->informasi_hafalan = $request->informasi_hafalan;
             }
 
             if (!$santri->save()) {

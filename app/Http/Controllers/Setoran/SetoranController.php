@@ -26,7 +26,7 @@ class SetoranController extends Controller
         $surat = Surat::all();
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
+        $santri = SantriVerifiedSetoran::where('penguji_verified', 1)->where('panitia_verified', 1)->get();
         $santri->load('santri');
 
         return view('dashboard.penguji-setoran-create', compact('penguji', 'santri', 'surat'));
@@ -85,7 +85,7 @@ class SetoranController extends Controller
         $surat = Surat::all();
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = SantriVerifiedSetoran::where('is_verified', 1)->get();
+        $santri = SantriVerifiedSetoran::where('penguji_verified', 1)->where('panitia_verified', 1)->get();
         $santri->load('user');
         $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 

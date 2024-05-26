@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Profile;
 
+use App\Models\Santri;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -25,12 +26,14 @@ class ProfileTest extends TestCase
 
         $newData = [
             'nim' => '69696969',
-            'jumlah_hafalan' => 50,
+            // 'jumlah_hafalan' => 50,
+            'informasi_hafalan' => ['Juz 1', 'Juz 2'],
             'major_id' => 2,
             'name' => 'Dingding',
             'email' => 'santri1@gmail.com',
             'jenis_kelamin' => 1,
             'tanggal_lahir' => '2003-05-30',
+            'phone' => '081234567890',
         ];
 
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
@@ -39,11 +42,24 @@ class ProfileTest extends TestCase
 
         $response->assertRedirect(route('profile.edit'));
 
-        $this->assertDatabaseHas('santris', [
-            'nim' => $newData['nim'],
-            'jumlah_hafalan' => $newData['jumlah_hafalan'],
-            'major_id' => $newData['major_id'],
-        ]);
+        if(isset($newData['jumlah_hafalan'])){
+            $this->assertDatabaseHas('santris', [
+                'nim' => $newData['nim'],
+                'jumlah_hafalan' => $newData['jumlah_hafalan'],
+                'major_id' => $newData['major_id'],
+            ]);
+        } elseif(isset($newData['informasi_hafalan'])){
+            $this->assertDatabaseHas('santris', [
+                'nim' => $newData['nim'],
+                'informasi_hafalan' => json_encode($newData['informasi_hafalan']),
+                'major_id' => $newData['major_id'],
+            ]);
+        }else {
+            $this->assertDatabaseHas('santris', [
+                'nim' => $newData['nim'],
+                'major_id' => $newData['major_id'],
+            ]);
+        }
 
         $response->assertSessionHas('status', 'profile-updated');
     }

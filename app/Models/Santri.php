@@ -13,7 +13,12 @@ class Santri extends Model
         'user_id',
         'nim',
         'major_id',
-        'jumlah_hafalan'
+        'jumlah_hafalan',
+        'informasi_hafalan'
+    ];
+
+    protected $casts = [
+        'informasi_hafalan' => 'array'
     ];
 
     public function user()
@@ -34,6 +39,11 @@ class Santri extends Model
     public function verifiedSetoran()
     {
         return $this->hasOne(SantriVerifiedSetoran::class);
+    }
+
+    public function verifiedUjian()
+    {
+        return $this->hasOne(SantriVerifiedUjian::class);
     }
 
     public function ujian()
