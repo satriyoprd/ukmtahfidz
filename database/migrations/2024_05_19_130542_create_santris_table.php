@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('major_id')->constrained()->onDelete('cascade');
             $table->string('nim')->unique();
             $table->double('jumlah_hafalan')->nullable();
+            $table->json('informasi_hafalan')->nullable();
             $table->timestamps();
         });
     }

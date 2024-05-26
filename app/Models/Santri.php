@@ -13,7 +13,12 @@ class Santri extends Model
         'user_id',
         'nim',
         'major_id',
-        'jumlah_hafalan'
+        'jumlah_hafalan',
+        'informasi_hafalan'
+    ];
+
+    protected $casts = [
+        'informasi_hafalan' => 'array'
     ];
 
     public function user()
