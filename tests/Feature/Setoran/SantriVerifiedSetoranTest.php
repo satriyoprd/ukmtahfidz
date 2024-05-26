@@ -31,18 +31,47 @@ class SantriVerifiedSetoranTest extends TestCase
         $response->assertStatus(302);
     }
 
-    public function test_update()
+    public function test_update_panitia()
     {
+        $user = User::where('role_id', 2)->first();
+
+        $this->actingAs($user);
+
         $santriVerified = SantriVerifiedSetoran::first();
 
         $this->withoutMiddleware(VerifyCsrfToken::class);
 
-        $response = $this->put(route('santri-verified-setoran.update', $santriVerified->id), [
-            'is_verified' => true,
+        $response = $this->put(route('santri-verified-setoran.update', $santriVerified), [
+            'panitia_verified' => true,
         ]);
 
         $response->assertStatus(302);
 
-        $this->assertTrue($santriVerified->fresh()->is_verified == 1);
+        $this->assertDatabaseHas('santri_verified_setorans', [
+            'id' => $santriVerified->id,
+            'panitia_verified' => true,
+        ]);
+    }
+
+    public function test_update_penguji()
+    {
+        $user = User::where('role_id', 4)->first();
+
+        $this->actingAs($user);
+
+        $santriVerified = SantriVerifiedSetoran::first();
+
+        $this->withoutMiddleware(VerifyCsrfToken::class);
+
+        $response = $this->put(route('santri-verified-setoran.update', $santriVerified), [
+            'penguji_verified' => true,
+        ]);
+
+        $response->assertStatus(302);
+
+        $this->assertDatabaseHas('santri_verified_setorans', [
+            'id' => $santriVerified->id,
+            'panitia_verified' => true,
+        ]);
     }
 }

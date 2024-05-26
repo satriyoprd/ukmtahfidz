@@ -28,7 +28,7 @@ class UjianController extends Controller
         $surat = Surat::all();
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = SantriVerifiedUjian::where('is_verified', 1)->get();
+        $santri = SantriVerifiedUjian::where('penguji_verified', 1)->where('panitia_verified', 1)->get();
         $santri->load('santri');
 
         return view('dashboard.penguji-ujian-create', compact('penguji', 'santri', 'surat'));
@@ -85,7 +85,7 @@ class UjianController extends Controller
         $surat = Surat::all();
         $penguji = Penguji::all();
         $penguji->load('user');
-        $santri = SantriVerifiedUjian::where('is_verified', 1)->get();
+        $santri = SantriVerifiedUjian::where('penguji_verified', 1)->where('panitia_verified', 1)->get();
         $santri->load('user');
 
         return view('dashboard.penguji-ujian-update', compact('ujian', 'penguji', 'santri', 'surat'));

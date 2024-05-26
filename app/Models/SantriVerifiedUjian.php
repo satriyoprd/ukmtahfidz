@@ -11,7 +11,8 @@ class SantriVerifiedUjian extends Model
 
     protected $fillable = [
         'santri_id',
-        'is_verified',
+        'panitia_verified',
+        'penguji_verified'
     ];
 
     public function santri()
