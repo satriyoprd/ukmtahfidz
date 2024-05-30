@@ -201,7 +201,7 @@
                                             class="mt-1 block w-full" multiple>
                                             @foreach ($items as $item)
                                                 <option value="{{ $item }}"
-                                                    {{ in_array($item, $user->santri->informasi_hafalan) ? 'selected' : '' }}>
+                                                    {{ $user->santri->informasi_hafalan && in_array($item, $user->santri->informasi_hafalan) ? 'selected' : '' }}>
                                                     {{ $item }}
                                                 </option>
                                             @endforeach
