@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('santri_verified_ujians', function (Blueprint $table) {
+        Schema::create('tempats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('santri_id')->constrained('santris')->onDelete('cascade');
-            $table->boolean('panitia_verified')->nullable();
-            $table->boolean('penguji_verified')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('santri_verified_ujians');
+        Schema::dropIfExists('tempats');
     }
 };
