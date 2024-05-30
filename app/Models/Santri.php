@@ -38,12 +38,12 @@ class Santri extends Model
 
     public function verifiedSetoran()
     {
-        return $this->hasOne(SantriVerifiedSetoran::class);
+        return $this->hasMany(SantriVerifiedSetoran::class);
     }
 
     public function verifiedUjian()
     {
-        return $this->hasOne(SantriVerifiedUjian::class);
+        return $this->hasMany(SantriVerifiedUjian::class);
     }
 
     public function ujian()

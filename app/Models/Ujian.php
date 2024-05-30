@@ -16,6 +16,8 @@ class Ujian extends Model
         'jumlah_ujian',
         'catatan',
         'nilai',
+        'jam',
+        'tempat_id'
     ];
 
     public function santri()
@@ -36,5 +38,10 @@ class Ujian extends Model
     public function nilais()
     {
         return $this->belongsToMany(Nilai::class, 'nilai_ujians')->withPivot('nilai')->withTimestamps();
+    }
+
+    public function tempat()
+    {
+        return $this->belongsTo(Tempat::class);
     }
 }

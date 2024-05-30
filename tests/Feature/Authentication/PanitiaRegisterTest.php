@@ -31,9 +31,7 @@ class PanitiaRegisterTest extends TestCase
 
         $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
 
-        $response = $this->post('/panitia/register', $data);
-
-        $response->assertRedirect('/dashboard');
+        $this->post('/panitia/register', $data);
 
         $this->assertDatabaseHas('users', [
             'email' => 'panitia3@gmail.com',

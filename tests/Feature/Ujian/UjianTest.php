@@ -40,6 +40,8 @@ class UjianTest extends TestCase
             $requestData = [
                 'penguji_id' => 1,
                 'santri_id' => 1,
+                'tempat_id' => 1,
+                'jam' => '12:00',
                 'surat' => [1,2],
                 'tanggal_ujian' => '2024-05-20',
                 'jumlah_ujian' => '1 juz',
@@ -57,6 +59,8 @@ class UjianTest extends TestCase
             $this->assertDatabaseHas('ujians', [
                 'penguji_id' => $requestData['penguji_id'],
                 'santri_id' => $requestData['santri_id'],
+                'tempat_id' => $requestData['tempat_id'],
+                'jam' => $requestData['jam'],
                 'tanggal_ujian' => $requestData['tanggal_ujian'],
                 'jumlah_ujian' => $requestData['jumlah_ujian'],
                 'catatan' => $requestData['catatan'],
@@ -67,13 +71,14 @@ class UjianTest extends TestCase
             $averageNilai = ($requestData['nilai_kelancaran'] + $requestData['nilai_makhraj'] + $requestData['nilai_lagu'] + $requestData['nilai_adab']) / 4;
             $this->assertEquals($averageNilai, $ujian->nilai);
 
+            $no = 1;
             foreach (['nilai_kelancaran', 'nilai_makhraj', 'nilai_lagu', 'nilai_adab'] as $nilaiField) {
-                $no = 1;
                 $this->assertDatabaseHas('nilai_ujians', [
                     'ujian_id' => $ujian->id,
                     'nilai_id' => $no++,
                     'nilai' => $requestData[$nilaiField],
                 ]);
+
             }
         } catch (\Exception $e) {
             echo $e->getMessage();
