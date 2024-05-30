@@ -70,6 +70,7 @@
             document.getElementById("tableSetoran").style.display = "none";
             document.getElementById("tableAbsen").style.display = "none";
             document.getElementById("tablePendaftaran").style.display = "none";
+            document.getElementById("tabelPendaftarUjian").style.display = "none";
 
             var button = document.getElementById("dynamicButton");
             button.style.display = "block"
@@ -83,6 +84,7 @@
             document.getElementById("tableSetoran").style.display = "table";
             document.getElementById("tableAbsen").style.display = "none";
             document.getElementById("tablePendaftaran").style.display = "none";
+            document.getElementById("tabelPendaftarUjian").style.display = "none";
 
             var button = document.getElementById("dynamicButton");
             button.style.display = "block"
@@ -108,7 +110,7 @@
             document.getElementById("tableSetoran").style.display = "none";
             document.getElementById("tableUjian").style.display = "none";
             document.getElementById("tablePendaftaran").style.display = "table";
-            document.getElementById("pendaftaranUjian").style.display = "none";
+            document.getElementById("tabelPendaftarUjian").style.display = "none";
 
             var button = document.getElementById("dynamicButton");
             button.style.display = "none";
@@ -120,9 +122,7 @@
             document.getElementById("tableSetoran").style.display = "none";
             document.getElementById("tableUjian").style.display = "none";
             document.getElementById("tablePendaftaran").style.display = "none";
-            document.getElementById("pendaftaranUjian").style.display = "table";
-
-
+            document.getElementById("tabelPendaftarUjian").style.display = "table";
 
             var button = document.getElementById("dynamicButton");
             button.style.display = "none";

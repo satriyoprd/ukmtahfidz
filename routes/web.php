@@ -79,6 +79,8 @@ Route::get('/penguji', function () {
 
 Route::get('/peguji/setoran/{id}', [PengujiDashboardController::class, 'indexDetailSantri'])->name('dashboard.penguji.detail-santri');
 
+Route::get('/peguji/ujian/{id}', [PengujiDashboardController::class, 'indexDetailUjian'])->name('dashboard.penguji.detail-ujian');
+
 Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dashboard.penguji.setoran.create');
 
 Route::get('/penguji/setoran/{setoran}', [SetoranController::class, 'edit'])->name('dashboard.penguji.setoran.update');

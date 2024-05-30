@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Ujian;
 
+use App\Helper\RouteHelper;
 use App\Http\Controllers\Controller;
 use App\Models\SantriVerifiedUjian;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class SantriVerifiedUjianController extends Controller
 
     public function update(Request $request, SantriVerifiedUjian $santriVerifiedUjian)
     {
+
         if ($request->user()->role_id == 2) {
             $santriVerifiedUjian->update([
                 'panitia_verified' => $request->panitia_verified,
@@ -41,6 +43,9 @@ class SantriVerifiedUjianController extends Controller
             $santriVerifiedUjian->update([
                 'penguji_verified' => $request->penguji_verified,
             ]);
+
+            return RouteHelper::getRedirect($request->user()->role_id)->with('Success', 'Berhasil merubah data!');
+
         } elseif ($request->user()->role_id == config('constants.ROLE_ADMIN')) {
             if (isset($request->panitia_verified)) {
                 $santriVerifiedUjian->update([

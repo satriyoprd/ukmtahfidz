@@ -17,6 +17,7 @@ class SetoranController extends Controller
     public function indexSantri()
     {
         $santriVerified = SantriVerifiedSetoran::where('santri_id', Auth::user()->santri->id)->first();
+        
         $ujianVerified = SantriVerifiedUjian::where('santri_id',Auth::user()->santri->id)->first();
 
         $setoran = Setoran::where('santri_id', Auth::user()->santri->id)->get();

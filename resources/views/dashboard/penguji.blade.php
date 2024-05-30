@@ -214,7 +214,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pendaftaranSetoran as $p)
+                    @foreach ($pendaftaranUjian as $p)
                         <tr>
                             <td>{{ $p->santri->created_at }}</td>
                             <td>{{ $p->santri->user->name }}</td>
@@ -224,7 +224,7 @@
                             <td>{{ $p->penguji_verified == '1' ? 'Disetujui' : ($p->penguji_verified == '0' ? 'Ditolak' : 'Diproses') }}
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('dashboard.penguji.detail-santri', $p->id) }}" class="btn btn-sm"
+                                <a href="{{ route('dashboard.penguji.detail-ujian', $p->id) }}" class="btn btn-sm"
                                     type="button"><i class="bi bi-journal-text"></i></a>
                             </td>
                         </tr>

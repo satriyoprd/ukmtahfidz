@@ -19,6 +19,8 @@
                 </div>
             </div>
 
+            <x-stepper/>
+
             @if (session('success'))
                 <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)"
                     class="text-center bg-green-100 text-green-600">
