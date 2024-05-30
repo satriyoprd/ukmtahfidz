@@ -35,6 +35,8 @@ class SantriVerifiedUjianController extends Controller
             $santriVerifiedUjian->update([
                 'panitia_verified' => $request->panitia_verified,
             ]);
+
+            return redirect()->route('dashboard.panitia')->with('Success', 'Berhasil merubah data!');
         } elseif ($request->user()->role_id == 4) {
             $santriVerifiedUjian->update([
                 'penguji_verified' => $request->penguji_verified,

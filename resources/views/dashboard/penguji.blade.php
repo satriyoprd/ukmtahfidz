@@ -37,6 +37,8 @@
                             </li>
                             <li><button class="dropdown-item text-black"
                                     onclick="dashboardPendaftaranSetoran()">Pendaftaran Setoran</button></li>
+                            <li><button class="dropdown-item text-black"
+                                    onclick="dashboardPendaftaranUjian()">Pendaftaran Ujian</button></li>
                             <li><button class="dropdown-item text-black" onclick="dashboardUjian()">Ujian</button></li>
                             <li><button class="dropdown-item text-black" onclick="dashboardAbsen()">Absen</button></li>
                         </ul>
@@ -169,6 +171,37 @@
             </table>
 
             <table id="tablePendaftaran" style="display: none;" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="background: #CCCF95; ">Tgl Daftar</th>
+                        <th class="text-center" style="background: #CCCF95;">Nama Santri</th>
+                        <th class="text-center" style="background: #CCCF95;">Jumlah Hafalan</th>
+                        <th class="text-center" style="background: #CCCF95;">Fakultas</th>
+                        <th class="text-center" style="background: #CCCF95;">Jurusan</th>
+                        <th class="text-center" style="background: #CCCF95; ">Status</th>
+                        <th class="text-center" style="background: #CCCF95; ">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($pendaftaranSetoran as $p)
+                        <tr>
+                            <td>{{ $p->santri->created_at }}</td>
+                            <td>{{ $p->santri->user->name }}</td>
+                            <td>{{ $p->santri->jumlah_hafalan }}</td>
+                            <td>{{ $p->santri->major->faculty->name }}</td>
+                            <td>{{ $p->santri->major->name }}</td>
+                            <td>{{ $p->penguji_verified == '1' ? 'Disetujui' : ($p->penguji_verified == '0' ? 'Ditolak' : 'Diproses') }}
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ route('dashboard.penguji.detail-santri', $p->id) }}" class="btn btn-sm"
+                                    type="button"><i class="bi bi-journal-text"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <table id="tabelPendaftarUjian" style="display: none;" class="table table-bordered">
                 <thead>
                     <tr>
                         <th class="text-center" style="background: #CCCF95; ">Tgl Daftar</th>

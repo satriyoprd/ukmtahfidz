@@ -1,5 +1,7 @@
 <x-app-layout>
-
+    @php
+        $items = ['1', '2', '3'];
+    @endphp
 
     <div class="mt-32 flex flex-col gap-6 max-w-6xl mx-auto w-full">
 
@@ -188,19 +190,21 @@
                                     <div>
                                         <x-input-label for="jumlah_hafalan" :value="__('Jumlah Hafalan')" />
                                         <x-text-input id="jumlah_hafalan" name="jumlah_hafalan" type="number"
-                                            class="mt-1 block w-full" :value="old('name', $user->santri->jumlah_hafalan)" required autofocus
+                                            class="mt-1 block w-full" :value="old('name', $user->santri->jumlah_hafalan)" required
                                             autocomplete="jumlah_hafalan" />
                                         <x-input-error class="mt-2" :messages="$errors->get('jumlah_hafalan')" />
                                     </div>
 
                                     <div>
                                         <x-input-label for="informasi_hafalan" :value="__('Informasi Hafalan')" />
-                                        <select id="informasi_hafalan" name="informasi_hafalan"
+                                        <select id="informasi_hafalan" name="informasi_hafalan[]"
                                             class="mt-1 block w-full" multiple>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <!-- Add more options here -->
+                                            @foreach ($items as $item)
+                                                <option value="{{ $item }}"
+                                                    {{ in_array($item, $user->santri->informasi_hafalan) ? 'selected' : '' }}>
+                                                    {{ $item }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                         <x-input-error class="mt-2" :messages="$errors->get('jumlah_hafalan')" />
                                     </div>

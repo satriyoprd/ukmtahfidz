@@ -92,6 +92,8 @@ Route::get('/panitia', [PanitiaDashboardController::class, 'index'])->name('dash
 
 Route::get('/panitia/pendaftaran-setoran/{id}', [PanitiaDashboardController::class, 'indexSetoran'])->name('dashboard.panitia.pendaftaranSetoran');
 
+Route::get('/panitia/pendaftaran-ujian/{id}', [PanitiaDashboardController::class, 'indexUjian'])->name('dashboard.panitia.pendaftaranUjian');
+
 Route::get('/departemen-mudarosah', function () {
     return view('landing.departemen_mudarosah');
 })->name('departemen.mudarosah');

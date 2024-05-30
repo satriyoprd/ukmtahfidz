@@ -108,9 +108,36 @@
             document.getElementById("tableSetoran").style.display = "none";
             document.getElementById("tableUjian").style.display = "none";
             document.getElementById("tablePendaftaran").style.display = "table";
+            document.getElementById("pendaftaranUjian").style.display = "none";
 
             var button = document.getElementById("dynamicButton");
             button.style.display = "none";
+        }
+
+        function dashboardPendaftaranUjian() {
+            document.getElementById("dashboardTitle").innerHTML = "Pendaftaran Ujian";
+            document.getElementById("tableAbsen").style.display = "none";
+            document.getElementById("tableSetoran").style.display = "none";
+            document.getElementById("tableUjian").style.display = "none";
+            document.getElementById("tablePendaftaran").style.display = "none";
+            document.getElementById("pendaftaranUjian").style.display = "table";
+
+
+
+            var button = document.getElementById("dynamicButton");
+            button.style.display = "none";
+        }
+
+        function dashboardPanitiaUjian() {
+            document.getElementById("dashboardTitle").innerHTML = "Pendaftaran Ujian";
+            document.getElementById("tablePendaftaran").style.display = "none";
+            document.getElementById("pendaftaranUjian").style.display = "table";
+        }
+
+        function dashboardPanitiaSetoran() {
+            document.getElementById("dashboardTitle").innerHTML = "Pendaftaran Setoran";
+            document.getElementById("tablePendaftaran").style.display = "table";
+            document.getElementById("pendaftaranUjian").style.display = "none";
         }
     </script>
 </body>

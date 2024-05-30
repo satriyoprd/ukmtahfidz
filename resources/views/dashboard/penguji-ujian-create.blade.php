@@ -123,7 +123,7 @@
 
                                     <input placeholder="Kelancaran" type="number" class="form-control form-control-sm"
                                         id="inputNilaiKelancaran" name="nilai_kelancaran"
-                                        value="{{ old('nilai_kelancaran') }}" required>
+                                        value="{{ old('nilai_kelancaran') }}">
                                     @error('nilai_kelancaran')
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -131,8 +131,7 @@
                                 <div>
 
                                     <input placeholder="Makhraj" type="number" class="form-control form-control-sm"
-                                        id="inputNilaiMakhraj" name="nilai_makhraj" value="{{ old('nilai_makhraj') }}"
-                                        required>
+                                        id="inputNilaiMakhraj" name="nilai_makhraj" value="{{ old('nilai_makhraj') }}">
                                     @error('nilai_makhraj')
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -140,7 +139,7 @@
                                 <div>
 
                                     <input placeholder="Lagu" type="number" class="form-control form-control-sm"
-                                        id="inputNilaiLagu" name="nilai_lagu" value="{{ old('nilai_lagu') }}" required>
+                                        id="inputNilaiLagu" name="nilai_lagu" value="{{ old('nilai_lagu') }}">
                                     @error('nilai_lagu')
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -148,8 +147,7 @@
                                 <div>
 
                                     <input placeholder="Adab" type="number" class="form-control form-control-sm"
-                                        id="inputNilaiAdab" name="nilai_adab" value="{{ old('nilai_adab') }}"
-                                        required>
+                                        id="inputNilaiAdab" name="nilai_adab" value="{{ old('nilai_adab') }}">
                                     @error('nilai_adab')
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror

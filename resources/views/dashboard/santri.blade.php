@@ -138,7 +138,7 @@
                                         </div>
                                     @endforeach
                                 </td>
-                                <td>{{ $j->jumlah_setoran }}</td>
+                                <td>{{ $j->jumlah_ujian }}</td>
                                 <td>{{ $j->nilai }}</td>
 
                                 <td>{{ $j->catatan }}</td>
