@@ -67,9 +67,15 @@ Route::get('/penguji', function () {
 
     $ujian = Ujian::where('penguji_id', Auth::user()->penguji->id)->get();
 
-    $pendaftaranSetoran = SantriVerifiedSetoran::all();
+    $ujianSubQuery = SantriVerifiedUjian::select(DB::raw('MAX(id) as id'))
+        ->groupBy('santri_id');
 
-    $pendaftaranUjian = SantriVerifiedUjian::all();
+    $setoranSubQuery = SantriVerifiedSetoran::select(DB::raw('MAX(id) as id'))
+        ->groupBy('santri_id');
+
+    $pendaftaranSetoran = SantriVerifiedSetoran::whereIn('id', $setoranSubQuery)->get();
+
+    $pendaftaranUjian = SantriVerifiedUjian::whereIn('id', $ujianSubQuery)->get();
 
     $setoran->load('penguji.user', 'santri.user', 'nilais');
     $ujian->load('penguji.user', 'santri.user', 'nilais');
@@ -121,32 +127,7 @@ Route::get('/publikasi', function () {
 })->name('publikasi');
 
 Route::get('/program-tahfidz', function () {
-    $ujian = SantriVerifiedUjian::whereSantriId(auth()->id)->orderBy('created_at', 'desc')->first();
-    if(!$ujian){
-        $ujianVerified = false;
-    }else{
-        if(!$ujian->penguji_verified){
-            $ujianVerified = false;
-        }elseif(!$ujian->panitia_verified){
-            $ujianVerified = false;
-        }else{
-            $ujianVerified = true;
-        }
-    }
-    
-    $setoran = SantriVerifiedSetoran::whereSantriId(auth()->id)->orderBy('created_at', 'desc')->first();
-    if(!$setoran){
-        $setoranVerified = false;
-    }else{
-        if(!$setoran->penguji_verified){
-            $setoranVerified = false;
-        }elseif(!$setoran->panitia_verified){
-            $setoranVerified = false;
-        }else{
-            $setoranVerified = true;
-        }
-    }
-    return view('landing.tahfidz',compact( 'ujianVerified', 'setoranVerified'));
+    return view('landing.tahfidz');
 })->name('program.tahfidz');
 
 

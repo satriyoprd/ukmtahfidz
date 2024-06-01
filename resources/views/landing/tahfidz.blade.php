@@ -20,14 +20,56 @@
                                 masjid
                                 UNAIR</p>
 
+                            @php
+                                if (count(Auth::user()->santri->verifiedSetoran) > 0) {
+                                    $verifiedSetoranData = Auth::user()->santri->verifiedSetoran[
+                                        count(Auth::user()->santri->verifiedSetoran) - 1
+                                    ];
+                                }
+
+                                if (count(Auth::user()->santri->verifiedUjian) > 0) {
+                                    $verifiedUjian = Auth::user()->santri->verifiedUjian[
+                                        count(Auth::user()->santri->verifiedUjian) - 1
+                                    ];
+                                }
+                            @endphp
+
                             @if (Auth::check() && Auth::user()->role_id == config('constants.ROLE_SANTRI'))
-                                @if (Auth::user()->santri->verifiedSetoran)
-                                    @if (Auth::user()->santri->verifiedSetoran->penguji_verified && Auth::user()->santri->verifiedSetoran->panitia_verified)
-                                        <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
-                                                class="fa-solid fa-circle-check"></i></div>
+                                @if (count(Auth::user()->santri->verifiedSetoran) > 0)
+                                    @if (Auth::user()->santri->verifiedSetoran)
+
+                                        @if ($verifiedSetoranData->penguji_verified === 0 || $verifiedSetoranData->panitia_verified === 0)
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirm">
+                                                Daftar
+                                            </button>
+                                        @elseif (
+                                            ($verifiedSetoranData->penguji_verified === 1 && is_null($verifiedSetoranData->panitia_verified)) ||
+                                                (is_null($verifiedSetoranData->penguji_verified) && $verifiedSetoranData->panitia_verified === 1) ||
+                                                (is_null($verifiedSetoranData->penguji_verified) && is_null($verifiedSetoranData->panitia_verified)))
+                                            <div class="text-primary-app font-semibold"><span>Proses seleksi</span> <i
+                                                    class="fa-regular fa-hourglass-half ml-1"></i> </div>
+                                        @elseif ($verifiedSetoranData->penguji_verified === 1 && $verifiedSetoranData->panitia_verified === 1)
+                                            <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
+                                                    class="fa-solid fa-circle-check"></i></div>
+                                        @endif
                                     @else
-                                        <div class="text-primary-app font-semibold"><span>Proses seleksi</span> <i
-                                                class="fa-regular fa-hourglass-half ml-1"></i> </div>
+                                        @if (Auth::user()->role_id == 3)
+                                            @if (is_null(Auth::user()->santri->jumlah_hafalan))
+                                                <button class="btn" data-bs-toggle="modal"
+                                                    data-bs-target="#modalSetoran">
+                                                    Daftar
+                                                </button>
+                                            @else
+                                                <button class="btn" data-bs-toggle="modal"
+                                                    data-bs-target="#modalConfirm">
+                                                    Daftar
+                                                </button>
+                                            @endif
+                                        @else
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalWarning">Daftar</button>
+                                        @endif
                                     @endif
                                 @else
                                     @if (Auth::user()->role_id == 3)
@@ -50,8 +92,8 @@
                             @else
                                 <button class="btn" data-bs-toggle="modal"
                                     data-bs-target="#modalWarning">Daftar</button>
-                            @endif
 
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -67,13 +109,41 @@
                                 UNAIR</p>
 
                             @if (Auth::check() && Auth::user()->role_id == config('constants.ROLE_SANTRI'))
-                                @if (Auth::user()->santri->verifiedUjian)
-                                    @if (Auth::user()->santri->verifiedUjian->penguji_verified && Auth::user()->santri->verifiedUjian->panitia_verified)
-                                        <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
-                                                class="fa-solid fa-circle-check"></i></div>
+                                @if (count(Auth::user()->santri->verifiedUjian) > 0)
+
+                                    @if (Auth::user()->santri->verifiedUjian)
+                                        @if ($verifiedUjian->penguji_verified === 0 || $verifiedUjian->panitia_verified === 0)
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirmUjian">
+                                                Daftar
+                                            </button>
+                                        @elseif (
+                                            ($verifiedUjian->penguji_verified === 1 && is_null($verifiedUjian->panitia_verified)) ||
+                                                (is_null($verifiedUjian->penguji_verified) && $verifiedUjian->panitia_verified === 1) ||
+                                                (is_null($verifiedUjian->penguji_verified) && is_null($verifiedUjian->panitia_verified)))
+                                            <div class="text-primary-app font-semibold"><span>Proses seleksi</span> <i
+                                                    class="fa-regular fa-hourglass-half ml-1"></i> </div>
+                                        @elseif ($verifiedUjian->penguji_verified === 1 && $verifiedUjian->panitia_verified === 1)
+                                            <div class="text-green-500 font-semibold"><span>Sudah daftar</span> <i
+                                                    class="fa-solid fa-circle-check"></i></div>
+                                        @endif
                                     @else
-                                        <div class="text-primary-app font-semibold"><span>Proses seleksi</span> <i
-                                                class="fa-regular fa-hourglass-half ml-1"></i> </div>
+                                        @if (Auth::user()->role_id == 3)
+                                            @if (is_null(Auth::user()->santri->jumlah_hafalan))
+                                                <button class="btn" data-bs-toggle="modal"
+                                                    data-bs-target="#modalSetoran">
+                                                    Daftar
+                                                </button>
+                                            @else
+                                                <button class="btn" data-bs-toggle="modal"
+                                                    data-bs-target="#modalConfirmUjian">
+                                                    Daftar
+                                                </button>
+                                            @endif
+                                        @else
+                                            <button class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#modalWarning">Daftar</button>
+                                        @endif
                                     @endif
                                 @else
                                     @if (Auth::user()->role_id == 3)
@@ -95,7 +165,9 @@
                                 @endif
                             @else
                                 <button class="btn" data-bs-toggle="modal"
-                                    data-bs-target="#modalWarning">Daftar</button>
+                                    data-bs-target="#modalSetoran">Daftar</button>
+
+
                             @endif
 
                         </div>
@@ -150,7 +222,8 @@
                                 gathering yang bertujuan untuk mempererat ukhuwah antar pengurus, santri, dan asatidz
                                 UKM
                                 Tahfidzul Quran UNAIR</p>
-                            <button class="btn" data-bs-toggle="modal" data-bs-target="#modalWarning">Daftar</button>
+                            <button class="btn" data-bs-toggle="modal"
+                                data-bs-target="#modalWarning">Daftar</button>
                         </div>
                     </div>
                 </div>

@@ -19,13 +19,13 @@ class SantriVerifiedUjianController extends Controller
 
     public function store(Request $request)
     {
-        $santriVerified = SantriVerifiedUjian::where('santri_id', $request->user()->santri->id)->first();
 
-        if (!$santriVerified) {
-            SantriVerifiedUjian::create([
-                'santri_id' => $request->user()->santri->id,
-            ]);
-        }
+
+
+        SantriVerifiedUjian::create([
+            'santri_id' => $request->user()->santri->id,
+        ]);
+
 
         return redirect()->route('dashboard.santri')->with('success', 'Berhasil mendaftar ke program ujian tahfidz!');
     }

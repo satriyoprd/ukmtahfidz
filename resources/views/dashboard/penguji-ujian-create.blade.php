@@ -53,6 +53,18 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-2 my-auto">
+                            <label for="inputTglSetoran" class="form-label mb-0">Tgl Setoran</label>
+                        </div>
+                        <div class="col-10">
+                            <input type="time" class="form-control form-control-sm" id="inputTglSetoran"
+                                name="jam" value="{{ old('jam') }}" required>
+                            @error('jam')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
                             <label for="inputNamaSantri" class="form-label mb-0">Nama Santri</label>
                         </div>
                         <div class="col-10">
@@ -60,10 +72,28 @@
                                 name="santri_id" value="{{ old('nama_santri') }}" required>
                                 <option disabled selected>Pilih Nama Santri</option>
                                 @foreach ($santri as $s)
-                                    <option value={{ $s->santri->id }}>{{ $s->santri->user->name }}</option>
+                                    <option value={{ $s->santri->id }}>{{ $s->santri->user->name }}
+                                        {{ $s->santri->user->id }}</option>
                                 @endforeach
                             </select>
                             @error('nama_santri')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
+                            <label for="inputNamaSantri" class="form-label mb-0">Tempat Ujian</label>
+                        </div>
+                        <div class="col-10">
+                            <select type="text" class="form-control form-control-sm" id="inputNamaSantri"
+                                name="tempat_id" value="{{ old('tempat_id') }}" required>
+                                <option disabled selected>Pilih Tempat Ujian</option>
+                                @foreach ($tempat as $t)
+                                    <option value={{ $t->id }}>{{ $t->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('tempat_id')
                                 <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
@@ -121,9 +151,9 @@
                             <div class="d-flex flex-wrap gap-3">
                                 <div>
 
-                                    <input placeholder="Kelancaran" type="number" class="form-control form-control-sm"
-                                        id="inputNilaiKelancaran" name="nilai_kelancaran"
-                                        value="{{ old('nilai_kelancaran') }}">
+                                    <input placeholder="Kelancaran" type="number"
+                                        class="form-control form-control-sm" id="inputNilaiKelancaran"
+                                        name="nilai_kelancaran" value="{{ old('nilai_kelancaran') }}">
                                     @error('nilai_kelancaran')
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -131,7 +161,8 @@
                                 <div>
 
                                     <input placeholder="Makhraj" type="number" class="form-control form-control-sm"
-                                        id="inputNilaiMakhraj" name="nilai_makhraj" value="{{ old('nilai_makhraj') }}">
+                                        id="inputNilaiMakhraj" name="nilai_makhraj"
+                                        value="{{ old('nilai_makhraj') }}">
                                     @error('nilai_makhraj')
                                         <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror

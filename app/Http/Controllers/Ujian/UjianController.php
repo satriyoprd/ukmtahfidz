@@ -10,6 +10,7 @@ use App\Models\Tempat;
 use App\Models\Ujian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UjianController extends Controller
 {
@@ -30,8 +31,15 @@ class UjianController extends Controller
         $penguji = Penguji::all();
         $tempat = Tempat::all();
         $penguji->load('user');
-        $santri = SantriVerifiedUjian::where('penguji_verified', 1)->where('panitia_verified', 1)->get();
+        $subQuery = SantriVerifiedUjian::select(DB::raw('MAX(id) as id'))
+            ->where('penguji_verified', 1)
+            ->where('panitia_verified', 1)
+            ->groupBy('santri_id');
+
+        $santri = SantriVerifiedUjian::whereIn('id', $subQuery)->get();
         $santri->load('santri');
+
+
 
         return view('dashboard.penguji-ujian-create', compact('penguji', 'santri', 'surat', 'tempat'));
     }

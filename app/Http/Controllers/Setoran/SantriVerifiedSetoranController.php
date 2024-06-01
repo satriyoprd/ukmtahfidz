@@ -19,13 +19,11 @@ class SantriVerifiedSetoranController extends Controller
 
     public function store(Request $request)
     {
-        $santriVerified = SantriVerifiedSetoran::where('santri_id', $request->user()->santri->id)->first();
 
-        if (!$santriVerified) {
-            SantriVerifiedSetoran::create([
-                'santri_id' => $request->user()->santri->id,
-            ]);
-        }
+        SantriVerifiedSetoran::create([
+            'santri_id' => $request->user()->santri->id,
+        ]);
+
 
         return redirect()->route('dashboard.santri')->with('success', 'Berhasil mendaftar ke program setoran tahfidz!');
     }
@@ -33,13 +31,13 @@ class SantriVerifiedSetoranController extends Controller
     public function update(Request $request, SantriVerifiedSetoran $santriVerifiedSetoran)
     {
 
-       
+
         if ($request->user()->role_id == 2) {
             $santriVerifiedSetoran->update([
                 'panitia_verified' => $request->panitia_verified,
             ]);
         } elseif ($request->user()->role_id == 4) {
-           
+
             $santriVerifiedSetoran->update([
                 'penguji_verified' => $request->penguji_verified,
             ]);
