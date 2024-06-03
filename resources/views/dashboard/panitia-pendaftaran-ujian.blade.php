@@ -1,7 +1,8 @@
 <x-app-layout>
     <section id="dashboard" class="mt-5 pb-0">
         <div class="container">
-            <p><a class="text-black" href={{ route('dashboard.penguji') }}>Beranda</a> / <a href="">Detail Pendaftara Setoran</a>
+            <p><a class="text-black" href={{ route('dashboard.penguji') }}>Beranda</a> / <a href="">Detail
+                    Pendaftara Setoran</a>
             </p>
 
             <div class="welcome mb-5">
@@ -103,8 +104,15 @@
                             Informasi Juz :
                         </div>
 
-                        <div>
-                            {{ $pendaftaran->santri->jumlah_hafalan }} Juz
+                        <div class="flex gap-2 flex-wrap items-center mt-2">
+                            @if ($pendaftaran->santri->informasi_hafalan)
+                                @foreach ($pendaftaran->santri->informasi_hafalan as $item)
+                                    <div class="bg-primary-app text-white rounded-xl px-4">
+                                        Juz {{ $item }}
+                                    </div>
+                                @endforeach
+                            @endif
+
                         </div>
                     </div>
 
@@ -149,12 +157,12 @@
                             <div class="flex gap-4 items-center">
                                 <div class="flex gap-1 items-center">
                                     <input type="radio" name="panitia_verified" value="1"
-                                        {{ $pendaftaran->panitia_verified == 1 ? 'checked' : '' }}>
+                                        {{ $pendaftaran->panitia_verified == '1' ? 'checked' : '' }}>
                                     <div>Disetujui</div>
                                 </div>
                                 <div class="flex gap-1 items-center">
                                     <input type="radio" name="panitia_verified" value="0"
-                                        {{ $pendaftaran->panitia_verified == 0 ? 'checked' : '' }}>
+                                        {{ $pendaftaran->panitia_verified == '0' ? 'checked' : '' }}>
                                     <div>Ditolak</div>
                                 </div>
                             </div>

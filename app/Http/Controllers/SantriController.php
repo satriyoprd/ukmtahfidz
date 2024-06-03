@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use App\Models\Setoran;
+use App\Models\Ujian;
 use Illuminate\Http\Request;
 
 class SantriController extends Controller
@@ -21,6 +22,13 @@ class SantriController extends Controller
         $setoran = Setoran::find($id);
 
         return view("dashboard.santri-setoran", compact('setoran'));
+    }
+
+    public function indexNilaiUjian(int $id)
+    {
+        $ujian = Ujian::find($id);
+
+        return view("dashboard.santri-ujian", compact('ujian'));
     }
 
 

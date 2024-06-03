@@ -19,7 +19,9 @@
                 </div>
             </div>
 
-            <x-stepper />
+          
+
+            <x-stepper :active="$activeStepper" />
 
             @if (session('success'))
                 <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)"
@@ -27,9 +29,6 @@
                     <p>{{ session('success') }}</p>
                 </div>
             @endif
-
-
-
 
             <div class="row">
                 <div class="col-2">
@@ -45,9 +44,10 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu"
                             style="--bs-dropdown-link-active-bg: none">
-                            <li><button class="dropdown-item text-black" onclick="dashboardSetoran()">Setoran</button>
+                            <li><button class="dropdown-item text-black"
+                                    onclick="dashboardSantriSetoran()">Setoran</button>
                             </li>
-                            <li><button class="dropdown-item text-black" onclick="dashboardUjian()">Ujian</button>
+                            <li><button class="dropdown-item text-black" onclick="dashboardSantriUjian()">Ujian</button>
                             </li>
                             <li><button class="dropdown-item text-black" onclick="dashboardAbsen()">Absen</button>
                             </li>
@@ -65,7 +65,6 @@
             </div>
 
             @if ($ujianVerified)
-
                 @if ($ujianVerified->penguji_verified === 0 || $ujianVerified->panitia_verified === 0)
                     <div class="bg-yellow-100 p-4 rounded-lg">
                         <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
@@ -77,13 +76,24 @@
                     ($ujianVerified->penguji_verified === 1 && is_null($ujianVerified->panitia_verified)) ||
                         (is_null($ujianVerified->penguji_verified) && $ujianVerified->panitia_verified === 1) ||
                         (is_null($ujianVerified->penguji_verified) && is_null($ujianVerified->panitia_verified)))
-                    <div class="bg-green-100 p-4 rounded-lg">
+                    <div id="process-ujian" class="bg-green-100 p-4 rounded-lg">
                         <p class="text-2xl font-bold text-green-700">Menunggu Status Pendaftaran <i
                                 class="fa-solid fa-clock ml-2"></i></p>
-                        <p class="text-gray-800">Kamu sudah mendaftar program setoran tahfidz, mohon menunggu proses
+                        <p class="text-gray-800">Kamu sudah mendaftar program ujian tahfidz, mohon menunggu proses
                             seleksi.
                     </div>
                 @elseif ($ujianVerified->penguji_verified === 1 && $ujianVerified->panitia_verified === 1)
+                    <div id="success-ujian" style="display: none;"
+                        class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
+                        <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
+                        <p class="text-xl font-medium mb-0">
+                            Selamat! Anda telah <strong>diterima</strong> menjadi bagian program tahfidz ujian UKM
+                            Tahfidz
+                            Universitas
+                            Airlangga.
+                        </p>
+
+                    </div>
                     <table id="tableUjian" style="display: none;" class="table table-bordered">
                         <thead>
                             <tr>
@@ -130,14 +140,9 @@
             @endif
 
 
-
-
-
-
             <div id="tableAbsen" style="display: none;">Under Maintenance</div>
 
             @if ($santriVerified)
-
                 @if ($santriVerified->penguji_verified === 0 || $santriVerified->panitia_verified === 0)
                     <div class="bg-yellow-100 p-4 rounded-lg">
                         <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
@@ -149,14 +154,14 @@
                     ($santriVerified->penguji_verified === 1 && is_null($santriVerified->panitia_verified)) ||
                         (is_null($santriVerified->penguji_verified) && $santriVerified->panitia_verified === 1) ||
                         (is_null($santriVerified->penguji_verified) && is_null($santriVerified->panitia_verified)))
-                    <div class="bg-green-100 p-4 rounded-lg">
+                    <div id="process-setoran" class="bg-green-100 p-4 rounded-lg">
                         <p class="text-2xl font-bold text-green-700">Menunggu Status Pendaftaran <i
                                 class="fa-solid fa-clock ml-2"></i></p>
                         <p class="text-gray-800">Kamu sudah mendaftar program setoran tahfidz, mohon menunggu proses
                             seleksi.
                     </div>
                 @elseif ($santriVerified->penguji_verified === 1 && $santriVerified->panitia_verified === 1)
-                    <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
+                    <div id="success-setoran" class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
                         <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
                         <p class="text-xl font-medium mb-0">
                             Selamat! Anda telah <strong>diterima</strong> menjadi bagian program tahfidz setoran UKM

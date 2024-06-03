@@ -100,7 +100,12 @@ class UjianController extends Controller
         $penguji = Penguji::all();
         $tempat = Tempat::all();
         $penguji->load('user');
-        $santri = SantriVerifiedUjian::where('penguji_verified', 1)->where('panitia_verified', 1)->get();
+        $subQuery = SantriVerifiedUjian::select(DB::raw('MAX(id) as id'))
+            ->where('penguji_verified', 1)
+            ->where('panitia_verified', 1)
+            ->groupBy('santri_id');
+
+        $santri = SantriVerifiedUjian::whereIn('id', $subQuery)->get();
         $santri->load('santri.user');
 
         return view('dashboard.penguji-ujian-update', compact('ujian', 'penguji', 'santri', 'surat', 'tempat'));

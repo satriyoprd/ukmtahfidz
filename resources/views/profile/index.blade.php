@@ -63,7 +63,17 @@
                             Juz</span>
                     </div>
                     <div>
-                        <span class="font-bold">Informasi Juz : </span> <span>-</span>
+                        <span class="font-bold">Informasi Hafalan : </span>
+                        <div class="flex gap-2 flex-wrap items-center mt-2">
+                            @if ($user->santri->informasi_hafalan)
+                                @foreach ($user->santri->informasi_hafalan as $item)
+                                    <div class="bg-primary-app text-white rounded-xl px-4">
+                                        Juz {{ $item }}
+                                    </div>
+                                @endforeach
+                            @endif
+
+                        </div>
                     </div>
 
                 </div>

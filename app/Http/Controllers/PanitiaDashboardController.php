@@ -4,14 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\SantriVerifiedSetoran;
 use App\Models\SantriVerifiedUjian;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 
 class PanitiaDashboardController extends Controller
 {
     public function index() {
-        $pendaftaranSetoran = SantriVerifiedSetoran::all();
-        $pendaftaranUjian = SantriVerifiedUjian::all();
+        $ujianSubQuery = SantriVerifiedUjian::select(DB::raw('MAX(id) as id'))
+        ->groupBy('santri_id');
+
+    $setoranSubQuery = SantriVerifiedSetoran::select(DB::raw('MAX(id) as id'))
+        ->groupBy('santri_id');
+
+        $pendaftaranSetoran = SantriVerifiedSetoran::whereIn('id', $setoranSubQuery)->get();
+        $pendaftaranUjian =  SantriVerifiedUjian::whereIn('id', $ujianSubQuery)->get();
 
         return view('dashboard.panitia', compact('pendaftaranSetoran', 'pendaftaranUjian'));
     }

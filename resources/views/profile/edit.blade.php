@@ -1,6 +1,6 @@
 <x-app-layout>
     @php
-        $items = ['1', '2', '3'];
+        $items = range(1, 30);
     @endphp
 
     <div class="mt-32 flex flex-col gap-6 max-w-6xl mx-auto w-full">

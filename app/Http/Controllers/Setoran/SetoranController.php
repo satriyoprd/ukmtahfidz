@@ -17,8 +17,8 @@ class SetoranController extends Controller
     public function indexSantri()
     {
         $santriVerified = SantriVerifiedSetoran::where('santri_id', Auth::user()->santri->id)->latest()->first();
-        
-        $ujianVerified = SantriVerifiedUjian::where('santri_id',Auth::user()->santri->id)->latest()->first();
+
+        $ujianVerified = SantriVerifiedUjian::where('santri_id', Auth::user()->santri->id)->latest()->first();
 
         $setoran = Setoran::where('santri_id', Auth::user()->santri->id)->get();
 
@@ -28,7 +28,12 @@ class SetoranController extends Controller
 
         $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
-        return view('dashboard.santri', compact('setoran', 'ujian', 'ujianVerified', 'santriVerified'));
+        $activeStepper = $ujianVerified->penguji_verified == '1' && $ujianVerified->panitia_verified == '1' ? ['Registrasi'] : [];
+        $ujianFirst = Ujian::where('santri_id', Auth::user()->santri->id)->latest()->first() ;
+
+        $activeStepper = $ujianFirst->nilai != null ? ['Registrasi', 'Ujian', 'Hasil Ujian'] : ['Registeasi', 'Ujian'];
+
+        return view('dashboard.santri', compact('setoran', 'ujian', 'ujianVerified', 'santriVerified', 'activeStepper'));
     }
 
     public function create()
@@ -58,7 +63,7 @@ class SetoranController extends Controller
             'nilai_adab' => 'required',
         ]);
 
-        
+
 
         $average = ($request->nilai_kelancaran + $request->nilai_makhraj + $request->nilai_lagu + $request->nilai_adab) / 4;
 

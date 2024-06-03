@@ -64,6 +64,34 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
     <script>
+        function dashboardSantriUjian() {
+            document.getElementById("dashboardTitle").innerHTML = "Ujian";
+            document.getElementById("tableUjian").style.display = "table";
+            document.getElementById("tableSetoran").style.display = "none";
+            document.getElementById("tableAbsen").style.display = "none";
+
+            document.getElementById("success-ujian").style.display = "flex";
+            document.getElementById("success-setoran").style.display = "none";
+
+            document.getElementById("process-ujian").style.display = "block";
+            document.getElementById("process-setoran").style.display = "none";
+        }
+
+        function dashboardSantriSetoran() {
+            document.getElementById("dashboardTitle").innerHTML = "Setoran";
+            document.getElementById("tableUjian").style.display = "none";
+            document.getElementById("tableSetoran").style.display = "table";
+            document.getElementById("tableAbsen").style.display = "none";
+
+            document.getElementById("success-ujian").style.display = "none";
+            document.getElementById("success-setoran").style.display = "flex";
+
+            document.getElementById("process-ujian").style.display = "none";
+            document.getElementById("process-setoran").style.display = "block";
+
+
+        }
+
         function dashboardUjian() {
             document.getElementById("dashboardTitle").innerHTML = "Ujian";
             document.getElementById("tableUjian").style.display = "table";
@@ -85,6 +113,8 @@
             document.getElementById("tableAbsen").style.display = "none";
             document.getElementById("tablePendaftaran").style.display = "none";
             document.getElementById("tabelPendaftarUjian").style.display = "none";
+
+
 
             var button = document.getElementById("dynamicButton");
             button.style.display = "block"
