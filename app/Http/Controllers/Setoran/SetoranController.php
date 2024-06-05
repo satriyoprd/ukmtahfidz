@@ -28,10 +28,17 @@ class SetoranController extends Controller
 
         $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
-        $activeStepper = $ujianVerified->penguji_verified == '1' && $ujianVerified->panitia_verified == '1' ? ['Registrasi'] : [];
-        $ujianFirst = Ujian::where('santri_id', Auth::user()->santri->id)->latest()->first() ;
 
-        $activeStepper = $ujianFirst->nilai != null ? ['Registrasi', 'Ujian', 'Hasil Ujian'] : ['Registeasi', 'Ujian'];
+        if ($ujianVerified) {
+            $activeStepper = $ujianVerified->penguji_verified == '1' && $ujianVerified->panitia_verified == '1' ? ['Registrasi'] : [];
+
+
+            $ujianFirst = Ujian::where('santri_id', Auth::user()->santri->id)->latest()->first();
+
+            $activeStepper = $ujianFirst->nilai != null ? ['Registrasi', 'Ujian', 'Hasil Ujian', 'Selesai'] : ['Registeasi', 'Ujian'];
+        } else {
+            $activeStepper = [];
+        }
 
         return view('dashboard.santri', compact('setoran', 'ujian', 'ujianVerified', 'santriVerified', 'activeStepper'));
     }

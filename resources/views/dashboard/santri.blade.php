@@ -130,7 +130,7 @@
                     </table>
                 @endif
             @else
-                <div class="bg-yellow-100 p-4 rounded-lg">
+                <div class="bg-yellow-100 p-4 rounded-lg my-4">
                     <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
                     <p class="text-yellow-800">Kamu belum mendaftar program ujian tahfidz, silahkan <a
                             class="text-bold underline text-yellow-900" href={{ route('program.tahfidz') }}>Daftar
