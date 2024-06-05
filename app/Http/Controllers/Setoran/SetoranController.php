@@ -29,13 +29,15 @@ class SetoranController extends Controller
         $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
 
-        if ($ujianVerified && $ujianVerified->nilai != null) {
+        if ($ujianVerified) {
             $activeStepper = $ujianVerified->penguji_verified == '1' && $ujianVerified->panitia_verified == '1' ? ['Registrasi'] : [];
 
 
             $ujianFirst = Ujian::where('santri_id', Auth::user()->santri->id)->latest()->first();
 
-            $activeStepper = $ujianFirst->nilai != null ? ['Registrasi', 'Ujian', 'Hasil Ujian', 'Selesai'] : ['Registeasi', 'Ujian'];
+            if ($ujianVerified->nilai != null) {
+                $activeStepper = $ujianFirst->nilai != null ? ['Registrasi', 'Ujian', 'Hasil Ujian', 'Selesai'] : ['Registeasi', 'Ujian'];
+            }
         } else {
             $activeStepper = [];
         }
