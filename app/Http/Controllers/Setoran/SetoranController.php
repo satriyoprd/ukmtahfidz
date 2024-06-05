@@ -29,7 +29,7 @@ class SetoranController extends Controller
         $setoran->load('penguji.user', 'santri.user', 'nilais', 'surats');
 
 
-        if ($ujianVerified) {
+        if ($ujianVerified && $ujianVerified->nilai != null) {
             $activeStepper = $ujianVerified->penguji_verified == '1' && $ujianVerified->panitia_verified == '1' ? ['Registrasi'] : [];
 
 
