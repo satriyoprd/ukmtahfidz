@@ -11,6 +11,7 @@ use App\Models\Ujian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UjianController extends Controller
 {
@@ -93,15 +94,16 @@ class UjianController extends Controller
 
     public function update(Request $request, Ujian $ujian)
     {
+
         $request->validate([
             'penguji_id' => 'required',
             'santri_id' => 'required',
             'tempat_id' => 'required',
             'jam' => 'required',
-            'surat' => 'nullable',
+            'surat' => 'required',
             'tanggal_ujian' => 'required',
-            'jumlah_ujian' => 'nullable',
-            'catatan' => 'nullable',
+            'jumlah_ujian' => 'required',
+            'catatan' => 'required',
             'nilai_kelancaran' => 'required',
             'nilai_makhraj' => 'required',
             'nilai_lagu' => 'required',
@@ -109,6 +111,7 @@ class UjianController extends Controller
         ]);
 
         $average = ($request->nilai_kelancaran + $request->nilai_makhraj + $request->nilai_lagu + $request->nilai_adab) / 4;
+
 
         $ujian->update([
             'penguji_id' => $request->penguji_id,
@@ -121,7 +124,6 @@ class UjianController extends Controller
             'nilai' => $average,
         ]);
 
-
         if(isset($request->surat)){
             $suratUjian = $ujian->surats->pluck('id')->toArray();
 
@@ -133,6 +135,7 @@ class UjianController extends Controller
         }
 
         $nilaiUjian = $ujian->nilais->pluck('id')->toArray();
+
 
         if(empty($nilaiUjian)){
             $ujian->nilais()->attach([
