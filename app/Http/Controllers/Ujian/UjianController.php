@@ -67,6 +67,27 @@ class UjianController extends Controller
         return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id)->with('success', 'Data has been saved successfully');
     }
 
+    public function updatePanitia(Request $request, Ujian $ujian)
+    {
+        $request->validate([
+            'penguji_id' => 'required',
+            'santri_id' => 'required',
+            'tempat_id' => 'required',
+            'jam' => 'required',
+            'tanggal_ujian' => 'required|date',
+        ]);
+
+        $ujian->update([
+            'penguji_id' => $request->penguji_id,
+            'santri_id' => $request->santri_id,
+            'tempat_id' => $request->tempat_id,
+            'jam' => $request->jam,
+            'tanggal_ujian' => $request->tanggal_ujian,
+        ]);
+
+        return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id)->with('success', 'Data has been saved successfully');
+    }
+
     public function show(Ujian $ujian)
     {
         $ujian->load('penguji.user', 'santri.user', 'nilais', 'surats', 'tempat');

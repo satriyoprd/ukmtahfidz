@@ -96,6 +96,8 @@ Route::get('/penguji/setoran', [SetoranController::class, 'create'])->name('dash
 Route::get('/penguji/setoran/{setoran}', [SetoranController::class, 'edit'])->name('dashboard.penguji.setoran.update');
 
 
+Route::put('/ujian/panitia/{ujian}', [UjianController::class, 'updatePanitia'])->name('ujian.update.panitia');
+
 Route::get('/penguji/ujian', [UjianController::class, 'create'])->name('dashboard.penguji.ujian.create');
 
 Route::get('/penguji/ujian/{ujian}', [UjianController::class, 'edit'])->name('dashboard.penguji.ujian.update');
