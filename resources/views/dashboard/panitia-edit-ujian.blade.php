@@ -35,11 +35,9 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('ujian.update', $ujian->id) }}">
+            <form method="POST" action="{{ route('ujian.update.panitia', $ujian->id) }}">
                 @csrf
-                @method('PATCH')
-
-
+                @method('PUT')
 
                 <div class="row mb-3">
                     <div class="col-2 my-auto">
@@ -57,7 +55,7 @@
 
                 <div class="row mb-3">
                     <div class="col-2 my-auto">
-                        <label for="inputTglSetoran" class="form-label mb-0">Tgl Setoran</label>
+                        <label for="inputTglSetoran" class="form-label mb-0">Waktu Ujian</label>
                     </div>
                     <div class="col-10">
                         <input type="time" class="form-control form-control-sm" id="inputTglSetoran" name="jam"
@@ -74,7 +72,7 @@
                     </div>
                     <div class="col-10">
                         <select type="text" class="form-control form-control-sm" id="inputNamaSantri"
-                            name="tempat_id" value="{{ old('tempat_id') }}" required>
+                            name="tempat_id" required>
                             <option disabled selected>Pilih Tempat Ujian</option>
                             @foreach ($tempat as $t)
                                 <option value={{ $t->id }}
@@ -87,6 +85,27 @@
                         @enderror
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <div class="col-2 my-auto">
+                        <label for="inputPenguji" class="form-label mb-0">Nama Penguji</label>
+                    </div>
+                    <div class="col-10">
+                        <select type="text" class="form-control form-control-sm" id="inputPenguji" name="penguji_id"
+                            required>
+                            <option disabled>Pilih Nama Penguji</option>
+                            @foreach ($penguji as $p)
+                                <option value={{ $p->id }}
+                                    {{ $ujian->penguji->id == $p->id ? 'selected' : '' }}>
+                                    {{ $p->user->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('penguji_id')
+                            <div class="text-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
 
 
                 <div class="row mb-3">
@@ -98,7 +117,8 @@
                             <option disabled selected>Pilih Nama Santri</option>
                             @foreach ($santri as $s)
                                 <option value="{{ $s->id }}"
-                                    {{ old('santri_id', $ujian->santri->id ?? '') == $s->santri->id ? 'selected' : '' }}>
+                                    {{ $ujian->santri->id == $s->santri->id ? 'selected' : '' }}>
+
                                     {{ $s->santri->user->name }}
                                 </option>
                             @endforeach

@@ -52,7 +52,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-2 my-auto">
-                            <label for="inputTglSetoran" class="form-label mb-0">Tgl Setoran</label>
+                            <label for="inputTglSetoran" class="form-label mb-0">Waktu Ujian</label>
                         </div>
                         <div class="col-10">
                             <input type="time" class="form-control form-control-sm" id="inputTglSetoran"
@@ -72,7 +72,7 @@
                                 <option disabled selected>Pilih Nama Penguji</option>
                                 @foreach ($penguji as $p)
                                     <option value={{ $p->id }}>{{ $p->user->name }}
-                                        {{ old('penguji_id') == $p->id ? 'selected' : '' }}
+                                        {{ old('penguji_id') == $p->id ? 'selected' : '' }}>
                                     </option>
                                 @endforeach
                             </select>

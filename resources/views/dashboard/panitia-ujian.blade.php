@@ -75,8 +75,11 @@
                 <thead>
                     <tr>
                         <th class="text-center" style="background: #CCCF95; ">Tanggal Ujian</th>
+                        <th class="text-center" style="background: #CCCF95; ">Jam Ujian</th>
                         <th class="text-center" style="background: #CCCF95;">Penguji</th>
                         <th class="text-center" style="background: #CCCF95;">Santri</th>
+                        <th class="text-center" style="background: #CCCF95;">Tempat</th>
+
 
                         <th class="text-center" style="background: #CCCF95; ">Aksi</th>
                     </tr>
@@ -84,9 +87,11 @@
                 <tbody>
                     @foreach ($ujian as $u)
                         <tr>
-                            <td>{{ $u->created_at }}</td>
+                            <td>{{ $u->tanggal_ujian }}</td>
+                            <td>{{ $u->jam }}</td>
                             <td>{{ $u->santri->user->name }}</td>
                             <td>{{ $u->penguji->user->name }}</td>
+                            <td>{{ $u->tempat->name }}</td>
 
                             <td class="text-center"><a href={{ route('dashboard.panitia.ujian.edit', $u->id) }}
                                     class="btn btn-sm" type="button"><i class="bi bi-pencil-fill"></i></a>

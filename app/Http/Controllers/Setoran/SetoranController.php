@@ -44,7 +44,7 @@ class SetoranController extends Controller
                 $ujianFirst = Ujian::where('santri_id', Auth::user()->santri->id)->latest()->first();
 
              
-                if ($ujianFirst->nilai != null) {
+                if ($ujianFirst && $ujianFirst->nilai != null) {
                     $activeStepper = $ujianFirst->nilai != null ? ['Registrasi', 'Ujian', 'Hasil Ujian'] : ['Registrasi', 'Ujian'];
                     return view('dashboard.santri-dashboard-ujian', compact('ujian', 'ujianVerified', 'activeStepper'));
                 }
@@ -54,9 +54,6 @@ class SetoranController extends Controller
                 $activeStepper = ['Registrasi'];
                 return view('dashboard.santri-dashboard-ujian', compact('ujian', 'ujianVerified', 'activeStepper'));
             }
-
-
-
 
         }
 
