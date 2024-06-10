@@ -61,4 +61,36 @@ class SantriVerifiedUjianController extends Controller
 
         return redirect()->route('dashboard.admin.setoran')->with('Success', 'Berhasil merubah data!');
     }
+
+    public function updateDone(Request $request, SantriVerifiedUjian $santriVerifiedUjian)
+    {
+        if ($request->user()->role_id == 2) {
+            $santriVerifiedUjian->update([
+                'panitia_done' => $request->panitia_done,
+            ]);
+
+            return redirect()->route('dashboard.panitia')->with('Success', 'Berhasil merubah data!');
+        } elseif ($request->user()->role_id == 4) {
+            $santriVerifiedUjian->update([
+                'penguji_done' => $request->penguji_done,
+            ]);
+
+            return RouteHelper::getRedirect($request->user()->role_id)->with('Success', 'Berhasil merubah data!');
+
+        } elseif ($request->user()->role_id == config('constants.ROLE_ADMIN')) {
+            if (isset($request->panitia_done)) {
+                $santriVerifiedUjian->update([
+                    'panitia_done' => $request->panitia_done,
+                ]);
+            } elseif (isset($request->penguji_done)) {
+                $santriVerifiedUjian->update([
+                    'penguji_done' => $request->penguji_done,
+                ]);
+            }
+
+            return redirect()->intended('/admin/ujian')->with('success', 'Data berhasil di ubah!');
+        }
+
+        return redirect()->route('dashboard.admin.setoran')->with('Success', 'Berhasil merubah data!');
+    }
 }

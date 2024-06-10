@@ -53,6 +53,7 @@ Route::put('/santri/verified/setoran/{santriVerifiedSetoran}', [SantriVerifiedSe
 Route::get('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'index'])->name('santri-verified-ujian.index');
 Route::post('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'store'])->name('santri-verified-ujian.store');
 Route::put('/santri/verified/ujian/{santriVerifiedUjian}', [SantriVerifiedUjianController::class, 'update'])->name('santri-verified-ujian.update');
+Route::put('/santri/verified/ujian/{santriVerifiedUjian}', [SantriVerifiedUjianController::class, 'updateDone'])->name('santri-verified-ujian.update.done');
 
 
 Route::get('/santri/setoran', [SetoranController::class, 'indexSantriSetoran'])->name('dashboard.santri');
