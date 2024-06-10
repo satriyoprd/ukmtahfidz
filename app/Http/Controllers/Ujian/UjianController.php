@@ -51,36 +51,16 @@ class UjianController extends Controller
             'santri_id' => 'required',
             'tempat_id' => 'required',
             'jam' => 'required',
-            'surat' => 'required',
             'tanggal_ujian' => 'required|date',
-            'jumlah_ujian' => 'required',
-            'catatan' => 'nullable',
-            'nilai_kelancaran' => 'required',
-            'nilai_makhraj' => 'required',
-            'nilai_lagu' => 'required',
-            'nilai_adab' => 'required',
         ]);
 
-        $average = ($request->nilai_kelancaran + $request->nilai_makhraj + $request->nilai_lagu + $request->nilai_adab) / 4;
 
-        $ujian = Ujian::create([
+        Ujian::create([
             'penguji_id' => $request->penguji_id,
             'santri_id' => $request->santri_id,
             'tempat_id' => $request->tempat_id,
             'jam' => $request->jam,
             'tanggal_ujian' => $request->tanggal_ujian,
-            'jumlah_ujian' => '1 juz',
-            'catatan' => $request->catatan,
-            'nilai' => $average,
-        ]);
-
-        $ujian->surats()->attach($request->surat);
-
-        $ujian->nilais()->attach([
-            1 => ['nilai' => $request->nilai_kelancaran],
-            2 => ['nilai' => $request->nilai_makhraj],
-            3 => ['nilai' => $request->nilai_lagu],
-            4 => ['nilai' => $request->nilai_adab],
         ]);
 
         return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id)->with('success', 'Data has been saved successfully');
@@ -118,9 +98,9 @@ class UjianController extends Controller
             'santri_id' => 'required',
             'tempat_id' => 'required',
             'jam' => 'required',
-            'surat' => 'required',
+            'surat' => 'nullable',
             'tanggal_ujian' => 'required',
-            'jumlah_ujian' => 'required',
+            'jumlah_ujian' => 'nullable',
             'catatan' => 'nullable',
             'nilai_kelancaran' => 'required',
             'nilai_makhraj' => 'required',
@@ -135,21 +115,40 @@ class UjianController extends Controller
             'santri_id' => $request->santri_id,
             'tempat_id' => $request->tempat_id,
             'jam' => $request->jam,
-            'surat' => $request->surat,
             'tanggal_ujian' => $request->tanggal_ujian,
             'jumlah_ujian' => $request->jumlah_ujian,
             'catatan' => $request->catatan,
             'nilai' => $average,
         ]);
 
-        $ujian->surats()->sync($request->surat);
 
-        $ujian->nilais()->sync([
-            1 => ['nilai' => $request->nilai_kelancaran],
-            2 => ['nilai' => $request->nilai_makhraj],
-            3 => ['nilai' => $request->nilai_lagu],
-            4 => ['nilai' => $request->nilai_adab],
-        ]);
+        if(isset($request->surat)){
+            $suratUjian = $ujian->surats->pluck('id')->toArray();
+
+            if(empty($suratUjian)){
+                $ujian->surats()->attach($request->surat);
+            }else{
+                $ujian->surats()->sync($request->surat);
+            }
+        }
+
+        $nilaiUjian = $ujian->nilais->pluck('id')->toArray();
+
+        if(empty($nilaiUjian)){
+            $ujian->nilais()->attach([
+                1 => ['nilai' => $request->nilai_kelancaran],
+                2 => ['nilai' => $request->nilai_makhraj],
+                3 => ['nilai' => $request->nilai_lagu],
+                4 => ['nilai' => $request->nilai_adab],
+            ]);
+        }else{
+            $ujian->nilais()->sync([
+                1 => ['nilai' => $request->nilai_kelancaran],
+                2 => ['nilai' => $request->nilai_makhraj],
+                3 => ['nilai' => $request->nilai_lagu],
+                4 => ['nilai' => $request->nilai_adab],
+            ]);
+        }
 
         return \App\Helper\RouteHelper::getRedirect(Auth::user()->role->id);
     }
