@@ -54,7 +54,12 @@ Route::get('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'ind
 Route::post('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'store'])->name('santri-verified-ujian.store');
 Route::put('/santri/verified/ujian/{santriVerifiedUjian}', [SantriVerifiedUjianController::class, 'update'])->name('santri-verified-ujian.update');
 
-Route::get('/santri', [SetoranController::class, 'indexSantri'])->name('dashboard.santri');
+
+Route::get('/santri/setoran', [SetoranController::class, 'indexSantriSetoran'])->name('dashboard.santri');
+
+Route::get('/santri/ujian', [SetoranController::class, 'indexSantriUjian'])->name('dashboard.santri.ujian.index');
+
+Route::get('/santri/detail-ujian/{ujian}', [SantriController::class, 'detailUjian'])->name('dashboard.santri.detail');
 
 Route::get('/santri/setoran/{id}', [SantriController::class, 'indexNilaiSetoran'])->name('dashboard.santri.setoran');
 
@@ -94,7 +99,15 @@ Route::get('/penguji/ujian', [UjianController::class, 'create'])->name('dashboar
 
 Route::get('/penguji/ujian/{ujian}', [UjianController::class, 'edit'])->name('dashboard.penguji.ujian.update');
 
-Route::get('/panitia', [PanitiaDashboardController::class, 'index'])->name('dashboard.panitia');
+Route::get('/panitia/ujian', [PanitiaDashboardController::class, 'indexUjianSantri'])->name('dashboard.panitia.ujian');
+
+Route::get('/panitia/pendaftaran-ujian', [PanitiaDashboardController::class, 'indexPendaftaranUjian'])->name('dashboard.panitia.pendaftaran-ujian');
+
+Route::get('/panitia/pendaftaran-setoran', [PanitiaDashboardController::class, 'indexPendaftaranSetoran'])->name('dashboard.panitia');
+
+Route::get('/panitia/create-ujian', [PanitiaDashboardController::class, 'createUjian'])->name('dashboard.panitia.ujian.create');
+
+Route::get('/panitia/edit-ujian/{ujian}', [PanitiaDashboardController::class, 'editUjian'])->name('dashboard.panitia.ujian.edit');
 
 Route::get('/panitia/pendaftaran-setoran/{id}', [PanitiaDashboardController::class, 'indexSetoran'])->name('dashboard.panitia.pendaftaranSetoran');
 

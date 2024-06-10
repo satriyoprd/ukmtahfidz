@@ -18,13 +18,13 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/dashboard';
-    public const SANTRI = '/santri';
+    public const SANTRI = '/santri/setoran';
 
     public const PENGUJI = '/penguji';
 
     public const ADMIN = '/admin';
 
-    public const PANITIA = '/panitia';
+    public const PANITIA = '/panitia/pendaftaran-setoran';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

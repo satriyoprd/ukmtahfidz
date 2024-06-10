@@ -1,4 +1,4 @@
-{{-- <x-app-layout>
+<x-app-layout>
     <section id="dashboard" class="mt-5 pb-0">
         <div class="container">
 
@@ -7,7 +7,7 @@
             <div class="welcome mb-5">
                 <div class="row">
                     <div class="col-3">
-                        <img src="assets/img/welcome.png" alt="" class="img-fluid">
+                        <img src="/assets/img/welcome.png" alt="" class="img-fluid">
                     </div>
                     <div class="col-9 my-auto">
                         <div class="section-title pb-0">
@@ -18,10 +18,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <x-stepper :active="$activeStepper" />
 
             @if (session('success'))
                 <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)"
@@ -44,8 +40,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu"
                             style="--bs-dropdown-link-active-bg: none">
-                            <li><a class="dropdown-item text-black"
-                                    href="{{ route('dashboard.santri') }}">Setoran</a>
+                            <li><a class="dropdown-item text-black" href="{{ route('dashboard.santri') }}">Setoran</a>
                             </li>
                             <li><a class="dropdown-item text-black"
                                     href="{{ route('dashboard.santri.ujian.index') }}">Ujian</a>
@@ -64,90 +59,13 @@
                 </div>
             </div>
 
-            @if ($ujianVerified)
-                @if ($ujianVerified->penguji_verified === 0 || $ujianVerified->panitia_verified === 0)
-                    <div class="bg-yellow-100 p-4 rounded-lg">
-                        <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
-                        <p class="text-yellow-800">Kamu belum mendaftar program setoran tahfidz, silahkan <a
-                                class="text-bold underline text-yellow-900" href={{ route('program.tahfidz') }}>Daftar
-                                di sini</a>
-                    </div>
-                @elseif (
-                    ($ujianVerified->penguji_verified === 1 && is_null($ujianVerified->panitia_verified)) ||
-                        (is_null($ujianVerified->penguji_verified) && $ujianVerified->panitia_verified === 1) ||
-                        (is_null($ujianVerified->penguji_verified) && is_null($ujianVerified->panitia_verified)))
-                    <div id="process-ujian" class="bg-green-100 p-4 rounded-lg">
-                        <p class="text-2xl font-bold text-green-700">Menunggu Status Pendaftaran <i
-                                class="fa-solid fa-clock ml-2"></i></p>
-                        <p class="text-gray-800">Kamu sudah mendaftar program ujian tahfidz, mohon menunggu proses
-                            seleksi.
-                    </div>
-                @elseif ($ujianVerified->penguji_verified === 1 && $ujianVerified->panitia_verified === 1)
-                    <div id="success-ujian" style="display: none;"
-                        class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
-                        <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
-                        <p class="text-xl font-medium mb-0">
-                            Selamat! Anda telah <strong>diterima</strong> menjadi bagian program tahfidz ujian UKM
-                            Tahfidz
-                            Universitas
-                            Airlangga.
-                        </p>
-
-                    </div>
-                    <table id="tableUjian" style="display: none;" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Ujian</th>
-                                <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
-                                <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Hafalan</th>
-                                <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
-                                <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
-                                <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($ujian as $j)
-                                <tr>
-                                    <td>{{ $j->tanggal_ujian }}</td>
-                                    <td class="flex flex-wrap gap-1 text-white">
-                                        @foreach ($j->surats as $item)
-                                            <div class="bg-primary-app text-xs p-2 rounded">
-                                                {{ $item->name }}
-                                            </div>
-                                        @endforeach
-                                    </td>
-                                    <td>{{ $j->jumlah_ujian }}</td>
-                                    <td>{{ $j->nilai }}</td>
-
-                                    <td>{{ $j->catatan }}</td>
-
-                                    <td class="text-center"><a href={{ route('dashboard.santri.ujian', $j->id) }}
-                                            class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @endif
-            @else
-                <div class="bg-yellow-100 p-4 rounded-lg my-4">
-                    <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
-                    <p class="text-yellow-800">Kamu belum mendaftar program ujian tahfidz, silahkan <a
-                            class="text-bold underline text-yellow-900" href={{ route('program.tahfidz') }}>Daftar
-                            di sini</a>
-                </div>
-
-            @endif
-
-
-            <div id="tableAbsen" style="display: none;">Under Maintenance</div>
 
             @if ($santriVerified)
                 @if ($santriVerified->penguji_verified === 0 || $santriVerified->panitia_verified === 0)
-                    <div class="bg-yellow-100 p-4 rounded-lg">
-                        <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
-                        <p class="text-yellow-800">Kamu belum mendaftar program setoran tahfidz, silahkan <a
-                                class="text-bold underline text-yellow-900" href={{ route('program.tahfidz') }}>Daftar
+                    <div class="bg-red-100 p-4 rounded-lg my-4">
+                        <p class="text-2xl font-bold text-red-700">Pemberitahuan</p>
+                        <p class="text-red-800">Pendaftaran program tahfidz setoran di tolak, kamu bisa mendaftar lagi <a
+                                class="text-bold underline text-red-900" href={{ route('program.tahfidz') }}>Daftar
                                 di sini</a>
                     </div>
                 @elseif (
@@ -225,15 +143,9 @@
                             di sini</a>
                 </div>
             @endif
-
-
-
-
-
-
         </div>
     </section>
 
 
 
-</x-app-layout> --}}
+</x-app-layout>

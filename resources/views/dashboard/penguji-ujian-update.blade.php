@@ -78,7 +78,7 @@
                             <option disabled selected>Pilih Tempat Ujian</option>
                             @foreach ($tempat as $t)
                                 <option value={{ $t->id }}
-                                    {{ old('ujian', $ujian->tempat->id ?? '') == $t->id ? 'selected' : '' }}>
+                                    {{ old('tempat_id', $ujian->tempat->id ?? '') == $t->id ? 'selected' : '' }}>
                                     {{ $t->name }}</option>
                             @endforeach
                         </select>

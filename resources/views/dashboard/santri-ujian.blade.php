@@ -2,7 +2,7 @@
     <section id="dashboard" class="mt-5 pb-0">
         <div class="container">
 
-            <p><a class="text-black" href={{ route('dashboard.santri') }}>Beranda</a> / <a href="">Hafalan Saya</a>
+            <p><a class="text-black" href={{ route('dashboard.santri.ujian.index') }}>Beranda</a> / <a href="">Nilai Hasil Ujian</a>
             </p>
 
             <div class="section-title mt-5">

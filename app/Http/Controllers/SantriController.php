@@ -6,6 +6,7 @@ use App\Models\Nilai;
 use App\Models\Setoran;
 use App\Models\Ujian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SantriController extends Controller
 {
@@ -29,6 +30,12 @@ class SantriController extends Controller
         $ujian = Ujian::find($id);
 
         return view("dashboard.santri-ujian", compact('ujian'));
+    }
+
+    public function detailUjian(Ujian $ujian)
+    {
+        $user = Auth::user();
+        return view('dashboard.santri-detail-ujian', compact('user', 'ujian'));
     }
 
 

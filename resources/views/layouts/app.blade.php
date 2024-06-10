@@ -101,9 +101,8 @@
             document.getElementById("tabelPendaftarUjian").style.display = "none";
 
             var button = document.getElementById("dynamicButton");
-            button.style.display = "block"
-            button.innerHTML = "Tambah Data Ujian";
-            button.href = "{{ route('dashboard.penguji.ujian.create') }}";
+            button.style.display = "none"
+
         }
 
         function dashboardSetoran() {
