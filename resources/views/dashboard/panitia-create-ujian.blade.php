@@ -71,8 +71,9 @@
                                 name="penguji_id" required>
                                 <option disabled selected>Pilih Nama Penguji</option>
                                 @foreach ($penguji as $p)
-                                    <option value={{ $p->id }}>{{ $p->user->name }}
+                                    <option value={{ $p->id }}
                                         {{ old('penguji_id') == $p->id ? 'selected' : '' }}>
+                                        {{ $p->user->name }}
                                     </option>
                                 @endforeach
                             </select>

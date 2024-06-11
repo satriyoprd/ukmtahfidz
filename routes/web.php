@@ -53,7 +53,7 @@ Route::put('/santri/verified/setoran/{santriVerifiedSetoran}', [SantriVerifiedSe
 Route::get('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'index'])->name('santri-verified-ujian.index');
 Route::post('/santri/verified/ujian', [SantriVerifiedUjianController::class, 'store'])->name('santri-verified-ujian.store');
 Route::put('/santri/verified/ujian/{santriVerifiedUjian}', [SantriVerifiedUjianController::class, 'update'])->name('santri-verified-ujian.update');
-Route::put('/santri/verified/ujian/{santriVerifiedUjian}', [SantriVerifiedUjianController::class, 'updateDone'])->name('santri-verified-ujian.update.done');
+Route::put('/santri/done/ujian/{santriVerifiedUjian}', [SantriVerifiedUjianController::class, 'updateDone'])->name('santri-verified-ujian.update.done');
 
 
 Route::get('/santri/setoran', [SetoranController::class, 'indexSantriSetoran'])->name('dashboard.santri');
@@ -79,12 +79,18 @@ Route::get('/penguji', function () {
 
     $pendaftaranSetoran = SantriVerifiedSetoran::whereIn('id', $setoranSubQuery)->get();
 
-    $pendaftaranUjian = SantriVerifiedUjian::whereIn('id', $ujianSubQuery)->get();
+    $pendaftaranUjian = SantriVerifiedUjian::whereIn('id', $ujianSubQuery)->where('panitia_done', null)->orWhere('penguji_done', null)->get();
+
+    $ujianDiterima = SantriVerifiedUjian::whereIn('id', $ujianSubQuery)
+        ->where('panitia_verified', true)
+        ->where('penguji_verified', true)
+        ->get();
+
 
     $setoran->load('penguji.user', 'santri.user', 'nilais');
     $ujian->load('penguji.user', 'santri.user', 'nilais');
 
-    return view('dashboard.penguji', compact('setoran', 'pendaftaranSetoran', 'ujian', 'pendaftaranUjian'));
+    return view('dashboard.penguji', compact('setoran', 'pendaftaranSetoran', 'ujian', 'pendaftaranUjian', 'ujianDiterima'));
 })->name('dashboard.penguji');
 
 Route::get('/peguji/setoran/{id}', [PengujiDashboardController::class, 'indexDetailSantri'])->name('dashboard.penguji.detail-santri');

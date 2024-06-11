@@ -57,6 +57,16 @@ class SantriVerifiedUjianController extends Controller
             }
 
             return redirect()->intended('/admin/ujian')->with('success', 'Data berhasil di ubah!');
+        } else if ($request->user()->role_id == config('constants.ROLE_SANTRI')) {
+
+       
+
+            $santriVerifiedUjian->update([
+                'penguji_verified' => $request->penguji_verified,
+                'panitia_verified' => $request->panitia_verified,
+            ]);
+
+            return redirect()->route('dashboard.santri.ujian.index')->with('success', 'Data berhasil di ubah!');
         }
 
         return redirect()->route('dashboard.admin.setoran')->with('Success', 'Berhasil merubah data!');
@@ -69,7 +79,7 @@ class SantriVerifiedUjianController extends Controller
                 'panitia_done' => $request->panitia_done,
             ]);
 
-            return redirect()->route('dashboard.panitia')->with('Success', 'Berhasil merubah data!');
+            return redirect()->route('dashboard.panitia.pendaftaran-ujian')->with('Success', 'Berhasil merubah data!');
         } elseif ($request->user()->role_id == 4) {
             $santriVerifiedUjian->update([
                 'penguji_done' => $request->penguji_done,

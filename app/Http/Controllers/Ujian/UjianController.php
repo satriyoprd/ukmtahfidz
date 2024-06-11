@@ -69,6 +69,7 @@ class UjianController extends Controller
 
     public function updatePanitia(Request $request, Ujian $ujian)
     {
+
         $request->validate([
             'penguji_id' => 'required',
             'santri_id' => 'required',
@@ -117,13 +118,6 @@ class UjianController extends Controller
     {
 
         $request->validate([
-            'penguji_id' => 'required',
-            'santri_id' => 'required',
-            'tempat_id' => 'required',
-            'jam' => 'required',
-            'surat' => 'required',
-            'tanggal_ujian' => 'required',
-            'jumlah_ujian' => 'required',
             'catatan' => 'required',
             'nilai_kelancaran' => 'required',
             'nilai_makhraj' => 'required',
@@ -135,22 +129,16 @@ class UjianController extends Controller
 
 
         $ujian->update([
-            'penguji_id' => $request->penguji_id,
-            'santri_id' => $request->santri_id,
-            'tempat_id' => $request->tempat_id,
-            'jam' => $request->jam,
-            'tanggal_ujian' => $request->tanggal_ujian,
-            'jumlah_ujian' => $request->jumlah_ujian,
             'catatan' => $request->catatan,
             'nilai' => $average,
         ]);
 
-        if(isset($request->surat)){
+        if (isset($request->surat)) {
             $suratUjian = $ujian->surats->pluck('id')->toArray();
 
-            if(empty($suratUjian)){
+            if (empty($suratUjian)) {
                 $ujian->surats()->attach($request->surat);
-            }else{
+            } else {
                 $ujian->surats()->sync($request->surat);
             }
         }
@@ -158,14 +146,14 @@ class UjianController extends Controller
         $nilaiUjian = $ujian->nilais->pluck('id')->toArray();
 
 
-        if(empty($nilaiUjian)){
+        if (empty($nilaiUjian)) {
             $ujian->nilais()->attach([
                 1 => ['nilai' => $request->nilai_kelancaran],
                 2 => ['nilai' => $request->nilai_makhraj],
                 3 => ['nilai' => $request->nilai_lagu],
                 4 => ['nilai' => $request->nilai_adab],
             ]);
-        }else{
+        } else {
             $ujian->nilais()->sync([
                 1 => ['nilai' => $request->nilai_kelancaran],
                 2 => ['nilai' => $request->nilai_makhraj],

@@ -35,179 +35,276 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('ujian.update', $ujian->id) }}">
-                @csrf
-                @method('PATCH')
-
-                <input type="hidden" name="penguji_id" value={{ Auth::user()->penguji->id }}>
-
-                <div class="row mb-3">
-                    <div class="col-2 my-auto">
-                        <label for="inputTglSetoran" class="form-label mb-0">Tgl Ujian</label>
-                    </div>
-                    <div class="col-10">
-                        <input type="date" class="form-control form-control-sm" id="inputTglSetoran"
-                            name="tanggal_ujian" value="{{ old('tanggal_ujian', $ujian->tanggal_ujian ?? '') }}"
-                            required>
-                        @error('tanggal_ujian')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
+            <div class="mt-4">
+                <div class="text-xl font-semibold">
+                    Data Santri
                 </div>
 
-                <div class="row mb-3">
-                    <div class="col-2 my-auto">
-                        <label for="inputTglSetoran" class="form-label mb-0">Tgl Setoran</label>
+                <div class="border-gray-500 border  rounded-sm shadow-sm p-4 mt-2 flex flex-col gap-6">
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Nama Lengkap :
+                        </div>
+
+                        <div>
+                            {{ $ujian->santri->user->name }}
+                        </div>
                     </div>
-                    <div class="col-10">
-                        <input type="time" class="form-control form-control-sm" id="inputTglSetoran" name="jam"
-                            value="{{ old('jam', $ujian->jam ?? '') }}" required>
-                        @error('jam')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Status Santri
+                        </div>
+
+                        <div>
+                            @if ($ujian->santri->jumlah_hafalan > 3)
+                                Santri Khusus
+                            @else
+                                Santri Regular
+                            @endif
+
+                        </div>
                     </div>
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Nomor Induk Mahasiswa :
+                        </div>
+
+                        <div>
+                            {{ $ujian->santri->nim }}
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Nomor Handphone :
+                        </div>
+
+                        <div>
+                            {{ $ujian->santri->user->phone }}
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Jumlah Hafalan :
+                        </div>
+
+                        <div>
+                            {{ $ujian->santri->jumlah_hafalan }} Juz
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Informasi Juz :
+                        </div>
+
+                        <div>
+                            {{ $ujian->santri->jumlah_hafalan }} Juz
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Fakultas :
+                        </div>
+
+                        <div>
+                            {{ $ujian->santri->major->faculty->name }}
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 items-center">
+                        <div class="font-semibold">
+                            Jurusan :
+                        </div>
+
+                        <div>
+                            {{ $ujian->santri->major->name }}
+                        </div>
+                    </div>
+
+
                 </div>
+            </div>
 
-                <div class="row mb-3">
-                    <div class="col-2 my-auto">
-                        <label for="inputNamaSantri" class="form-label mb-0">Tempat Ujian</label>
-                    </div>
-                    <div class="col-10">
-                        <select type="text" class="form-control form-control-sm" id="inputNamaSantri"
-                            name="tempat_id" value="{{ old('tempat_id') }}" required>
-                            <option disabled selected>Pilih Tempat Ujian</option>
-                            @foreach ($tempat as $t)
-                                <option value={{ $t->id }}
-                                    {{ old('tempat_id', $ujian->tempat->id ?? '') == $t->id ? 'selected' : '' }}>
-                                    {{ $t->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('tempat_id')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                
+            <div class="flex flex-col gap-6 mt-8">
 
-                <div class="row mb-3">
-                    <div class="col-2 my-auto">
-                        <label for="inputNamaSantri" class="form-label mb-0">Nama Santri</label>
-                    </div>
-                    <div class="col-10">
-                        <select class="form-control form-control-sm" id="inputNamaSantri" name="santri_id" required>
-                            <option disabled selected>Pilih Nama Santri</option>
-                            @foreach ($santri as $s)
-                                <option value="{{ $s->id }}"
-                                    {{ old('santri_id', $ujian->santri->id ?? '') == $s->santri->id ? 'selected' : '' }}>
-                                    {{ $s->santri->user->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('santri_id')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
+                <form method="POST" action="{{ route('ujian.update', $ujian->id) }}">
+                    @csrf
+                    @method('PUT')
 
-                <div class="row mb-3">
-                    <div class="col-2 my-auto">
-                        <label for="surat" class="form-label mb-0">Surat</label>
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
+                            <label for="inputTglSetoran" class="form-label mb-0">Tgl Ujian</label>
+                        </div>
+                        <div class="col-10">
+                            <input type="date" class="form-control form-control-sm" id="inputTglSetoran"
+                                name="tanggal_ujian" value="{{ old('tanggal_ujian', $ujian->tanggal_ujian ?? '') }}"
+                                disabled>
+                            @error('tanggal_ujian')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-10">
-                        <select class="form-control form-control-sm" id="surat" name="surat[]" multiple>
-                            <option disabled>Surat</option>
-                            @foreach ($surat as $s)
-                                <option value="{{ $s->id }}"
-                                    {{ in_array($s->id, $ujian->surats->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                    {{ $s->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('surat')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-2 my-auto">
-                        <label for="inputJmlSetoran" class="form-label mb-0">Jumlah Hafalan</label>
-                    </div>
-                    <div class="col-10">
-                        <input type="text" class="form-control form-control-sm" id="inputJmlSetoran"
-                            name="jumlah_ujian" value="{{ old('jumlah_ujian', $ujian->jumlah_ujian ?? '') }}" required>
-                        @error('jumlah_ujian')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
 
-                <div class="row mb-4">
-                    <div class="col-2 my-auto">
-                        <label for="inputCatatan" class="form-label mb-0">Catatan</label>
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
+                            <label for="inputTglSetoran" class="form-label mb-0">Waktu Ujian</label>
+                        </div>
+                        <div class="col-10">
+                            <input type="time" class="form-control form-control-sm" id="inputTglSetoran"
+                                name="jam" value="{{ old('jam', $ujian->jam ?? '') }}" disabled>
+                            @error('jam')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-10">
-                        <textarea class="form-control form-control-sm" id="inputCatatan" name="catatan" required>{{ old('catatan', $ujian->catatan ?? '') }}</textarea>
-                        @error('catatan')
-                            <div class="text-danger mt-2">{{ $message }}</div>
-                        @enderror
+
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
+                            <label for="inputNamaSantri" class="form-label mb-0">Tempat Ujian</label>
+                        </div>
+                        <div class="col-10">
+                            <select type="text" class="form-control form-control-sm" id="inputNamaSantri"
+                                name="tempat_id" disabled>
+                                <option disabled selected>Pilih Tempat Ujian</option>
+                                @foreach ($tempat as $t)
+                                    <option value={{ $t->id }}
+                                        {{ old('tempat_id', $ujian->tempat->id ?? '') == $t->id ? 'selected' : '' }}>
+                                        {{ $t->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('tempat_id')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
-
-                <div class="row mb-3">
-                    <div class="col-2 my-auto">
-                        <label class="form-label mb-0">Nilai</label>
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
+                            <label for="inputPenguji" class="form-label mb-0">Nama Penguji</label>
+                        </div>
+                        <div class="col-10">
+                            <select type="text" class="form-control form-control-sm" id="inputPenguji"
+                                name="penguji_id" disabled>
+                                <option disabled>Pilih Nama Penguji</option>
+                                @foreach ($penguji as $p)
+                                    <option value={{ $p->id }}
+                                        {{ $ujian->penguji->id == $p->id ? 'selected' : '' }}>
+                                        {{ $p->user->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('penguji_id')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-10">
-                        <div class="d-flex flex-wrap gap-3">
-                            <div>
-                                <input placeholder="Kelancaran" type="number" class="form-control form-control-sm"
-                                    id="inputNilaiKelancaran" name="nilai_kelancaran"
-                                    value="{{ old('nilai_kelancaran', $ujian->nilais[0]->pivot->nilai ?? '') }}"
-                                    required>
-                                @error('nilai_kelancaran')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div>
 
-                                <input placeholder="Makhraj" type="number" class="form-control form-control-sm"
-                                    id="inputNilaiMakhraj" name="nilai_makhraj"
-                                    value="{{ old('nilai_kelancaran', $ujian->nilais[1]->pivot->nilai ?? '') }}"
-                                    required>
-                                @error('nilai_makhraj')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div>
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
+                            <label for="inputNamaSantri" class="form-label mb-0">Nama Santri</label>
+                        </div>
+                        <div class="col-10">
+                            <select class="form-control form-control-sm" id="inputNamaSantri" name="santri_id" disabled
+                                required>
+                                <option disabled selected>Pilih Nama Santri</option>
+                                @foreach ($santri as $s)
+                                    <option value="{{ $s->santri->id }}"
+                                        {{ $ujian->santri->id == $s->santri->id ? 'selected' : '' }}>
 
-                                <input placeholder="Lagu" type="number" class="form-control form-control-sm"
-                                    id="inputNilaiLagu" name="nilai_lagu"
-                                    value="{{ old('nilai_kelancaran', $ujian->nilais[2]->pivot->nilai ?? '') }}"
-                                    required>
-                                @error('nilai_lagu')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div>
+                                        {{ $s->santri->user->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('santri_id')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
 
-                                <input placeholder="Adab" type="number" class="form-control form-control-sm"
-                                    id="inputNilaiAdab" name="nilai_adab"
-                                    value="{{ old('nilai_kelancaran', $ujian->nilais[3]->pivot->nilai ?? '') }}"
-                                    required>
-                                @error('nilai_adab')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
+                    <div class="row mb-4">
+                        <div class="col-2 my-auto">
+                            <label for="inputCatatan" class="form-label mb-0">Catatan</label>
+                        </div>
+                        <div class="col-10">
+                            <textarea class="form-control form-control-sm" id="inputCatatan" name="catatan" required>{{ old('catatan', $ujian->catatan ?? '') }}</textarea>
+                            @error('catatan')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-3">
+                        <div class="col-2 my-auto">
+                            <label class="form-label mb-0">Nilai</label>
+                        </div>
+                        <div class="col-10">
+                            <div class="d-flex flex-wrap gap-3">
+                                <div>
+                                    <input placeholder="Kelancaran" type="number"
+                                        class="form-control form-control-sm" id="inputNilaiKelancaran"
+                                        name="nilai_kelancaran"
+                                        value="{{ old('nilai_kelancaran', $ujian->nilais[0]->pivot->nilai ?? '') }}"
+                                        required>
+                                    @error('nilai_kelancaran')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div>
+
+                                    <input placeholder="Makhraj" type="number" class="form-control form-control-sm"
+                                        id="inputNilaiMakhraj" name="nilai_makhraj"
+                                        value="{{ old('nilai_kelancaran', $ujian->nilais[1]->pivot->nilai ?? '') }}"
+                                        required>
+                                    @error('nilai_makhraj')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div>
+
+                                    <input placeholder="Lagu" type="number" class="form-control form-control-sm"
+                                        id="inputNilaiLagu" name="nilai_lagu"
+                                        value="{{ old('nilai_kelancaran', $ujian->nilais[2]->pivot->nilai ?? '') }}"
+                                        required>
+                                    @error('nilai_lagu')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div>
+
+                                    <input placeholder="Adab" type="number" class="form-control form-control-sm"
+                                        id="inputNilaiAdab" name="nilai_adab"
+                                        value="{{ old('nilai_kelancaran', $ujian->nilais[3]->pivot->nilai ?? '') }}"
+                                        required>
+                                    @error('nilai_adab')
+                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="float-end">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <a class="btn btn-secondary" href="{{ route('dashboard.penguji') }}">Kembali</a>
-                </div>
-            </form>
+                    <div class="float-end">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a class="btn btn-secondary" href="{{ route('dashboard.panitia.ujian') }}">Kembali</a>
+                    </div>
+                </form>
+
+                <form method="POST" >
+                    @csrf
+                    @method('PATCH')
+
+                   
+                  
+                </form>
+            </div>
+
 
         </div>
     </section>

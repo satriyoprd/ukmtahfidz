@@ -33,11 +33,13 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu"
                             style="--bs-dropdown-link-active-bg: none">
-                            <li><a class="dropdown-item text-black" href="{{route('dashboard.panitia')}}">Pendaftaran
+                            <li><a class="dropdown-item text-black" href="{{ route('dashboard.panitia') }}">Pendaftaran
                                     Setoran</a></li>
-                            <li><a class="dropdown-item text-black" onclick="dashboardPanitiaUjian()">Pendaftaran
+                            <li><a class="dropdown-item text-black"
+                                    href="{{ route('dashboard.panitia.pendaftaran-ujian') }}">Pendaftaran
                                     Ujian</a></li>
-                            <li><a href="{{route('dashboard.panitia.ujian')}}"  class="dropdown-item font-normal text-black"
+                            <li><a href="{{ route('dashboard.panitia.ujian') }}"
+                                    class="dropdown-item font-normal text-black"
                                     onclick="dashboardPanitiaUjian()">Ujian</a></li>
 
                         </ul>
@@ -88,15 +90,15 @@
                                 </div>
                             </td>
                             <td class="text-center">
-                                <a href="{{ route('dashboard.panitia.pendaftaranSetoran', $p->id) }}" class="btn btn-sm"
-                                    type="button"><i class="bi bi-journal-text"></i></a>
+                                <a href="{{ route('dashboard.panitia.pendaftaranSetoran', $p->id) }}"
+                                    class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
 
-         
+
 
         </div>
     </section>

@@ -65,7 +65,7 @@
 
             @if ($ujianVerified)
                 @if ($ujianVerified->penguji_verified === 0 || $ujianVerified->panitia_verified === 0)
-                    @if ($ujianVerified->penguji_done == '0')
+                    @if ($ujianVerified->penguji_done != null || $ujianVerified->panitia_done != null)
                         <div class="bg-yellow-100 p-4 rounded-lg my-4">
                             <p class="text-2xl font-bold text-yellow-700">Pemberitahuan</p>
                             <p class="text-yellow-800">Kamu belum mendaftar program ujian tahfidz, silahkan <a
@@ -81,6 +81,44 @@
                                     di sini</a>
                         </div>
                     @endif
+
+                    <table id="tableUjian" class="table table-bordered mt-5">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Tanggal</th>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Program</th>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Tahapan</th>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Auth::user()->santri->verifiedUjian->reverse() as $j)
+                                <tr>
+                                    <td>
+                                        <div>
+                                            {{ \Carbon\Carbon::parse($j->created_at)->format('d/m/Y') }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Program Ujian Tahfidz
+                                        {{ \Carbon\Carbon::parse($j->created_at)->year }}
+                                    </td>
+                                    <td>
+                                        @if ($loop->iteration > 1)
+                                            Selesai
+                                        @else
+                                            {{ end($activeStepper) }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $j->penguji_done == '1' && $j->panitia_done == '1' ? 'Lulus' : 'Tidak Lulus' }}
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 @elseif (
                     ($ujianVerified->penguji_verified === 1 && is_null($ujianVerified->panitia_verified)) ||
                         (is_null($ujianVerified->penguji_verified) && $ujianVerified->panitia_verified === 1) ||
@@ -92,16 +130,18 @@
                             seleksi.
                     </div>
                 @elseif ($ujianVerified->penguji_verified === 1 && $ujianVerified->panitia_verified === 1)
-                    <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
-                        <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
-                        <p class="text-xl font-medium mb-0">
-                            Selamat! Anda telah <strong>diterima</strong> menjadi bagian program tahfidz ujian UKM
-                            Tahfidz
-                            Universitas
-                            Airlangga.
-                        </p>
+                    @if ($ujianVerified->penguji_done != '1' || $ujianVerified->panitia_done != '1')
+                        <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
+                            <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
+                            <p class="text-xl font-medium mb-0">
+                                Selamat! Anda telah <strong>diterima</strong> menjadi bagian program tahfidz ujian UKM
+                                Tahfidz
+                                Universitas
+                                Airlangga.
+                            </p>
 
-                    </div>
+                        </div>
+                    @endif
 
                     @if ($activeStepper == ['Registrasi'])
                         <table id="tableUjian" class="table table-bordered">
@@ -189,26 +229,22 @@
                         <table id="tableUjian" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Tgl Ujian</th>
-                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Surat</th>
-                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Jumlah Hafalan</th>
-                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Nilai</th>
-                                    <th class="text-center" style="background: #CCCF95; width: 30%;">Catatan</th>
-                                    <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
+                                    <th class="text-center" style="background: #CCCF95; ">Tgl Ujian</th>
+                                    <th class="text-center" style="background: #CCCF95; ">Program</th>
+
+                                    <th class="text-center" style="background: #CCCF95;">Nilai</th>
+                                    <th class="text-center" style="background: #CCCF95;">Catatan</th>
+                                    <th class="text-center" style="background: #CCCF95;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($ujian as $j)
                                     <tr>
                                         <td>{{ $j->tanggal_ujian }}</td>
-                                        <td class="flex flex-wrap gap-1 text-white">
-                                            @foreach ($j->surats as $item)
-                                                <div class="bg-primary-app text-xs p-2 rounded">
-                                                    {{ $item->name }}
-                                                </div>
-                                            @endforeach
-                                        </td>
-                                        <td>{{ $j->jumlah_ujian }}</td>
+
+                                        <td>Program Ujian Sertifikasi Tahfidz
+                                            {{ \Carbon\Carbon::parse($ujianVerified->created_at)->year }}</td>
+
                                         <td>{{ $j->nilai }}</td>
 
                                         <td>{{ $j->catatan }}</td>
@@ -221,6 +257,74 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                    @endif
+
+                    @if ($activeStepper == ['Registrasi', 'Ujian', 'Hasil Ujian', 'Pengumuman'])
+
+
+                        <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
+                            <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
+                            <p class="text-xl font-medium mb-0">
+                                Selamat! Anda telah <strong>lulus</strong> dari program Ujian Sertifikasi dan berhak
+                                mendapatkan beasiswa
+                                dari program kami
+                            </p>
+
+                        </div>
+
+
+                        <form method="POST"
+                            action="{{ route('santri-verified-ujian.update', $ujianVerified->id) }}">
+                            @csrf
+                            @method('PUT')
+
+                            <input type="hidden" name="penguji_verified" value="0">
+                            <input type="hidden" name="panitia_verified" value="0">
+                            <div class="flex justify-center">
+                                <button type="submit" class="btn mx-auto w-32">Selesai</button>
+                            </div>
+                        </form>
+
+
+                        <table id="tableUjian" class="table table-bordered mt-5">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Tanggal</th>
+                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Program</th>
+                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Tahapan</th>
+                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Status</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Auth::user()->santri->verifiedUjian->reverse() as $j)
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                {{ \Carbon\Carbon::parse($j->created_at)->format('d/m/Y') }}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Program Ujian Tahfidz
+                                            {{ \Carbon\Carbon::parse($j->created_at)->year }}
+                                        </td>
+                                        <td>
+                                            @if ($loop->iteration > 1)
+                                                Selesai
+                                            @else
+                                                {{ end($activeStepper) }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $j->penguji_done == '1' && $j->panitia_done == '1' ? 'Lulus' : 'Tidak Lulus' }}
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
                     @endif
                 @endif
             @else
@@ -231,18 +335,44 @@
                             di sini</a>
                 </div>
 
+                <table id="tableUjian" class="table table-bordered mt-5">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Tanggal</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Program</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Tahapan</th>
+                            <th class="text-center" style="background: #CCCF95; width: 15%;">Status</th>
 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Auth::user()->santri->verifiedUjian->reverse() as $j)
+                            <tr>
+                                <td>
+                                    <div>
+                                        {{ \Carbon\Carbon::parse($j->created_at)->format('d/m/Y') }}
+                                    </div>
+                                </td>
+                                <td>
+                                    Program Ujian Tahfidz
+                                    {{ \Carbon\Carbon::parse($j->created_at)->year }}
+                                </td>
+                                <td>
+                                    @if ($loop->iteration > 1)
+                                        Selesai
+                                    @else
+                                        {{ end($activeStepper) }}
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $j->penguji_done == '1' && $j->panitia_done == '1' ? 'Lulus' : 'Tidak Lulus' }}
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             @endif
-
-
-
-
-
-
-
-
-
-
         </div>
     </section>
 

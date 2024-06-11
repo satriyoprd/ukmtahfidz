@@ -128,8 +128,6 @@
                     <tr>
                         <th class="text-center" style="background: #CCCF95; width: 14%;">Tgl Ujian</th>
                         <th class="text-center" style="background: #CCCF95; width: 14%;">Nama Santri</th>
-                        <th class="text-center" style="background: #CCCF95; width: 14%;">Surat</th>
-                        <th class="text-center" style="background: #CCCF95; width: 14%;">Jumlah Hafalan</th>
                         <th class="text-center" style="background: #CCCF95; width: 14%;">Nilai</th>
                         <th class="text-center" style="background: #CCCF95; width: 20%;">Catatan</th>
                         <th class="text-center" style="background: #CCCF95; width: 10%;">Aksi</th>
@@ -140,19 +138,11 @@
                         <tr>
                             <td>{{ $j->tanggal_ujian }}</td>
                             <td>{{ $j->santri->user->name }}</td>
-                            <td class="flex flex-wrap gap-1 text-white">
-                                @foreach ($j->surats as $item)
-                                    <div class="bg-primary-app text-xs p-2 rounded">
-                                        {{ $item->name }}
-                                    </div>
-                                @endforeach
-                            </td>
-                            <td>{{ $j->jumlah_ujian }}</td>
-                            <td>{{ $j->nilai }}</td>
 
-                            <td>{{ $j->catatan }}</td>
+                            <td>{{ $j->nilai == null ? 'Belum dinilai' : $j->nilai }}</td>
 
-                          
+                            <td>{{ is_null($j->catatan) ? 'Belum ada catatan' : $j->catatan }}</td>
+
 
                             <td class="text-center"><a href={{ route('dashboard.penguji.ujian.update', $j->id) }}
                                     class="btn btn-sm" type="button"><i class="bi bi-pencil-fill"></i></a>
@@ -201,36 +191,113 @@
                 </tbody>
             </table>
 
-            <table id="tabelPendaftarUjian" style="display: none;" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center" style="background: #CCCF95; ">Tgl Daftar</th>
-                        <th class="text-center" style="background: #CCCF95;">Nama Santri</th>
-                        <th class="text-center" style="background: #CCCF95;">Jumlah Hafalan</th>
-                        <th class="text-center" style="background: #CCCF95;">Fakultas</th>
-                        <th class="text-center" style="background: #CCCF95;">Jurusan</th>
-                        <th class="text-center" style="background: #CCCF95; ">Status</th>
-                        <th class="text-center" style="background: #CCCF95; ">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($pendaftaranUjian as $p)
+            <div id="tabelPendaftarUjian" style="display: none;">
+
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>{{ $p->santri->created_at }}</td>
-                            <td>{{ $p->santri->user->name }}</td>
-                            <td>{{ $p->santri->jumlah_hafalan }}</td>
-                            <td>{{ $p->santri->major->faculty->name }}</td>
-                            <td>{{ $p->santri->major->name }}</td>
-                            <td>{{ $p->penguji_verified == '1' ? 'Disetujui' : ($p->penguji_verified == '0' ? 'Ditolak' : 'Diproses') }}
-                            </td>
-                            <td class="text-center">
-                                <a href="{{ route('dashboard.penguji.detail-ujian', $p->id) }}" class="btn btn-sm"
-                                    type="button"><i class="bi bi-journal-text"></i></a>
-                            </td>
+                            <th class="text-center" style="background: #CCCF95; ">Tgl Daftar</th>
+                            <th class="text-center" style="background: #CCCF95;">Nama Santri</th>
+                            <th class="text-center" style="background: #CCCF95;">Jumlah Hafalan</th>
+                            <th class="text-center" style="background: #CCCF95;">Fakultas</th>
+                            <th class="text-center" style="background: #CCCF95;">Jurusan</th>
+                            <th class="text-center" style="background: #CCCF95; ">Status</th>
+                            <th class="text-center" style="background: #CCCF95; ">Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($pendaftaranUjian as $p)
+                            <tr>
+                                <td>{{ $p->santri->created_at }}</td>
+                                <td>{{ $p->santri->user->name }}</td>
+                                <td>{{ $p->santri->jumlah_hafalan }}</td>
+                                <td>{{ $p->santri->major->faculty->name }}</td>
+                                <td>{{ $p->santri->major->name }}</td>
+                                <td>{{ $p->penguji_verified == '1' ? 'Disetujui' : ($p->penguji_verified == '0' ? 'Ditolak' : 'Diproses') }}
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ route('dashboard.penguji.detail-ujian', $p->id) }}"
+                                        class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <div class="text-xl font-bold mt-4">
+                    Ujian Diterima
+                </div>
+
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="background: #CCCF95; ">Tgl Daftar</th>
+                            <th class="text-center" style="background: #CCCF95;">Nama Santri</th>
+                            <th class="text-center" style="background: #CCCF95;">Jumlah Hafalan</th>
+                            <th class="text-center" style="background: #CCCF95;">Fakultas</th>
+                            <th class="text-center" style="background: #CCCF95;">Jurusan</th>
+                            <th class="text-center" style="background: #CCCF95; ">Status Program</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($ujianDiterima as $p)
+                            <tr>
+                                <td>{{ $p->santri->created_at }}</td>
+                                <td>{{ $p->santri->user->name }}</td>
+                                <td>{{ $p->santri->jumlah_hafalan }}</td>
+                                <td>{{ $p->santri->major->faculty->name }}</td>
+                                <td>{{ $p->santri->major->name }}</td>
+
+
+                                <td class="text-center">
+                                    <form action={{ route('santri-verified-ujian.update.done', $p->id) }}
+                                        method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mt-8">
+
+                                            <div class="border shadow p-4 mt-2 flex flex-col gap-6">
+
+                                                <div class="flex gap-2 items-center">
+                                                    <div class="flex gap-4 items-center">
+                                                        <div class="flex gap-1 items-center">
+                                                            <input type="radio" name="penguji_done" value="1"
+                                                                {{ $p->penguji_done == '1' ? 'checked' : '' }}>
+                                                            <div>Lulus Ujian</div>
+                                                        </div>
+                                                        <div class="flex gap-1 items-center">
+                                                            <input type="radio" name="penguji_done" value="0"
+                                                                {{ $p->penguji_done == '0' ? 'checked' : '' }}>
+                                                            <div>Tidak Lulus</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="flex items-end gap-4 mt-6 justify-center">
+                                                <x-primary-button
+                                                    class="!bg-primary-app !px-4">{{ __('Simpan') }}</x-primary-button>
+
+                                                <a href={{ route('dashboard.panitia') }}><button type="button"
+                                                        class="border-[2px] py-1 px-4 font-bold text-primary-app rounded !border-primary-app">Batal</button></a>
+
+                                                @if (session('status') === 'profile-updated')
+                                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                                        x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">
+                                                        {{ __('Saved.') }}
+                                                    </p>
+                                                @endif
+                                            </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
 
 
 

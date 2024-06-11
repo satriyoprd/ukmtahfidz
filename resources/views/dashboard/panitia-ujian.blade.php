@@ -89,8 +89,8 @@
                         <tr>
                             <td>{{ $u->tanggal_ujian }}</td>
                             <td>{{ $u->jam }}</td>
-                            <td>{{ $u->santri->user->name }}</td>
                             <td>{{ $u->penguji->user->name }}</td>
+                            <td>{{ $u->santri->user->name }}</td>
                             <td>{{ $u->tempat->name }}</td>
 
                             <td class="text-center"><a href={{ route('dashboard.panitia.ujian.edit', $u->id) }}

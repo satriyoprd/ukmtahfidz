@@ -21,17 +21,20 @@
                                 UNAIR</p>
 
                             @php
-                                if (count(Auth::user()->santri->verifiedSetoran) > 0) {
-                                    $verifiedSetoranData = Auth::user()->santri->verifiedSetoran[
-                                        count(Auth::user()->santri->verifiedSetoran) - 1
-                                    ];
+                                if (Auth::user()->role_id == config('constants.ROLE_SANTRI')) {
+                                    if (count(Auth::user()->santri->verifiedSetoran) > 0) {
+                                        $verifiedSetoranData = Auth::user()->santri->verifiedSetoran[
+                                            count(Auth::user()->santri->verifiedSetoran) - 1
+                                        ];
+                                    }
+
+                                    if (count(Auth::user()->santri->verifiedUjian) > 0) {
+                                        $verifiedUjian = Auth::user()->santri->verifiedUjian[
+                                            count(Auth::user()->santri->verifiedUjian) - 1
+                                        ];
+                                    }
                                 }
 
-                                if (count(Auth::user()->santri->verifiedUjian) > 0) {
-                                    $verifiedUjian = Auth::user()->santri->verifiedUjian[
-                                        count(Auth::user()->santri->verifiedUjian) - 1
-                                    ];
-                                }
                             @endphp
 
                             @if (Auth::check() && Auth::user()->role_id == config('constants.ROLE_SANTRI'))

@@ -61,7 +61,12 @@ class PanitiaDashboardController extends Controller
         $pendaftaranSetoran = SantriVerifiedSetoran::whereIn('id', $setoranSubQuery)->get();
         $pendaftaranUjian = SantriVerifiedUjian::whereIn('id', $ujianSubQuery)->get();
 
-        return view('dashboard.panitia-dashboard-pendaftaran-ujian', compact('pendaftaranSetoran', 'pendaftaranUjian'));
+        $ujianDiterima = SantriVerifiedUjian::whereIn('id', $ujianSubQuery)
+            ->where('panitia_verified', true)
+            ->where('penguji_verified', true)
+            ->get();
+
+        return view('dashboard.panitia-dashboard-pendaftaran-ujian', compact('pendaftaranSetoran', 'pendaftaranUjian', 'ujianDiterima'));
     }
     public function indexPendaftaranSetoran()
     {

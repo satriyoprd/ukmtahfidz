@@ -94,8 +94,7 @@
                             required>
                             <option disabled>Pilih Nama Penguji</option>
                             @foreach ($penguji as $p)
-                                <option value={{ $p->id }}
-                                    {{ $ujian->penguji->id == $p->id ? 'selected' : '' }}>
+                                <option value={{ $p->id }} {{ $ujian->penguji->id == $p->id ? 'selected' : '' }}>
                                     {{ $p->user->name }}
                                 </option>
                             @endforeach
@@ -116,7 +115,7 @@
                         <select class="form-control form-control-sm" id="inputNamaSantri" name="santri_id" required>
                             <option disabled selected>Pilih Nama Santri</option>
                             @foreach ($santri as $s)
-                                <option value="{{ $s->id }}"
+                                <option value="{{ $s->santri->id }}"
                                     {{ $ujian->santri->id == $s->santri->id ? 'selected' : '' }}>
 
                                     {{ $s->santri->user->name }}
@@ -137,5 +136,7 @@
             </form>
 
         </div>
+
+       
     </section>
 </x-app-layout>
