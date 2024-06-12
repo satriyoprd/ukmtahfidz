@@ -22,7 +22,7 @@ class SantriVerifiedUjianController extends Controller
 
         SantriVerifiedUjian::create([
             'santri_id' => $request->user()->santri->id,
-            'is_done' => ''
+            'is_done' => false
         ]);
 
 
