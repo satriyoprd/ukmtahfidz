@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nilai;
+use App\Models\SantriVerifiedUjian;
 use App\Models\Setoran;
 use App\Models\Ujian;
 use Illuminate\Http\Request;
@@ -36,6 +37,14 @@ class SantriController extends Controller
     {
         $user = Auth::user();
         return view('dashboard.santri-detail-ujian', compact('user', 'ujian'));
+    }
+
+    public function indexPengumuman(SantriVerifiedUjian $ujianVerified)
+    {
+        $user = Auth::user();
+        $status = $ujianVerified->panitia_done == '1' && $ujianVerified->penguji_done == 1;
+
+        return view('dashboard.santri-detail-pengumuman', compact('status', 'user'));
     }
 
 

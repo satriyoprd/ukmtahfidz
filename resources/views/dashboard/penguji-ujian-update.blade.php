@@ -290,35 +290,30 @@
                         </div>
                     </div>
 
+                    <div class="row mb-4">
+                        <div class="col-2 my-auto">
+                            <label class="form-label mb-0">Hasil Ujian</label>
+                        </div>
+                        <div class="col-10 d-flex align-items-center gap-3 mt-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isDone" id="isDoneSelesai"
+                                    {{ $ujian->isDone == '1' ? 'checked' : '' }} value="1">
+                                <label class="form-check-label" for="isDoneSelesai">Selesai</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isDone" id="isDoneBelum"
+                                    {{ $ujian->isDone == '0' ? 'checked' : '' }} value="0">
+                                <label class="form-check-label" for="isDoneBelum">Belum</label>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="float-end">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a class="btn btn-secondary" href="{{ route('dashboard.panitia.ujian') }}">Kembali</a>
                     </div>
                 </form>
-
-                <form method="POST" >
-                    @csrf
-                    @method('PATCH')
-
-                   
-                  
-                </form>
             </div>
-
-
         </div>
     </section>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const element = document.getElementById('surat');
-            const choices = new Choices(element, {
-                searchEnabled: true,
-                placeholderValue: 'Surat',
-                removeItemButton: true,
-                duplicateItemsAllowed: false,
-                itemSelectText: '',
-            });
-        });
-    </script>
 </x-app-layout>

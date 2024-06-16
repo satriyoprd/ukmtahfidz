@@ -17,7 +17,8 @@ class Ujian extends Model
         'catatan',
         'nilai',
         'jam',
-        'tempat_id'
+        'tempat_id',
+        'isDone'
     ];
 
     public function santri()

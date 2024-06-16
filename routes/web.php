@@ -66,6 +66,8 @@ Route::get('/santri/setoran/{id}', [SantriController::class, 'indexNilaiSetoran'
 
 Route::get('/santri/ujian/{id}', [SantriController::class, 'indexNilaiUjian'])->name('dashboard.santri.ujian');
 
+Route::get('/santri/ujian/pengumuman/{ujianVerified}', [SantriController::class, 'indexPengumuman'])->name('dashboard.santri.pengumuman');
+
 Route::get('/penguji', function () {
     $setoran = Setoran::where('penguji_id', Auth::user()->penguji->id)->get();
 

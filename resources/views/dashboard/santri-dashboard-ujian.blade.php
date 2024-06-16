@@ -129,8 +129,52 @@
                         <p class="text-gray-800">Kamu sudah mendaftar program ujian tahfidz, mohon menunggu proses
                             seleksi.
                     </div>
+
+                    <table id="tableUjian" class="table table-bordered mt-5">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Tanggal</th>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Program</th>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Tahapan</th>
+                                <th class="text-center" style="background: #CCCF95; width: 15%;">Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Auth::user()->santri->verifiedUjian->reverse() as $j)
+                                <tr>
+                                    <td>
+                                        <div>
+                                            {{ \Carbon\Carbon::parse($j->created_at)->format('d/m/Y') }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Program Ujian Tahfidz
+                                        {{ \Carbon\Carbon::parse($j->created_at)->year }}
+                                    </td>
+                                    <td>
+                                        @if ($loop->iteration > 1)
+                                            Selesai
+                                        @else
+                                            {{ end($activeStepper) }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(end($activeStepper) == 'Registrasi')
+
+                                        Lulus
+
+                                        @else
+                                        {{ $j->penguji_done == '1' && $j->panitia_done == '1' ? 'Lulus' : 'Tidak Lulus' }}
+                                        @endif
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 @elseif ($ujianVerified->penguji_verified === 1 && $ujianVerified->panitia_verified === 1)
-                    @if ($ujianVerified->penguji_done != '1' || $ujianVerified->panitia_done != '1')
+                    @if (end($activeStepper) != 'Pengumuman')
                         <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
                             <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
                             <p class="text-xl font-medium mb-0">
@@ -202,22 +246,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($ujian as $j)
+                                @foreach ($ujian->sortByDesc('created_at') as $j)
                                     <tr>
                                         <td>{{ $j->tanggal_ujian }}</td>
-
-
                                         <td>
-                                            Ujian
+                                            @if ($j->nilai != null)
+                                                Hasil Ujian
+                                            @else
+                                                Ujian
+                                            @endif
                                         </td>
-
-                                        <td>
-                                            Lulus pendaftaran
-                                        </td>
-
-
-                                        <td class="text-center"><a href={{ route('dashboard.santri.detail', $j->id) }}
-                                                class="btn btn-sm" type="button"><i class="bi bi-journal-text"></i></a>
+                                        <td>Lulus</td>
+                                        <td class="text-center">
+                                            <a href={{ route('dashboard.santri.detail', $j->id) }} class="btn btn-sm"
+                                                type="button">
+                                                <i class="bi bi-journal-text"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -232,22 +276,22 @@
                                     <th class="text-center" style="background: #CCCF95; ">Tgl Ujian</th>
                                     <th class="text-center" style="background: #CCCF95; ">Program</th>
 
-                                    <th class="text-center" style="background: #CCCF95;">Nilai</th>
-                                    <th class="text-center" style="background: #CCCF95;">Catatan</th>
+                                    <th class="text-center" style="background: #CCCF95;">Tahapan</th>
+                                    <th class="text-center" style="background: #CCCF95;">Status</th>
                                     <th class="text-center" style="background: #CCCF95;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($ujian as $j)
+                                @foreach ($ujian->sortByDesc('created_at') as $j)
                                     <tr>
                                         <td>{{ $j->tanggal_ujian }}</td>
 
                                         <td>Program Ujian Sertifikasi Tahfidz
                                             {{ \Carbon\Carbon::parse($ujianVerified->created_at)->year }}</td>
 
-                                        <td>{{ $j->nilai }}</td>
+                                        <td> {{ end($activeStepper) }}</td>
 
-                                        <td>{{ $j->catatan }}</td>
+                                        <td>Lulus</td>
 
                                         <td class="text-center"><a href={{ route('dashboard.santri.ujian', $j->id) }}
                                                 class="btn btn-sm" type="button"><i
@@ -263,15 +307,29 @@
                     @if ($activeStepper == ['Registrasi', 'Ujian', 'Hasil Ujian', 'Pengumuman'])
 
 
-                        <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
-                            <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i></div>
-                            <p class="text-xl font-medium mb-0">
-                                Selamat! Anda telah <strong>lulus</strong> dari program Ujian Sertifikasi dan berhak
-                                mendapatkan beasiswa
-                                dari program kami
-                            </p>
+                        @if ($ujianVerified->penguji_done == '1' && $ujianVerified->panitia_done == '1')
+                            <div class="border-[2px] rounded p-4 mb-4 flex gap-3 items-center">
+                                <div class="bg-[#075F7C33] rounded"><i class="p-3 fa-solid fa-bullhorn text-xl"></i>
+                                </div>
+                                <p class="text-xl font-medium mb-0">
+                                    Selamat! Anda telah <strong>lulus</strong> dari program Ujian Sertifikasi dan berhak
+                                    mendapatkan beasiswa
+                                    dari program kami
+                                </p>
 
-                        </div>
+                            </div>
+                        @else
+                            <div class="border-[2px] bg-red-100 rounded p-4 mb-4 flex gap-3 items-center">
+                                <div class="bg-red-200 rounded"><i
+                                        class="p-3 fa-solid fa-bullhorn text-red-600 text-xl"></i>
+                                </div>
+                                <p class="text-xl text-red-600 font-medium mb-0">
+                                    Tetap semangat dan coba lagi! Anda dinyatakan <strong>tidak lulus</strong> dari
+                                    Program Ujian Sertifikasi Tahfidz
+                                </p>
+
+                            </div>
+                        @endif
 
 
                         <form method="POST"
@@ -294,6 +352,7 @@
                                     <th class="text-center" style="background: #CCCF95; width: 15%;">Program</th>
                                     <th class="text-center" style="background: #CCCF95; width: 15%;">Tahapan</th>
                                     <th class="text-center" style="background: #CCCF95; width: 15%;">Status</th>
+                                    <th class="text-center" style="background: #CCCF95; width: 15%;">Aksi</th>
 
                                 </tr>
                             </thead>
@@ -316,8 +375,17 @@
                                                 {{ end($activeStepper) }}
                                             @endif
                                         </td>
+
                                         <td>
                                             {{ $j->penguji_done == '1' && $j->panitia_done == '1' ? 'Lulus' : 'Tidak Lulus' }}
+                                        </td>
+
+
+                                        <td class="text-center">
+                                            <a href="{{ route('dashboard.santri.pengumuman', ['ujianVerified' => $j->id]) }}"
+                                                class="btn btn-sm" type="button">
+                                                <i class="bi bi-journal-text"></i>
+                                            </a>
                                         </td>
 
                                     </tr>

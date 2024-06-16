@@ -123,6 +123,7 @@ class UjianController extends Controller
             'nilai_makhraj' => 'required',
             'nilai_lagu' => 'required',
             'nilai_adab' => 'required',
+            'isDone' => 'required'
         ]);
 
         $average = ($request->nilai_kelancaran + $request->nilai_makhraj + $request->nilai_lagu + $request->nilai_adab) / 4;
@@ -131,6 +132,7 @@ class UjianController extends Controller
         $ujian->update([
             'catatan' => $request->catatan,
             'nilai' => $average,
+            'isDone' => $request->isDone
         ]);
 
         if (isset($request->surat)) {
