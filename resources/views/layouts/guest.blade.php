@@ -52,6 +52,29 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword1 = document.querySelector('#togglePassword1');
+            const inputPassword = document.querySelector('#inputPassword');
+            const togglePassword2 = document.querySelector('#togglePassword2');
+            const inputConfirmPass = document.querySelector('#inputConfirmPass');
+
+            togglePassword1.addEventListener('click', function(e) {
+                const type = inputPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                inputPassword.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+
+            togglePassword2.addEventListener('click', function(e) {
+                const type = inputConfirmPass.getAttribute('type') === 'password' ? 'text' : 'password';
+                inputConfirmPass.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+
 </body>
 
 

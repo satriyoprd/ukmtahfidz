@@ -51,7 +51,8 @@
                 <!-- Password -->
                 <div class="mb-3">
                     <x-input-label for="inputPassword" :value="__('Kata Sandi')" />
-                    <x-text-input id="inputPassword" class="form-control" type="password" name="password" required />
+                    <x-text-input id="inputPassword" class="form-control" type="password" name="password" required
+                        suffixIcon="togglePassword1" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
@@ -59,7 +60,7 @@
                 <div class="mb-3">
                     <x-input-label for="inputConfirmPass" :value="__('Konfirmasi Kata Sandi')" />
                     <x-text-input id="inputConfirmPass" class="form-control" type="password"
-                        name="password_confirmation" required />
+                        name="password_confirmation" required suffixIcon="togglePassword2" />
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
 

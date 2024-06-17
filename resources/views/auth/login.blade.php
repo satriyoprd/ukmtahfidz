@@ -22,12 +22,12 @@
                 </div>
 
                 <!-- Password -->
-                <div class="mb-2">
+                <div class="mb-3">
                     <x-input-label for="inputPassword" :value="__('Kata Sandi')" />
-                    <x-text-input id="inputPassword" class="form-control" type="password" name="password" required />
+                    <x-text-input id="inputPassword" class="form-control" type="password" name="password" required
+                        suffixIcon="togglePassword1" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
-
 
                 <div class="mb-4">
                     <div class="row">
@@ -48,7 +48,8 @@
             </form>
             <div class="text-center">
                 <div class="inline">
-                    <p>Belum memiliki akun? <a data-bs-toggle="modal" data-bs-target="#modalRegister" class="cursor-pointer">Register</a></p>
+                    <p>Belum memiliki akun? <a data-bs-toggle="modal" data-bs-target="#modalRegister"
+                            class="cursor-pointer">Register</a></p>
                 </div>
             </div>
 

@@ -35,8 +35,8 @@
                 <!-- Nomor Handphone -->
                 <div class="mb-3">
                     <x-input-label for="inputNomorHp" :value="__('Nomor Handphone (WhatsApp)')" />
-                    <x-text-input id="inputNomorHp" class="form-control" type="text" name="phone"
-                        :value="old('nomor_hp')" required />
+                    <x-text-input id="inputNomorHp" class="form-control" type="text" name="phone" :value="old('nomor_hp')"
+                        required />
                     <x-input-error :messages="$errors->get('nomor_hp')" class="mt-2" />
                 </div>
 
@@ -51,7 +51,8 @@
                 <!-- Password -->
                 <div class="mb-3">
                     <x-input-label for="inputPassword" :value="__('Kata Sandi')" />
-                    <x-text-input id="inputPassword" class="form-control" type="password" name="password" required />
+                    <x-text-input id="inputPassword" class="form-control" type="password" name="password" required
+                        suffixIcon="togglePassword1" />
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
@@ -59,9 +60,10 @@
                 <div class="mb-3">
                     <x-input-label for="inputConfirmPass" :value="__('Konfirmasi Kata Sandi')" />
                     <x-text-input id="inputConfirmPass" class="form-control" type="password"
-                        name="password_confirmation" required />
+                        name="password_confirmation" required suffixIcon="togglePassword2" />
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
+
 
                 <!-- Fakultas -->
                 <div class="row mb-3">
@@ -153,5 +155,7 @@
             });
         });
     </script>
+
+   
 
 </x-guest-layout>
